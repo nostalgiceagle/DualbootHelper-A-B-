@@ -24,7 +24,7 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run : |
-          ./gradlew assembleRelease
+          ./gradlew assembleRelease --stacktrace
           find . -type f -name "*.apk"
           chmod +x uploadtg.sh
 

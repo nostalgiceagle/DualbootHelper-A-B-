@@ -1,0 +1,70 @@
+plugins {
+    id 'com.android.application'
+}
+
+def locales = file('src/main/res').listFiles(new FilenameFilter() {
+    @Override
+    boolean accept(File dir, String name) {
+        return name.matches('values-.*') && new File(dir, name).list().contains('strings.xml')
+    }
+}).collect { it.name.substring(7) }
+
+print("Locales: " + locales.join(', '))
+
+android {
+    namespace 'com.david42069.dualboothelper' /*TODO: change packageName*/
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.david42069.dualboothelper" /*TODO: change packageName*/
+        minSdk 23
+        targetSdk 33
+        versionCode 8
+        versionName "8.0.0"
+
+        resConfigs locales
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+configurations.all {
+    exclude group: 'androidx.appcompat', module: 'appcompat'
+    exclude group: 'androidx.core', module: 'core'
+    exclude group: 'androidx.drawerlayout', module: 'drawerlayout'
+    exclude group: 'androidx.viewpager', module: 'viewpager'
+    exclude group: 'androidx.fragment', module: 'fragment'
+    exclude group: 'androidx.customview', module: 'customview'
+    exclude group: 'androidx.coordinatorlayout', module: 'coordinatorlayout'
+    exclude group: 'com.android.support', module: 'support-compat'
+}
+
+dependencies {
+    implementation 'io.github.oneuiproject:design:1.2.6'
+    implementation 'io.github.oneuiproject:icons:1.1.0'
+    implementation 'io.github.oneuiproject.sesl:appcompat:1.4.0'
+    implementation 'io.github.oneuiproject.sesl:material:1.5.0'
+    implementation 'io.github.oneuiproject.sesl:recyclerview:1.4.1'
+    implementation 'io.github.oneuiproject.sesl:preference:1.1.0'
+    implementation 'io.github.oneuiproject.sesl:coordinatorlayout:1.0.0'
+    implementation 'io.github.oneuiproject.sesl:drawerlayout:1.0.0'
+    implementation 'io.github.oneuiproject.sesl:viewpager:1.1.0'
+    implementation 'io.github.oneuiproject.sesl:viewpager2:1.1.0'
+    implementation 'com.airbnb.android:lottie:5.2.0'
+    /*TODO: add/update/remove libraries*/
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}

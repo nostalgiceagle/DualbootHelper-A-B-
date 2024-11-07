@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Dualboot Helper" /*TODO: change name*/
-include ':app'
 include ':lib'
+include ':app'

@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-    compileSdk target_sdk
+    compileSdk 31
 
     defaultConfig {
         minSdk 23
-        targetSdk target_sdk
+        targetSdk 31
         versionCode 1
-        versionName lib_version
+        versionName 1.2.6
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -23,14 +23,14 @@ android {
 }
 
 dependencies {
-    api("androidx.annotation:annotation:$androidx_annotation_version")
+    api("androidx.annotation:annotation:1.4.0")
 
-    api("io.github.oneuiproject.sesl:appcompat:$sesl_appcompat_version")
-    implementation("io.github.oneuiproject.sesl:indexscroll:$sesl_indexscroll_version")
-    implementation("io.github.oneuiproject.sesl:picker-color:$sesl_picker_color_version")
-    implementation("io.github.oneuiproject.sesl:picker-basic:$sesl_picker_basic_version")
-    implementation("io.github.oneuiproject.sesl:preference:$sesl_preference_version")
-    implementation("io.github.oneuiproject.sesl:material:$sesl_material_version")
+    api("io.github.oneuiproject.sesl:appcompat:1.4.0")
+    implementation("io.github.oneuiproject.sesl:indexscroll:1.0.3")
+    implementation("io.github.oneuiproject.sesl:picker-color:1.1.0")
+    implementation("io.github.oneuiproject.sesl:picker-basic:1.2.0")
+    implementation("io.github.oneuiproject.sesl:preference:1.1.0")
+    implementation("io.github.oneuiproject.sesl:material:1.5.0")
 
     implementation("com.google.zxing:core:3.4.1")
 }

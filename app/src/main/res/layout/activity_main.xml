@@ -241,7 +241,8 @@
                         android:layout_columnWeight="1"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:layout_margin="8dp">
+                        android:layout_margin="8dp"
+                        android:tint="@color/download_color">
 
                         <ImageView
                             android:layout_width="32dp"
@@ -266,7 +267,8 @@
                         android:layout_columnWeight="1"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:layout_margin="8dp">
+                        android:layout_margin="8dp"
+                        android:tint="@color/poweroff_color">
 
                         <ImageView
                             android:layout_width="32dp"
@@ -281,7 +283,7 @@
                             android:layout_marginVertical="8dp"
                             android:clickable="true"
                             android:focusable="true"
-                            android:text="Shut Down" />
+                            android:text="Shut Down the system" />
 
                     </LinearLayout>
 

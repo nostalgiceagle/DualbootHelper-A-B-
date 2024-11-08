@@ -65,6 +65,7 @@
                             android:layout_height="wrap_content"
                             android:text="Dualboot info"
                             android:textSize="20sp"
+                            android:textColor="@color/oui_primary_text_color"
                             android:textStyle="bold"/>
 
                         <!-- show status or whatever -->
@@ -72,6 +73,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/status"
+                            android:textColor="@color/oui_primary_text_color"
                             android:layout_marginStart="4dp" />
 
                         <!-- Slot A Operating System text -->
@@ -79,6 +81,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Slot A Operating System:"
+                            android:textColor="@color/oui_primary_text_color"
                             android:layout_marginTop="4dp"/>
 
                         <!-- Slot A name or whatever -->
@@ -86,6 +89,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/slota_txt"
+                            android:textColor="@color/oui_primary_text_color"
                             android:layout_marginStart="4dp" />
 
                         <!-- Slot B Operating System text -->
@@ -93,6 +97,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Slot B Operating System:"
+                            android:textColor="@color/oui_primary_text_color"
                             android:layout_marginTop="4dp"/>
 
                         <!-- Slot B name or whatever -->
@@ -100,6 +105,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/slotb_txt"
+                            android:textColor="@color/oui_primary_text_color"
                             android:layout_marginStart="4dp" />
                     
                     </LinearLayout>

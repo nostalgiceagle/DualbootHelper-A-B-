@@ -154,14 +154,16 @@ public class AboutActivity extends AppCompatActivity
         mBinding.aboutHeaderTelegram.setOnClickListener(this);
         TooltipCompat.setTooltipText(mBinding.aboutHeaderTelegram, "Telegram");
 
+        mBottomContent.aboutBottomDevDavid.setOnClickListener(this);
+        mBottomContent.aboutBottomDevBob.setOnClickListener(this);
+
         mBottomContent.aboutBottomDevYann.setOnClickListener(this);
         mBottomContent.aboutBottomDevMesa.setOnClickListener(this);
 
+        mBottomContent.aboutBottomGnu.setOnClickListener(this);
         mBottomContent.aboutBottomOssApache.setOnClickListener(this);
         mBottomContent.aboutBottomOssMit.setOnClickListener(this);
 
-        mBottomContent.aboutBottomRelativeJetpack.setOnClickListener(this);
-        mBottomContent.aboutBottomRelativeMaterial.setOnClickListener(this);
         mBottomContent.aboutBottomRelativeOuip.setOnClickListener(this);
     }
 

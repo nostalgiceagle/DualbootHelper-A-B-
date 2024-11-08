@@ -76,6 +76,5 @@ dependencies {
 }
 
 dependencies {
-    implementation project(path: ':lib')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }

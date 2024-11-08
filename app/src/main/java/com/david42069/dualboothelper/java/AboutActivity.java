@@ -168,11 +168,16 @@ public class AboutActivity extends AppCompatActivity
     private void setBottomContentEnabled(boolean enabled) {
         mBinding.aboutHeaderGithub.setEnabled(!enabled);
         mBinding.aboutHeaderTelegram.setEnabled(!enabled);
+        mBottomContent.aboutBottomDevDavid.setEnabled(enabled);
+        mBottomContent.aboutBottomDevBob.setEnabled(enabled);
         mBottomContent.aboutBottomDevYann.setEnabled(enabled);
         mBottomContent.aboutBottomDevMesa.setEnabled(enabled);
+        mBottomContent.aboutBottomDevSalvo.setEnabled(enabled);
+        mBottomContent.aboutBottomGnu.setEnabled(enabled);
         mBottomContent.aboutBottomOssApache.setEnabled(enabled);
         mBottomContent.aboutBottomOssMit.setEnabled(enabled);
         mBottomContent.aboutDonate.setEnabled(enabled);
+        mBottomContent.aboutXda.setEnabled(enabled);
         mBottomContent.aboutBottomRelativeOuip.setEnabled(enabled);
     }
 
@@ -195,6 +200,8 @@ public class AboutActivity extends AppCompatActivity
                 url = "https://github.com/BlackMesa123";
             } else if (v.getId() == mBottomContent.aboutBottomDevSalvo.getId()) {
                 url = "https://github.com/salvogiangri";
+            } else if (v.getId() == mBottomContent.aboutBottomGnu.getId()) {
+                url = "https://www.gnu.org/licenses/licenses.html";
             } else if (v.getId() == mBottomContent.aboutBottomOssApache.getId()) {
                 url = "https://www.apache.org/licenses/LICENSE-2.0.txt";
             } else if (v.getId() == mBottomContent.aboutBottomOssMit.getId()) {

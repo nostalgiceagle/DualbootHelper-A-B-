@@ -25,7 +25,8 @@
         app:expanded="true"
         app:subtitle="A helper app for dualbooting solution"
         app:title="@string/app_name"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        android:overScrollMode="always">
 
         <LinearLayout
             android:layout_width="match_parent"

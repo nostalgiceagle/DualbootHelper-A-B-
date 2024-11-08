@@ -10,6 +10,9 @@
         app:expanded="true"
         app:subtitle="A helper app for dualbooting solution"
         app:title="@string/app_name"
+        android:fillViewport="true"
+        android:overScrollMode="always"
+        android:scrollbars="vertical"
         tools:context=".MainActivity">
 
         <LinearLayout

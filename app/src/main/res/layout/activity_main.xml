@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/oui_background_color"
                 android:orientation="vertical"
-                android:paddingHorizontal="24dp"
+                android:paddingHorizontal="12dp"
                 android:paddingVertical="12dp">
 
                 <!-- Parent LinearLayout for the whole row -->
@@ -43,8 +43,8 @@
 
                     <!-- Image on the left -->
                     <ImageView
-                        android:layout_width="80dp" 
-                        android:layout_height="170dp"
+                        android:layout_width="100dp" 
+                        android:layout_height="180dp"
                         android:src="@drawable/phone"
                         android:adjustViewBounds="true"/>
 
@@ -61,7 +61,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Dualboot info"
-                            android:textSize="17sp"
+                            android:textSize="20sp"
                             android:textStyle="bold"/>
 
                         <!-- Status text -->

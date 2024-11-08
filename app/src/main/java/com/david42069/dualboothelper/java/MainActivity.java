@@ -42,6 +42,25 @@ import android.service.quicksettings.TileService;
 
 public class MainActivity extends AppCompatActivity {
     private String scriptContent;
+    // Script to string logic
+    private String ScriptToString(int resourceId) {
+        InputStream inputStream = getResources().openRawResource(resourceId);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder script = new StringBuilder();
+        String line;
+    
+        try {
+            while ((line = reader.readLine()) != null) {
+                script.append(line).append("\n");
+            }
+            reader.close();
+        } catch (IOException e) {
+            Log.e("ScriptToString", "Error reading script file", e);
+        }
+    
+        return script.toString();
+    }
+
     // Read script logic
     private String readScriptFromRaw(int resourceId) {
         InputStream inputStream = getResources().openRawResource(resourceId);

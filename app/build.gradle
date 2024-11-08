@@ -56,30 +56,23 @@ configurations.all {
 }
 
 dependencies {
-    implementation("sesl.androidx.core:core:1.15.0+1.0.11-sesl6+rev0")
-    implementation("sesl.androidx.core:core-ktx:1.15.0+1.0.0-sesl6+rev0")
-    implementation("sesl.androidx.fragment:fragment:1.8.4+1.0.0-sesl6+rev1")
-    implementation("sesl.androidx.appcompat:appcompat:1.7.0+1.0.34-sesl6+rev6")
-    implementation("sesl.androidx.picker:picker-basic:1.0.17+1.0.17-sesl6+rev2")
-    implementation("sesl.androidx.picker:picker-color:1.0.6+1.0.6-sesl6+rev3")
-    implementation("sesl.androidx.preference:preference:1.2.1+1.0.4-sesl6+rev3")
-    implementation("sesl.androidx.recyclerview:recyclerview:1.4.0-rc01+1.0.21-sesl6+rev0")
-    implementation("sesl.androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01+1.0.0-sesl6+rev0")
-    implementation("sesl.androidx.apppickerview:apppickerview:1.0.1+1.0.1-sesl6+rev2")
-    implementation("sesl.androidx.indexscroll:indexscroll:1.0.3+1.0.3-sesl6+rev2")
-    implementation("sesl.com.google.android.material:material:1.12.0+1.0.23-sesl6+rev1")
-    implementation("sesl.androidx.viewpager2:viewpager2:1.1.0+1.0.0-sesl6+rev0")
-
-    //design lib
-    implementation("io.github.tribalfs:oneui-design:0.1.5+oneui6")
-
-    implementation("androidx.constraintlayout:constraintlayout:2.2.0")
-
-    implementation 'com.airbnb.android:lottie:6.5.2'
+    implementation 'io.github.oneuiproject:design:1.2.6'
     implementation 'io.github.oneuiproject:icons:1.1.0'
-
-    implementation("androidx.datastore:datastore-preferences-android:1.1.1")
-
+    implementation 'io.github.oneuiproject.sesl:appcompat:1.4.0'
+    implementation 'io.github.oneuiproject.sesl:material:1.5.0'
+    implementation 'io.github.oneuiproject.sesl:recyclerview:1.4.1'
+    implementation 'io.github.oneuiproject.sesl:preference:1.1.0'
+    implementation 'io.github.oneuiproject.sesl:coordinatorlayout:1.0.0'
+    implementation 'io.github.oneuiproject.sesl:drawerlayout:1.0.0'
+    implementation 'io.github.oneuiproject.sesl:viewpager:1.1.0'
+    implementation 'io.github.oneuiproject.sesl:viewpager2:1.1.0'
+    implementation 'io.github.oneuiproject.sesl:swiperefreshlayout:1.0.0'
+    implementation 'io.github.oneuiproject.sesl:apppickerview:1.0.0'
+    implementation 'io.github.oneuiproject.sesl:indexscroll:1.0.3'
+    implementation 'io.github.oneuiproject.sesl:picker-basic:1.2.0'
+    implementation 'io.github.oneuiproject.sesl:picker-color:1.1.0'
+    implementation 'com.airbnb.android:lottie:5.2.0'
+    /*TODO: add/update/remove libraries*/
 }
 
 dependencies {

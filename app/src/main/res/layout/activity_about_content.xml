@@ -15,6 +15,36 @@
         <dev.oneuiproject.oneui.widget.Separator
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Dualboot Helper developers" />
+
+        <dev.oneuiproject.oneui.widget.RoundLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/oui_background_color"
+            android:orientation="vertical">
+
+            <dev.oneuiproject.oneui.widget.ui.widget.CardView
+                android:id="@+id/about_bottom_dev_david"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:IconDrawable="@drawable/about_page_avatar_yann"
+                app:TitleText="David42069"
+                app:SummaryText="The founder of Dualboot for Samsung" />
+
+            <dev.oneuiproject.oneui.widget.ui.widget.CardView
+                android:id="@+id/about_bottom_dev_bob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:IconDrawable="@drawable/about_page_avatar_mesa"
+                app:TitleText="Bobert"
+                app:SummaryText="Made this app with OneUI Style"
+                app:isDividerViewVisible="true" />
+
+        </dev.oneuiproject.oneui.widget.RoundLinearLayout>
+
+        <dev.oneuiproject.oneui.widget.Separator
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="OneUI Project Team" />
 
         <dev.oneuiproject.oneui.widget.RoundLinearLayout
@@ -29,6 +59,13 @@
                 android:layout_height="wrap_content"
                 app:IconDrawable="@drawable/about_page_avatar_yann"
                 app:TitleText="Yanndroid" />
+
+            <dev.oneuiproject.oneui.widget.ui.widget.CardView
+                android:id="@+id/about_bottom_dev_salvo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:IconDrawable="@drawable/about_page_avatar_yann"
+                app:TitleText="Salvo Giangreco" />
 
             <dev.oneuiproject.oneui.widget.ui.widget.CardView
                 android:id="@+id/about_bottom_dev_mesa"
@@ -51,6 +88,13 @@
         android:background="@color/oui_background_color"
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
+
+        <dev.oneuiproject.oneui.widget.ui.widget.CardView
+            android:id="@+id/about_bottom_gnu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:TitleText="GNU License"
+            app:SummaryText="DualbootHelper" />
 
         <dev.oneuiproject.oneui.widget.ui.widget.CardView
             android:id="@+id/about_bottom_oss_apache"
@@ -76,14 +120,14 @@
             app:title="Useful links">
 
             <TextView
-                android:id="@+id/about_bottom_relative_jetpack"
+                android:id="@+id/about_donate"
                 style="@style/OneUI.RelativeLinkTextViewStyle"
-                android:text="Android Jetpack" />
+                android:text="Donate me!" />
 
             <TextView
-                android:id="@+id/about_bottom_relative_material"
+                android:id="@+id/about_xda"
                 style="@style/OneUI.RelativeLinkTextViewStyle"
-                android:text="Material Components" />
+                android:text="XDA post" />
 
             <TextView
                 android:id="@+id/about_bottom_relative_ouip"

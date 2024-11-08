@@ -1,4 +1,4 @@
-Dualboot Helper - App to switch easyer between systems
+Dualboot Helper - App to switch easily between systems
 
 Copyright (C) 2024 david42069
 

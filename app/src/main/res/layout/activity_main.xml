@@ -64,13 +64,6 @@
                             android:textSize="20sp"
                             android:textStyle="bold"/>
 
-                        <!-- Status text -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="DB Stats:"
-                            android:layout_marginTop="4dp"/>
-
                         <!-- show status or whatever -->
                         <TextView
                             android:layout_width="wrap_content"

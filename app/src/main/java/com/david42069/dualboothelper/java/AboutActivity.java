@@ -172,8 +172,7 @@ public class AboutActivity extends AppCompatActivity
         mBottomContent.aboutBottomDevMesa.setEnabled(enabled);
         mBottomContent.aboutBottomOssApache.setEnabled(enabled);
         mBottomContent.aboutBottomOssMit.setEnabled(enabled);
-        mBottomContent.aboutBottomRelativeJetpack.setEnabled(enabled);
-        mBottomContent.aboutBottomRelativeMaterial.setEnabled(enabled);
+        mBottomContent.aboutDonate.setEnabled(enabled);
         mBottomContent.aboutBottomRelativeOuip.setEnabled(enabled);
     }
 
@@ -183,21 +182,27 @@ public class AboutActivity extends AppCompatActivity
         if (uptimeMillis - mLastClickTime > 600L) {
             String url = null;
             if (v.getId() == mBinding.aboutHeaderGithub.getId()) {
-                url = "https://github.com/OneUIProject/oneui-design";
+                url = "https://github.com/justin-a30/DualbootHelper";
             } else if (v.getId() == mBinding.aboutHeaderTelegram.getId()) {
-                url = "https://t.me/oneuiproject";
+                url = "https://t.me/dualbootsamsung";
+            } else if (v.getId() == mBottomContent.aboutBottomDevDavid.getId()) {
+                url = "https://github.com/david-42069";
+            } else if (v.getId() == mBottomContent.aboutBottomDevBob.getId()) {
+                url = "https://github.com/justin-a30";
             } else if (v.getId() == mBottomContent.aboutBottomDevYann.getId()) {
                 url = "https://github.com/Yanndroid";
             } else if (v.getId() == mBottomContent.aboutBottomDevMesa.getId()) {
                 url = "https://github.com/BlackMesa123";
+            } else if (v.getId() == mBottomContent.aboutBottomDevSalvo.getId()) {
+                url = "https://github.com/salvogiangri";
             } else if (v.getId() == mBottomContent.aboutBottomOssApache.getId()) {
                 url = "https://www.apache.org/licenses/LICENSE-2.0.txt";
             } else if (v.getId() == mBottomContent.aboutBottomOssMit.getId()) {
                 url = "https://github.com/OneUIProject/sesl/blob/main/LICENSE";
-            } else if (v.getId() == mBottomContent.aboutBottomRelativeJetpack.getId()) {
-                url = "https://developer.android.com/jetpack";
-            } else if (v.getId() == mBottomContent.aboutBottomRelativeMaterial.getId()) {
-                url = "https://material.io/develop/android";
+            } else if (v.getId() == mBottomContent.aboutDonate.getId()) {
+                url = "https://www.paypal.com/donate/?hosted_button_id=3DTX9DHNH2WYC";
+            } else if (v.getId() == mBottomContent.aboutXda.getId()) {
+                url = "https://xdaforums.com/t/mod-dualboot-for-any-samsung.4680492";
             } else if (v.getId() == mBottomContent.aboutBottomRelativeOuip.getId()) {
                 url = "https://github.com/OneUIProject";
             }

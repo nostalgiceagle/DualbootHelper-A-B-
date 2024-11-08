@@ -55,4 +55,7 @@
     <!-- Slot desired color -->
     <color name="slota_color">#FF915E</color>
     <color name="slotb_color">#8A56D2</color>
+    <!-- Other buttons desired color -->
+    <color name="download_color">#23B9B9</color>
+    <color name="poweroff_color">#EB0E0E</color>
 </resources>

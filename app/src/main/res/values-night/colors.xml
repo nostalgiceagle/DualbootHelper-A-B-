@@ -3,4 +3,7 @@
     <!-- Slot desired color -->
     <color name="slota_color">#FCA14C</color>
     <color name="slotb_color">#CD62EE</color>
+    <!-- Other buttons desired color -->
+    <color name="download_color">#00FFFF</color>
+    <color name="poweroff_color">#FF5656</color>
 </resources>

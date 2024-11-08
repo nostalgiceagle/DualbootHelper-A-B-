@@ -13,7 +13,7 @@ print("Locales: " + locales.join(', '))
 
 android {
     namespace 'com.david42069.dualboothelper' /*TODO: change packageName*/
-    compileSdk 34
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.david42069.dualboothelper" /*TODO: change packageName*/

@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.bootloader).setOnClickListener(v -> confirmreboot("Reboot to Download Mode"));
         findViewById(R.id.poweroff).setOnClickListener(v -> confirmreboot("Shut Down"));
 
-        ToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
+        ToolbarLayout toolbarLayout = findViewById(R.id.home);
         toolbarLayout.setNavigationButtonAsBack();
         status = findViewById(R.id.status);
         slota = findViewById(R.id.slota_txt);

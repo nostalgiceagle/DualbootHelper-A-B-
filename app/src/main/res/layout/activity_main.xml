@@ -13,6 +13,7 @@
         android:fillViewport="true"
         android:overScrollMode="always"
         android:scrollbars="vertical"
+        android:id="@+id/home"
         tools:context=".MainActivity">
 
         <LinearLayout

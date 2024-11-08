@@ -19,7 +19,7 @@ import com.david42069.dualboothelper.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.david42069.dualboothelper.activity.MainActivity;
+import com.david42069.dualboothelper.MainActivity;
 import com.david42069.dualboothelper.base.BaseFragment;
 
 public class WidgetsFragment extends BaseFragment

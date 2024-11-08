@@ -1,4 +1,4 @@
-package com.david42069.dualboothelper.ui.widget;
+package dev.oneuiproject.oneui.widget.ui.widget;
 
 // from OneUI Sample app. Credits to everyone who contributed in making the app.
 

@@ -126,11 +126,10 @@ public class MainActivity extends AppCompatActivity {
     // Action on MaKing TOAST and DO
     private void mktoastdo(String prompt) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Loading...");
         builder.setCancelable(false);
-        ProgressBar progressBar = new ProgressBar(this);
-        progressBar.setIndeterminate(true);
-        builder.setView(progressBar);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.loading_dialog, null);
+        builder.setView(dialogView);
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();

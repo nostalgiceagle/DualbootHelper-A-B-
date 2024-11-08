@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Dualboot Helper</string>
+  <string name="description">Pomocná aplikace pro řešení dualbootu</string>
+  <string name="info">Informace</string>
+  <string name="dbinf">Informace o dualbootu</string>
+  <string name="slota_os">Operační systém ve slotu A:</string>
+  <string name="slotb_os">Operační systém ve slotu B:</string>
+  <string name="qact">Rychlá akce</string>
+  <string name="reboot_a">Restart do slotu A</string>
+  <string name="reboot_b">Restart do slotu B</string>
+  <string name="recovery_a">Restart do režimu obnovení slotu A</string>
+  <string name="recovery_b">Restart do režimu obnovení slotu B</string>
+  <string name="dl_mode">Restart do režimu stahování</string>
+  <string name="poweroff">Vypnout systém</string>
+  <string name="dialog_confirm">Jste si jistý?</string>
+  <string name="dialog_yes">Ano</string>
+  <string name="dialog_no">Ne</string>
+  <string name="db_dev">Vývojáři Dualboot Helperu</string>
+  <string name="david_desc">Zakladatel Dualbootu pro Samsung</string>
+  <string name="bob_desc">Tuto aplikaci vytvořil ve stylu OneUI</string>
+  <string name="ouip_team">Tým projektu OneUI</string>
+  <string name="os_lic">Licence otevřeného zdroje</string>
+  <string name="gnu_lic">GNU Licence</string>
+  <string name="apache_lic">Licence Apache 2.0</string>
+  <string name="mit_lic">MIT Licence</string>
+  <string name="links">Užitečné odkazy</string>
+  <string name="donate">Přispějte mi!</string>
+  <string name="xda_post">Příspěvek na XDA</string>
+  <string name="reboot_wait">Restartování. Počkejte prosím...</string>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Dualboot Helper</string>
+  <string name="description">Una aplicació d\'ajuda per a solucions de doble arrencada</string>
+  <string name="info">Informació</string>
+  <string name="dbinf">Informació Dualboot</string>
+  <string name="slota_os">Sistema operatiu a la ranura A:</string>
+  <string name="slotb_os">Sistema operatiu a la ranura B:</string>
+  <string name="qact">Acció ràpida</string>
+  <string name="reboot_a">Reiniciar a la ranura A</string>
+  <string name="reboot_b">Reiniciar a la ranura B</string>
+  <string name="recovery_a">Reiniciar en mode Recuperació ranura A</string>
+  <string name="recovery_b">Reiniciar en mode Recuperació ranura B</string>
+  <string name="dl_mode">Reiniciar en mode de Descàrrega</string>
+  <string name="poweroff">Apagar el sistema</string>
+  <string name="dialog_confirm">Esteu segur?</string>
+  <string name="dialog_yes">Sí</string>
+  <string name="dialog_no">No</string>
+  <string name="db_dev">Desenvolupadors de Dualboot Helper</string>
+  <string name="david_desc">Fundador de Dualboot per a Samsung</string>
+  <string name="bob_desc">Va fer aquesta aplicació amb estil OneUI</string>
+  <string name="ouip_team">Equip del Projecte OneUI</string>
+  <string name="os_lic">Llicències de codi obert</string>
+  <string name="gnu_lic">Llicència GNU</string>
+  <string name="apache_lic">Llicència Apache 2.0</string>
+  <string name="mit_lic">Llicència MIT</string>
+  <string name="links">Enllaços útils</string>
+  <string name="donate">Fes un donatiu!</string>
+  <string name="xda_post">Publicació a XDA</string>
+  <string name="reboot_wait">Reiniciant. Espereu, si us plau...</string>
+</resources>

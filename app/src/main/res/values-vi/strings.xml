@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Dualboot Helper</string>
+  <string name="description">Một ứng dụng hỗ trợ cho giải pháp khởi động kép</string>
+  <string name="info">Thông tin</string>
+  <string name="dbinf">Thông tin Dualboot</string>
+  <string name="slota_os">Hệ điều hành ở khu A:</string>
+  <string name="slotb_os">Hệ điều hành ở khu B:</string>
+  <string name="qact">Hành động nhanh</string>
+  <string name="reboot_a">Khởi động lại sang khu A</string>
+  <string name="reboot_b">Khởi động lại sang khu B</string>
+  <string name="recovery_a">Khởi động lại sang chế độ Phục hồi khu A</string>
+  <string name="recovery_b">Khởi động lại sang chế độ Phục hồi khu B</string>
+  <string name="dl_mode">Khởi động lại vào Download Mode</string>
+  <string name="poweroff">Tắt hệ thống</string>
+  <string name="dialog_confirm">Bạn có chắc không?</string>
+  <string name="dialog_yes">Có</string>
+  <string name="dialog_no">Không</string>
+  <string name="db_dev">Nhà phát triển Dualboot Helper</string>
+  <string name="david_desc">Người sáng lập Dualboot cho Samsung</string>
+  <string name="bob_desc">Đã thiết kế ứng dụng này theo phong cách OneUI</string>
+  <string name="ouip_team">Đội dự án OneUI</string>
+  <string name="os_lic">Giấy phép mã nguồn mở</string>
+  <string name="gnu_lic">Giấy phép GNU</string>
+  <string name="apache_lic">Giấy phép Apache 2.0</string>
+  <string name="mit_lic">Giấy phép MIT</string>
+  <string name="links">Liên kết hữu ích</string>
+  <string name="donate">Ủng hộ tôi!</string>
+  <string name="xda_post">Bài đăng trên XDA</string>
+  <string name="reboot_wait">Đang khởi động lại. Vui lòng đợi...</string>
+</resources>

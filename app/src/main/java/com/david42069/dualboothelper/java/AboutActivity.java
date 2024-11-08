@@ -1,4 +1,4 @@
-package com.david42069.dualboothelper.activity;
+package com.david42069.dualboothelper;
 
 // from OneUI Sample app. Credits to everyone who contributed in making the app.
 

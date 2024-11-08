@@ -124,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/oui_background_color"
                 android:orientation="vertical"
-                android:paddingHorizontal="24dp"
+                android:paddingHorizontal="12dp"
                 android:paddingVertical="12dp">
 
                 <GridLayout

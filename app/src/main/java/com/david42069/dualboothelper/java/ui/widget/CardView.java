@@ -1,4 +1,6 @@
-package com.david42069.dualboothelper.sample.widget;
+package com.david42069.dualboothelper.ui.widget;
+
+// from OneUI Sample app. Credits to everyone who contributed in making the app.
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.david42069.dualboothelper.R;
+import com.sec.sesl.tester.R;
 
 public class CardView extends LinearLayout {
     boolean mIsIconView;

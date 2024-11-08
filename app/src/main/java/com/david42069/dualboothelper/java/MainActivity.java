@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         return scriptContent.toString();
     }
     // Action on MaKing TOAST and DO
-    private void mktoastdo(String prompt) {
+    private void mktoastdo(@StringRes int promptResId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -135,35 +135,50 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
-        if (prompt.equals("Reboot to Slot A")) {
-            String scriptContent = ScriptToString(R.raw.switcha);
-            executeScript(scriptContent);
-        } else if (prompt.equals("Reboot to Slot B")) {
-            String scriptContent = ScriptToString(R.raw.switchb);
-            executeScript(scriptContent);
-        } else if (prompt.equals("Reboot to Recovery Slot A")) {
-            String scriptContent = ScriptToString(R.raw.switchar);
-            executeScript(scriptContent);
-        } else if (prompt.equals("Reboot to Recovery Slot B")) {
-            String scriptContent = ScriptToString(R.raw.switchbr);
-            executeScript(scriptContent);
-        } else if (prompt.equals("Reboot to Download Mode")) {
-            String scriptContent = ScriptToString(R.raw.download);
-            executeScript(scriptContent);
-        } else if (prompt.equals("Shut Down")) {
-            String scriptContent = ScriptToString(R.raw.shutdown);
+    
+        String scriptContent;
+    
+        switch (promptResId) {
+            case R.string.reboot_slot_a:
+                scriptContent = ScriptToString(R.raw.switcha);
+                break;
+            case R.string.reboot_slot_b:
+                scriptContent = ScriptToString(R.raw.switchb);
+                break;
+            case R.string.reboot_recovery_slot_a:
+                scriptContent = ScriptToString(R.raw.switchar);
+                break;
+            case R.string.reboot_recovery_slot_b:
+                scriptContent = ScriptToString(R.raw.switchbr);
+                break;
+            case R.string.reboot_download_mode:
+                scriptContent = ScriptToString(R.raw.download);
+                break;
+            case R.string.shutdown:
+                scriptContent = ScriptToString(R.raw.shutdown);
+                break;
+            default:
+                scriptContent = ""; // or handle any unexpected case
+                break;
+        }
+    
+        if (!scriptContent.isEmpty()) {
             executeScript(scriptContent);
         }
-        // Continue with other conditions as needed
     }
 
-    public void confirmreboot(String prompt) {
+    public void confirmreboot(@StringRes int promptResId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(prompt + "?")
-            .setMessage("Are you sure?")
-            .setPositiveButton("Yes", (dialog, which) -> mktoastdo(prompt))
-            .setNegativeButton("Cancel", (dialog, which) -> {
-            });
+        String title = getString(promptResId) + "?";
+        String message = getString(R.string.dialog_confirm);
+        String positiveButton = getString(R.string.dialog_yes);
+        String negativeButton = getString(R.string.dialog_no);
+
+        builder.setTitle(title)
+            .setMessage(message)
+            .setPositiveButton(positiveButton, (dialog, which) -> mktoastdo(promptResId))
+            .setNegativeButton(negativeButton, (dialog, which) -> {});
+    
         AlertDialog alert = builder.create();
         alert.show();
     }
@@ -199,12 +214,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         cp(R.raw.parted, "parted");
 		cp(R.raw.jq, "jq");
-        findViewById(R.id.reboot_a).setOnClickListener(v -> confirmreboot("Reboot to Slot A"));
-        findViewById(R.id.reboot_b).setOnClickListener(v -> confirmreboot("Reboot to Slot B"));
-        findViewById(R.id.rec_a).setOnClickListener(v -> confirmreboot("Reboot to Recovery Slot A"));
-        findViewById(R.id.rec_b).setOnClickListener(v -> confirmreboot("Reboot to Recovery Slot B"));
-        findViewById(R.id.bootloader).setOnClickListener(v -> confirmreboot("Reboot to Download Mode"));
-        findViewById(R.id.poweroff).setOnClickListener(v -> confirmreboot("Shut Down"));
+        findViewById(R.id.reboot_a).setOnClickListener(v -> confirmreboot(R.string.reboot_a));
+        findViewById(R.id.reboot_b).setOnClickListener(v -> confirmreboot(R.string.reboot_b));
+        findViewById(R.id.rec_a).setOnClickListener(v -> confirmreboot(R.string.reboot_recovery_a));
+        findViewById(R.id.rec_b).setOnClickListener(v -> confirmreboot(R.string.reboot_recovery_b));
+        findViewById(R.id.bootloader).setOnClickListener(v -> confirmreboot(R.string.dl_mode));
+        findViewById(R.id.poweroff).setOnClickListener(v -> confirmreboot(R.string.poweroff));
 
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
         toolbarLayout.setNavigationButtonAsBack();

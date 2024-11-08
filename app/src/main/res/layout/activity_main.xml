@@ -247,13 +247,13 @@
                         android:layout_columnWeight="1"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:layout_margin="8dp"
-                        android:tint="@color/download_color">
+                        android:layout_margin="8dp">
 
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@drawable/ic_oui_save" />
+                            android:src="@drawable/ic_oui_save"
+                            android:tint="@color/download_color" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/bootloader"
@@ -273,13 +273,13 @@
                         android:layout_columnWeight="1"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:layout_margin="8dp"
-                        android:tint="@color/poweroff_color">
+                        android:layout_margin="8dp">
 
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@drawable/ic_oui_power" />
+                            android:src="@drawable/ic_oui_power"
+                            android:tint="@color/poweroff_color"/>
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/poweroff"

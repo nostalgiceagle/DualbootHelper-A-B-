@@ -27,7 +27,7 @@
                 android:id="@+id/about_bottom_dev_david"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:IconDrawable="@drawable/about_page_avatar_yann"
+                app:IconDrawable="@drawable/about_page_avatar_david"
                 app:TitleText="David42069"
                 app:SummaryText="The founder of Dualboot for Samsung" />
 
@@ -35,7 +35,7 @@
                 android:id="@+id/about_bottom_dev_bob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:IconDrawable="@drawable/about_page_avatar_mesa"
+                app:IconDrawable="@drawable/about_page_avatar_bob"
                 app:TitleText="Bobert"
                 app:SummaryText="Made this app with OneUI Style"
                 app:isDividerViewVisible="true" />
@@ -64,8 +64,9 @@
                 android:id="@+id/about_bottom_dev_salvo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:IconDrawable="@drawable/about_page_avatar_yann"
-                app:TitleText="Salvo Giangreco" />
+                app:IconDrawable="@drawable/about_page_avatar_salvo"
+                app:TitleText="Salvo Giangreco"
+                app:isDividerViewVisible="true" />
 
             <dev.oneuiproject.oneui.widget.ui.widget.CardView
                 android:id="@+id/about_bottom_dev_mesa"
@@ -101,7 +102,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:TitleText="Apache License 2.0"
-            app:SummaryText="androidx  •  material-components  •  lottie" />
+            app:SummaryText="androidx  •  material-components  •  lottie"
+            app:isDividerViewVisible="true" />
 
         <dev.oneuiproject.oneui.widget.ui.widget.CardView
             android:id="@+id/about_bottom_oss_mit"

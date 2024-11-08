@@ -2,9 +2,9 @@ name: Android CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "nostalgicboot-test" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "nostalgicboot-test" ]
   workflow_dispatch:
 
 jobs:

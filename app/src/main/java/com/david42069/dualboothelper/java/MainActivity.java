@@ -42,13 +42,43 @@ import android.service.quicksettings.TileService;
 
 public class MainActivity extends AppCompatActivity {
     private String scriptContent;
+    // Execute logic
+    public void executeScript(String script) {
+        try {
+            // Use the full command with `su` and the desired script
+            Process process = Runtime.getRuntime().exec(new String[]{"su", "-c", script});
+
+            // Capture the output
+            InputStream stdout = process.getInputStream();
+            InputStream stderr = process.getErrorStream();
+
+            // Read output for debugging
+            BufferedReader stdoutReader = new BufferedReader(new InputStreamReader(stdout));
+            BufferedReader stderrReader = new BufferedReader(new InputStreamReader(stderr));
+
+            String line;
+            while ((line = stdoutReader.readLine()) != null) {
+                Log.d("ScriptOutput", line);
+            }
+            while ((line = stderrReader.readLine()) != null) {
+                Log.e("ScriptError", line);
+            }
+
+            // Wait for the process to complete
+            process.waitFor();
+
+        } catch (IOException | InterruptedException e) {
+            Log.e("ScriptError", "Error executing script", e);
+        }
+    }
+
     // Script to string logic
     private String ScriptToString(int resourceId) {
         InputStream inputStream = getResources().openRawResource(resourceId);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         StringBuilder script = new StringBuilder();
         String line;
-    
+
         try {
             while ((line = reader.readLine()) != null) {
                 script.append(line).append("\n");
@@ -57,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             Log.e("ScriptToString", "Error reading script file", e);
         }
-    
+
         return script.toString();
     }
 

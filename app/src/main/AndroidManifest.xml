@@ -41,6 +41,10 @@
         <activity
             android:name=".AboutActivity"
             android:exported="false" />
+        
+        <activity
+            android:name=".RebootActivity"
+            android:exported="false" />
 
     </application>
 

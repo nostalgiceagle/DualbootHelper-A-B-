@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?roundedCornerColor"
-        app:layout_location="reboot_content"
+        app:layout_location="main_content"
         android:fillViewport="true"
         android:overScrollMode="always"
         android:scrollbars="vertical">
@@ -34,7 +34,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="veritcal"
+                    android:orientation="vertical"
                     android:gravity="top|start">
                     
                     <TextView
@@ -49,7 +49,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="veritcal"
+                    android:orientation="vertical"
                     android:gravity="center">
                     
                     <androidx.appcompat.widget.SeslProgressBar

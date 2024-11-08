@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:expandable="true"
-    app:expanded="true"
+    app:expanded="false"
     app:subtitle="A helper app for dualbooting solution"
     app:title="@string/app_name"
     tools:context=".MainActivity"

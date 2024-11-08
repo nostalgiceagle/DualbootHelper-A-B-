@@ -2,7 +2,7 @@
 ### Now with OneUI4 style!
 
 ## What's Dualboot helper app and how it works?
-##### -> If you are doing research on android or a dev or anything else, maybe have ever heard about (A/B) slots. But unfortunately Samsung didn't gave it before to their devices', it is pnly available on Galaxy A55 i guess in (9th November 2024), only Xiaomi and some other brands gave it to their device(s). It simply allows to install another system on your another slot, for example, you want to use OneUI and AOSP or any other rom also, so you can install another system to the other slot without having any issue.
+##### -> If you are doing research on android or a dev or anything else, maybe have ever heard about (A/B) slots. But unfortunately Samsung didn't gave it before to their devices', it is pnly available on Galaxy A55 i guess in (9th November 2024), only Xiaomi and some other brands gave it to their device(s). It simply allows to install another system on your another slot, for example, you want to use OneUI and AOSP or any other rom also, so you can install another system to the other slot and seamlessly switching it through the app without having any issues.
 
 ```
 we have tested the dualboot already, but we won't take any risks for your device. you're going to install it yourself. you're warned already. if you still blame us, we will laugh at you

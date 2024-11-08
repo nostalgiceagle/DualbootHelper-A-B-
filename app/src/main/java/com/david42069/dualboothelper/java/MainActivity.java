@@ -42,6 +42,9 @@ import android.service.quicksettings.TileService;
 
 public class MainActivity extends AppCompatActivity {
     private String scriptContent;
+            TextView status;
+            TextView slota;
+            TextView slotb;
     // Execute logic
     public void executeScript(String script) {
         try {

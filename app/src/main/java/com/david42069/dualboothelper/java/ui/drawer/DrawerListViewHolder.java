@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sec.sesl.tester.R;
+import com.david42069.dualboothelper.R;
 
 public class DrawerListViewHolder extends RecyclerView.ViewHolder {
     private final boolean mIsSeparator;

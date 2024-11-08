@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.SearchView;
 
-import com.sec.sesl.tester.R;
+import com.david42069.dualboothelper.R;
 
 import java.util.ArrayList;
 import java.util.List;

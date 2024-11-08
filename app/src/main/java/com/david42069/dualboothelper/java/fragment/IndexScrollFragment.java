@@ -30,7 +30,7 @@ import androidx.indexscroll.widget.SeslIndexScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sec.sesl.tester.R;
+import com.david42069.dualboothelper.R;
 
 import java.util.ArrayList;
 import java.util.List;

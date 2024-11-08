@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.sec.sesl.tester.R;
+import com.david42069.dualboothelper.R;
 
 public class CardView extends LinearLayout {
     boolean mIsIconView;

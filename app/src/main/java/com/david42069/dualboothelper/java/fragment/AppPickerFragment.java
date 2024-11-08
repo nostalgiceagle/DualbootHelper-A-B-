@@ -22,7 +22,7 @@ import androidx.appcompat.widget.SeslProgressBar;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.apppickerview.widget.AppPickerView;
 
-import com.sec.sesl.tester.R;
+import com.david42069.dualboothelper.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

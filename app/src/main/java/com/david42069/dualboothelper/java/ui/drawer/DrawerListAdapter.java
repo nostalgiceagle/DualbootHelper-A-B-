@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sec.sesl.tester.R;
+import com.david42069.dualboothelper.R;
 
 import java.util.List;
 

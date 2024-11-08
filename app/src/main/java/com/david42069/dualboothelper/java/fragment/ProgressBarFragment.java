@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SeslProgressBar;
 
-import com.sec.sesl.tester.R;
+import com.david42069.dualboothelper.R;
 import com.david42069.dualboothelper.base.BaseFragment;
 
 public class ProgressBarFragment extends BaseFragment {

@@ -19,7 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sec.sesl.tester.R;
+import com.david42069.dualboothelper.R;
 import com.david42069.dualboothelper.base.BaseFragment;
 
 import java.lang.reflect.Field;

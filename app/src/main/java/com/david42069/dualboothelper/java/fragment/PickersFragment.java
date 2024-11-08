@@ -25,7 +25,7 @@ import androidx.picker.widget.SeslSpinningDatePicker;
 import androidx.picker.widget.SeslTimePicker;
 import androidx.picker3.app.SeslColorPickerDialog;
 
-import com.sec.sesl.tester.R;
+import com.david42069.dualboothelper.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;

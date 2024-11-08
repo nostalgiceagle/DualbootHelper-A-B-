@@ -14,7 +14,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.FragmentActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.sec.sesl.tester.R;
+import com.david42069.dualboothelper.R;
 
 import dev.oneuiproject.oneui.layout.DrawerLayout;
 import dev.oneuiproject.oneui.widget.Toast;

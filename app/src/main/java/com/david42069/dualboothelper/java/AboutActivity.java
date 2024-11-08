@@ -27,10 +27,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.TooltipCompat;
 
 import com.google.android.material.appbar.AppBarLayout;
-import com.sec.sesl.tester.BuildConfig;
-import com.sec.sesl.tester.R;
-import com.sec.sesl.tester.databinding.ActivityAboutBinding;
-import com.sec.sesl.tester.databinding.ActivityAboutContentBinding;
+import com.david42069.dualboothelper.BuildConfig;
+import com.david42069.dualboothelper.R;
+import com.david42069.dualboothelper.databinding.ActivityAboutBinding;
+import com.david42069.dualboothelper.databinding.ActivityAboutContentBinding;
 
 import dev.oneuiproject.oneui.utils.ViewUtils;
 import dev.oneuiproject.oneui.utils.internal.ToolbarLayoutUtils;

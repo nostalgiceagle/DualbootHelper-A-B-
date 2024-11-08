@@ -20,7 +20,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SeslSwitchPreferenceScreen;
 import androidx.preference.SwitchPreferenceCompat;
 
-import com.sec.sesl.tester.R;
+import com.david42069.dualboothelper.R;
 
 import dev.oneuiproject.oneui.preference.HorizontalRadioPreference;
 import dev.oneuiproject.oneui.preference.TipsCardPreference;

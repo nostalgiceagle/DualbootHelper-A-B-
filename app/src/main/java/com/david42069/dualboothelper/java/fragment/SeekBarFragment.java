@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SeslSeekBar;
 import androidx.fragment.app.FragmentActivity;
 
-import com.sec.sesl.tester.R;
+import com.david42069.dualboothelper.R;
 
 import dev.oneuiproject.oneui.layout.DrawerLayout;
 import dev.oneuiproject.oneui.utils.SeekBarUtils;

@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.sec.sesl.tester.R;
+import com.david42069.dualboothelper.R;
 
 import dev.oneuiproject.oneui.qr.QREncoder;
 import com.david42069.dualboothelper.base.BaseFragment;

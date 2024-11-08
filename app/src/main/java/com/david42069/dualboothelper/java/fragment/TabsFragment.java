@@ -12,7 +12,7 @@ import androidx.appcompat.widget.SwitchCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.sec.sesl.tester.R;
+import com.david42069.dualboothelper.R;
 
 import dev.oneuiproject.oneui.dialog.GridMenuDialog;
 import dev.oneuiproject.oneui.utils.TabLayoutUtils;

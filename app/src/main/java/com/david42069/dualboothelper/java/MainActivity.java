@@ -1,27 +1,13 @@
 package com.david42069.dualboothelper;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.david42069.dualboothelper.R;
-import com.david42069.dualboothelper.databinding.ActivityMainBinding;
-
-import java.util.ArrayList;
-import java.util.List;
 import dev.oneuiproject.oneui.layout.ToolbarLayout;
 import dev.oneuiproject.oneui.utils.ActivityUtils;
 
@@ -53,20 +39,6 @@ import android.os.CountDownTimer;
 import android.net.Uri;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
-import dev.oneuiproject.oneui.widget.TipPopup;
-import com.david42069.dualboothelper.base.FragmentInfo;
-import com.david42069.dualboothelper.fragment.AppPickerFragment;
-import com.david42069.dualboothelper.fragment.IconsFragment;
-import com.david42069.dualboothelper.fragment.IndexScrollFragment;
-import com.david42069.dualboothelper.fragment.PickersFragment;
-import com.david42069.dualboothelper.fragment.PreferencesFragment;
-import com.david42069.dualboothelper.fragment.ProgressBarFragment;
-import com.david42069.dualboothelper.fragment.QRCodeFragment;
-import com.david42069.dualboothelper.fragment.SeekBarFragment;
-import com.david42069.dualboothelper.fragment.SwipeRefreshFragment;
-import com.david42069.dualboothelper.fragment.TabsFragment;
-import com.david42069.dualboothelper.fragment.WidgetsFragment;
-import com.david42069.dualboothelper.ui.drawer.DrawerListAdapter;
 
 public class MainActivity extends AppCompatActivity {
 

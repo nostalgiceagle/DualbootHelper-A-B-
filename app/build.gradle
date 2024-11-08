@@ -27,6 +27,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        buildConfig true
+        viewBinding true
+    }
+
     buildTypes {
         release {
             minifyEnabled true
@@ -71,5 +76,6 @@ dependencies {
 }
 
 dependencies {
+    implementation project(path: ':lib')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }

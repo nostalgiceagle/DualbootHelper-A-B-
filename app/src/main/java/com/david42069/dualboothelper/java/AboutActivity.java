@@ -163,6 +163,8 @@ public class AboutActivity extends AppCompatActivity
         mBottomContent.aboutBottomGnu.setOnClickListener(this);
         mBottomContent.aboutBottomOssApache.setOnClickListener(this);
         mBottomContent.aboutBottomOssMit.setOnClickListener(this);
+        mBottomContent.aboutDonate.setOnClickListener(this);
+        mBottomContent.aboutXda.setOnClickListener(this);
 
         mBottomContent.aboutBottomRelativeOuip.setOnClickListener(this);
     }

@@ -1,3 +1,2 @@
 
-# reboot -p
-reboot
+reboot -p

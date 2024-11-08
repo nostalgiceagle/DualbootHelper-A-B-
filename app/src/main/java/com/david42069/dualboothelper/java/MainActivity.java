@@ -39,6 +39,8 @@ import android.os.CountDownTimer;
 import android.net.Uri;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
+import android.view.LayoutInflater;
+
 
 public class MainActivity extends AppCompatActivity {
     private String scriptContent;
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
     private void mktoastdo(String prompt) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
-        LayoutInflater inflater = getLayoutInflater();
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View dialogView = inflater.inflate(R.layout.loading_dialog, null);
         builder.setView(dialogView);
         AlertDialog dialog = builder.create();

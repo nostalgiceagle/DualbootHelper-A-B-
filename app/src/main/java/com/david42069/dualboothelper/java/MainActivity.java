@@ -139,22 +139,22 @@ public class MainActivity extends AppCompatActivity {
         String scriptContent;
     
         switch (promptResId) {
-            case R.string.reboot_slot_a:
+            case R.string.reboot_a:
                 scriptContent = ScriptToString(R.raw.switcha);
                 break;
-            case R.string.reboot_slot_b:
+            case R.string.reboot_b:
                 scriptContent = ScriptToString(R.raw.switchb);
                 break;
-            case R.string.reboot_recovery_slot_a:
+            case R.string.recovery_a:
                 scriptContent = ScriptToString(R.raw.switchar);
                 break;
-            case R.string.reboot_recovery_slot_b:
+            case R.string.recovery_b:
                 scriptContent = ScriptToString(R.raw.switchbr);
                 break;
-            case R.string.reboot_download_mode:
+            case R.string.dl_mode:
                 scriptContent = ScriptToString(R.raw.download);
                 break;
-            case R.string.shutdown:
+            case R.string.poweroff:
                 scriptContent = ScriptToString(R.raw.shutdown);
                 break;
             default:
@@ -216,8 +216,8 @@ public class MainActivity extends AppCompatActivity {
 		cp(R.raw.jq, "jq");
         findViewById(R.id.reboot_a).setOnClickListener(v -> confirmreboot(R.string.reboot_a));
         findViewById(R.id.reboot_b).setOnClickListener(v -> confirmreboot(R.string.reboot_b));
-        findViewById(R.id.rec_a).setOnClickListener(v -> confirmreboot(R.string.reboot_recovery_a));
-        findViewById(R.id.rec_b).setOnClickListener(v -> confirmreboot(R.string.reboot_recovery_b));
+        findViewById(R.id.rec_a).setOnClickListener(v -> confirmreboot(R.string.recovery_a));
+        findViewById(R.id.rec_b).setOnClickListener(v -> confirmreboot(R.string.recovery_b));
         findViewById(R.id.bootloader).setOnClickListener(v -> confirmreboot(R.string.dl_mode));
         findViewById(R.id.poweroff).setOnClickListener(v -> confirmreboot(R.string.poweroff));
 

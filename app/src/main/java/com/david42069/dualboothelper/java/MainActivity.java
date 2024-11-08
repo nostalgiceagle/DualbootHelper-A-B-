@@ -40,6 +40,7 @@ import android.net.Uri;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 import android.view.LayoutInflater;
+import androidx.annotation.StringRes;
 
 
 public class MainActivity extends AppCompatActivity {

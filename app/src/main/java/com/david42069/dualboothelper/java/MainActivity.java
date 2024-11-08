@@ -33,8 +33,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDialog;
 import android.os.CountDownTimer;
 import android.net.Uri;
 import android.service.quicksettings.Tile;
@@ -154,11 +154,11 @@ public class MainActivity extends AppCompatActivity {
             .setMessage("Are you sure?")
             .setPositiveButton("Yes", (dialog, which) -> mktoastdo(prompt))
             .setNegativeButton("Cancel", (dialog, which) -> {
-                // Action for Cancel button, if needed (e.g., log message)
             });
         AlertDialog alert = builder.create();
         alert.show();
     }
+
 
 
     public String readFileFromInternalStorage(String filetostr) {

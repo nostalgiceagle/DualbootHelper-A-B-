@@ -125,8 +125,12 @@ public class MainActivity extends AppCompatActivity {
     }
     // Action on MaKing TOAST and DO
     private void mktoastdo(String prompt) {
-        Intent intent = new Intent(this, RebootActivity.class);
-        startActivity(intent);
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Rebooting... Please kindly wait.");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
         if (prompt.equals("Reboot to Slot A")) {
             String scriptContent = ScriptToString(R.raw.switcha);
             executeScript(scriptContent);

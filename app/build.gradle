@@ -23,7 +23,7 @@ android {
         versionName "8.0.0"
 
         resConfigs locales
-
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

@@ -8,12 +8,4 @@
         android:title="About"
         app:showAsAction="ifRoom"
         tools:ignore="AppCompatResource" />
-    <item
-        android:title="Menu Item 1"
-        app:showAsAction="never"
-        tools:ignore="AppCompatResource" />
-    <item
-        android:title="Menu Item 2"
-        app:showAsAction="never"
-        tools:ignore="AppCompatResource" />
 </menu>

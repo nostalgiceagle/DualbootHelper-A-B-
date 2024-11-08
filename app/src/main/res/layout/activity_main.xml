@@ -1,289 +1,298 @@
 <?xml version="1.0" encoding="utf-8"?>
-<dev.oneuiproject.oneui.layout.ToolbarLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/toolbar_layout"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:expandable="true"
-    app:expanded="true"
-    app:subtitle="A helper app for dualbooting solution"
-    app:title="@string/app_name"
-    tools:context=".MainActivity">
+    android:background="?roundedCornerColor"
+    android:orientation="vertical">
 
-    <androidx.core.widget.NestedScrollView
+    <dev.oneuiproject.oneui.layout.ToolbarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/oui_background_color"
-        app:layout_location="main_content">
+        app:expandable="true"
+        app:expanded="true"
+        app:subtitle="A helper app for dualbooting solution"
+        app:title="@string/app_name"
+        tools:context=".MainActivity">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:background="@color/oui_background_color"
+            app:layout_location="main_content">
 
-            <dev.oneuiproject.oneui.widget.Separator
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Information" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <dev.oneuiproject.oneui.widget.RoundLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/oui_background_color"
-                android:orientation="vertical"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="12dp">
-
-                <!-- Parent LinearLayout for the whole row -->
-                <LinearLayout
+                <dev.oneuiproject.oneui.widget.Separator
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:text="Information" />
 
-                    <!-- Image on the left -->
-                    <ImageView
-                        android:layout_width="100dp" 
-                        android:layout_height="180dp"
-                        android:src="@drawable/phone"
-                        android:adjustViewBounds="true"/>
-
-                    <!-- Vertical layout for "Dualboot info" and two lines below it -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_marginStart="10dp">
-
-                        <!-- Title Text "Dualboot info" -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Dualboot info"
-                            android:textSize="20sp"
-                            android:textStyle="bold"/>
-
-                        <!-- show status or whatever -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/status"
-                            android:layout_marginStart="4dp" />
-
-                        <!-- Slot A Operating System text -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Slot A Operating System:"
-                            android:layout_marginTop="4dp"/>
-
-                        <!-- Slot A name or whatever -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/slota_txt"
-                            android:layout_marginStart="4dp" />
-
-                        <!-- Slot B Operating System text -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Slot B Operating System:"
-                            android:layout_marginTop="4dp"/>
-
-                        <!-- Slot B name or whatever -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/slotb_txt"
-                            android:layout_marginStart="4dp" />
-                    
-                    </LinearLayout>
-                
-                </LinearLayout>
-            
-            </dev.oneuiproject.oneui.widget.RoundLinearLayout>
-        
-            <dev.oneuiproject.oneui.widget.Separator
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Quick Action" />
-            
-            <dev.oneuiproject.oneui.widget.RoundLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/oui_background_color"
-                android:orientation="vertical"
-                android:paddingHorizontal="24dp"
-                android:paddingVertical="12dp">
-
-                <GridLayout
+                <dev.oneuiproject.oneui.widget.RoundLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:columnCount="2"
-                    android:rowCount="3"
-                    android:padding="0dp"
-                    android:alignmentMode="alignMargins"
-                    android:rowOrderPreserved="false"
-                    android:layout_gravity="center">
+                    android:background="@color/oui_background_color"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="12dp">
 
+                    <!-- Parent LinearLayout for the whole row -->
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_margin="8dp">
+                        android:orientation="horizontal">
 
+                        <!-- Image on the left -->
                         <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@drawable/ic_oui_restart" />
+                            android:layout_width="100dp" 
+                            android:layout_height="180dp"
+                            android:src="@drawable/phone"
+                            android:adjustViewBounds="true"/>
 
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/reboot_a"
-                            style="?attr/buttonStyle"
-                            android:layout_width="wrap_content"
+                        <!-- Vertical layout for "Dualboot info" and two lines below it -->
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="8dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:text="Reboot to slot A" />
-                        
-                    </LinearLayout>
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_marginStart="10dp">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_margin="8dp">
+                            <!-- Title Text "Dualboot info" -->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dualboot info"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
 
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@drawable/ic_oui_restart" />
+                            <!-- show status or whatever -->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/status"
+                                android:layout_marginStart="4dp" />
 
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/reboot_b"
-                            style="?attr/buttonStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="8dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:text="Reboot to slot B" />
+                            <!-- Slot A Operating System text -->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Slot A Operating System:"
+                                android:layout_marginTop="4dp"/>
 
-                    </LinearLayout>
+                            <!-- Slot A name or whatever -->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/slota_txt"
+                                android:layout_marginStart="4dp" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_margin="8dp">
+                            <!-- Slot B Operating System text -->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Slot B Operating System:"
+                                android:layout_marginTop="4dp"/>
 
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@drawable/ic_oui_lightning" />
+                            <!-- Slot B name or whatever -->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/slotb_txt"
+                                android:layout_marginStart="4dp" />
 
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/rec_a"
-                            style="?attr/buttonStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="8dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:text="Reboot to Recovery slot A" />
-                        
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_margin="8dp">
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@drawable/ic_oui_lightning" />
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/rec_b"
-                            style="?attr/buttonStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="8dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:text="Reboot to Recovery slot B" />
-                        
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_margin="8dp">
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@drawable/ic_oui_save" />
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/bootloader"
-                            style="?attr/buttonStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="8dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:text="Reboot to Download mode" />
-                        
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_margin="8dp">
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@drawable/ic_oui_power" />
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/poweroff"
-                            style="?attr/buttonStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="8dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:text="Shut Down" />
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                </GridLayout>
+                </dev.oneuiproject.oneui.widget.RoundLinearLayout>
 
-            </dev.oneuiproject.oneui.widget.RoundLinearLayout>
+                <dev.oneuiproject.oneui.widget.Separator
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Quick Action" />
 
-        </LinearLayout>
+                <dev.oneuiproject.oneui.widget.RoundLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/oui_background_color"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="24dp"
+                    android:paddingVertical="12dp">
 
-    </androidx.core.widget.NestedScrollView>
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="2"
+                        android:rowCount="3"
+                        android:padding="0dp"
+                        android:alignmentMode="alignMargins"
+                        android:rowOrderPreserved="false"
+                        android:layout_gravity="center">
 
-</dev.oneuiproject.oneui.layout.ToolbarLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_margin="8dp">
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_oui_restart" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/reboot_a"
+                                style="?attr/buttonStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="8dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:text="Reboot to slot A" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_margin="8dp">
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_oui_restart" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/reboot_b"
+                                style="?attr/buttonStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="8dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:text="Reboot to slot B" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_margin="8dp">
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_oui_lightning" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/rec_a"
+                                style="?attr/buttonStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="8dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:text="Reboot to Recovery slot A" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_margin="8dp">
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_oui_lightning" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/rec_b"
+                                style="?attr/buttonStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="8dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:text="Reboot to Recovery slot B" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_margin="8dp">
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_oui_save" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/bootloader"
+                                style="?attr/buttonStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="8dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:text="Reboot to Download mode" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_margin="8dp">
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_oui_power" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/poweroff"
+                                style="?attr/buttonStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="8dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:text="Shut Down" />
+
+                        </LinearLayout>
+
+                    </GridLayout>
+
+                </dev.oneuiproject.oneui.widget.RoundLinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </dev.oneuiproject.oneui.layout.ToolbarLayout>
+
+</LinearLayout>

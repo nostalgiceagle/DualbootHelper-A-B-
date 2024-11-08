@@ -68,14 +68,6 @@
                 app:TitleText="Salvo Giangreco"
                 app:isDividerViewVisible="true" />
 
-            <dev.oneuiproject.oneui.widget.ui.widget.CardView
-                android:id="@+id/about_bottom_dev_mesa"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:IconDrawable="@drawable/about_page_avatar_mesa"
-                app:TitleText="BlackMesa123"
-                app:isDividerViewVisible="true" />
-
         </dev.oneuiproject.oneui.widget.RoundLinearLayout>
 
         <dev.oneuiproject.oneui.widget.Separator

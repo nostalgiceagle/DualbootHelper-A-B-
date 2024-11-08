@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Slot desired color -->
+    <color name="slota_color">#FCA14C</color>
+    <color name="slotb_color">#CD62EE</color>
+</resources>

@@ -158,7 +158,7 @@ public class AboutActivity extends AppCompatActivity
         mBottomContent.aboutBottomDevBob.setOnClickListener(this);
 
         mBottomContent.aboutBottomDevYann.setOnClickListener(this);
-        mBottomContent.aboutBottomDevMesa.setOnClickListener(this);
+        mBottomContent.aboutBottomDevSalvo.setOnClickListener(this);
 
         mBottomContent.aboutBottomGnu.setOnClickListener(this);
         mBottomContent.aboutBottomOssApache.setOnClickListener(this);
@@ -173,7 +173,6 @@ public class AboutActivity extends AppCompatActivity
         mBottomContent.aboutBottomDevDavid.setEnabled(enabled);
         mBottomContent.aboutBottomDevBob.setEnabled(enabled);
         mBottomContent.aboutBottomDevYann.setEnabled(enabled);
-        mBottomContent.aboutBottomDevMesa.setEnabled(enabled);
         mBottomContent.aboutBottomDevSalvo.setEnabled(enabled);
         mBottomContent.aboutBottomGnu.setEnabled(enabled);
         mBottomContent.aboutBottomOssApache.setEnabled(enabled);
@@ -198,8 +197,6 @@ public class AboutActivity extends AppCompatActivity
                 url = "https://github.com/justin-a30";
             } else if (v.getId() == mBottomContent.aboutBottomDevYann.getId()) {
                 url = "https://github.com/Yanndroid";
-            } else if (v.getId() == mBottomContent.aboutBottomDevMesa.getId()) {
-                url = "https://github.com/BlackMesa123";
             } else if (v.getId() == mBottomContent.aboutBottomDevSalvo.getId()) {
                 url = "https://github.com/salvogiangri";
             } else if (v.getId() == mBottomContent.aboutBottomGnu.getId()) {

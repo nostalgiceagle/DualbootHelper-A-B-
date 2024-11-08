@@ -52,4 +52,7 @@
     <color name="sem_tip_popup_background_color">#ff474747</color>
     <color name="sem_tip_popup_text_color">#fffafafa</color>
     <color name="sem_tip_popup_text_color_translucent">#fffafafa</color>
+    <!-- Slot desired color -->
+    <color name="slota_color">#FF915E</color>
+    <color name="slotb_color">#8A56D2</color>
 </resources>

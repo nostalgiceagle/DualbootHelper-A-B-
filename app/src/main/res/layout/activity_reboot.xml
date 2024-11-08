@@ -1,0 +1,70 @@
+<dev.oneuiproject.oneui.layout.ToolbarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:expandable="true"
+    app:subtitle="Rebooting the system..."
+    app:title="Rebooting..."
+    tools:context=".RebootActivity"
+    android:id="@+id/reboot">
+
+    <androidx.core.widget.NestedScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?roundedCornerColor"
+        app:layout_location="reboot_content"
+        android:fillViewport="true"
+        android:overScrollMode="always"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <dev.oneuiproject.oneui.widget.RoundLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/oui_background_color"
+                android:orientation="vertical"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="veritcal"
+                    android:gravity="top|start">
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Device is rebooting. Kindly wait."
+                        android:textSize="28sp"
+                        android:textStyle="bold"/>
+                
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="veritcal"
+                    android:gravity="center">
+                    
+                    <androidx.appcompat.widget.SeslProgressBar
+                        style="@style/Widget.AppCompat.ProgressBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
+                        android:indeterminate="true" />
+                
+                </LinearLayout>
+
+            </dev.oneuiproject.oneui.widget.RoundLinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</dev.oneuiproject.oneui.layout.ToolbarLayout>

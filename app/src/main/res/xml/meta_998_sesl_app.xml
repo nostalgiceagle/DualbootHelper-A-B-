@@ -4,10 +4,10 @@
     GuideVersion="1.4">
     <!--TODO: change packageName and name-->
     <AppMetaData
-        Name="Linganguliguli"
-        TargetApi="21"
+        Name="Dualboot Helper"
+        TargetApi="33"
         TargetPackageName="com.david42069.dualboothelper"
-        VersionCode="1"
+        VersionCode="8"
         VersionName="">
         <Include RefName="SESL" />
         <Property
@@ -16,5 +16,8 @@
             UID="1000_1"
             ValueRef="1-11-3"
             ValueType="TintColor" />
+        <Property Comment="Round and bg color" DefaultValue="#fff6f6f6" DestAttribName="oui_round_and_bgcolor" UID="610-1" ValueRef="1-1-1" ValueType="BgColor" />
+        <Property Comment="Background color" DefaultValue="#fffcfcfc" DestAttribName="oui_background_color" POption="FixedOpacity|AlwaysOverriden" UID="610-2" ValueRef="1-18-1" ValueType="BgColor" />
+        <Property Comment="App version text color" DefaultValue="#ff8c8c8c" DestAttribName="oui_appinfolayout_info_text_color" UID="610-8" ValueRef="1-1-4" ValueType="Color"/>
     </AppMetaData>
 </ThemeMetaData>

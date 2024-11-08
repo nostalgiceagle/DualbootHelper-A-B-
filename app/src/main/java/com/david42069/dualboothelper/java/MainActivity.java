@@ -125,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
     }
     // Action on MaKing TOAST and DO
     private void mktoastdo(String prompt) {
-        Toast.makeText(this, prompt + " confirmed. Performing action", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, RebootActivity.class);
+        startActivity(intent);
         if (prompt.equals("Reboot to Slot A")) {
             String scriptContent = ScriptToString(R.raw.switcha);
             executeScript(scriptContent);

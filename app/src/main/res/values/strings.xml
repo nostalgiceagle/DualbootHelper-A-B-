@@ -7,8 +7,8 @@
     <string name="info">Information</string>
     <!-- Placeholder info strings -->
     <string name="dbinf">Dualboot info</string>
-    <string name="slota_os">Slot A Operating System:</string>
-    <string name="slotb_os">Slot B Operating System:</string>
+    <string name="slota_os">OS on Slot A</string>
+    <string name="slotb_os">OS on Slot B</string>
     <!-- Collected info strings -->
     <string name="not_installed">- Not installed</string>
     <string name="installed_v5">- Installed (V5)</string>

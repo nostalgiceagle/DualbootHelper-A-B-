@@ -12,6 +12,7 @@ import dev.oneuiproject.oneui.layout.ToolbarLayout;
 import dev.oneuiproject.oneui.utils.ActivityUtils;
 
 import android.app.Activity;
+import com.topjohnwu.superuser.Shell;
 import android.os.Bundle;
 import android.util.Log;
 import java.io.BufferedReader;
@@ -56,12 +57,117 @@ public class SplashActivity extends Activity {
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String STATUS_FILE_PATH = "/data/data/com.david42069.dualboothelper/files/status.txt";
+    private static final String SLOT_A_FILE_PATH = "/data/data/com.david42069.dualboothelper/files/slota.txt";
+    private static final String SLOT_B_FILE_PATH = "/data/data/com.david42069.dualboothelper/files/slotb.txt";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
+        updateStatusCardView();
+        updateSlotCardView(R.id.slota_txt, SLOT_A_FILE_PATH);
+        updateSlotCardView(R.id.slotb_txt, SLOT_B_FILE_PATH);
+
+        setupButtonWithConfirmation(R.id.reboot_a, "switcha.sh");
+        setupButtonWithConfirmation(R.id.reboot_b, "switchb.sh");
+        setupButtonWithConfirmation(R.id.rec_a, "switchar.sh");
+        setupButtonWithConfirmation(R.id.rec_b, "switchbr.sh");
+        setupButtonWithConfirmation(R.id.bootloader, "download.sh");
+        setupButtonWithConfirmation(R.id.poweroff, "shutdown.sh");
+    }
+
+    private void updateStatusCardView() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File(STATUS_FILE_PATH)))) {
+            StringBuilder statusText = new StringBuilder();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                line = line.replace("##NOT_INSTALLED##", getString(R.string.not_installed))
+                           .replace("##INSTALLED_V5##", getString(R.string.installed_v5))
+                           .replace("##INSTALLED_V4##", getString(R.string.installed_v4))
+                           .replace("##UNAVAILABLE##", getString(R.string.unavailable))
+                           .replace("##SUPER_PARTITION##", getString(R.string.super_partition))
+                           .replace("##NORMAL_NAMING##", getString(R.string.normal_naming))
+                           .replace("##CAPS_NAMING##", getString(R.string.caps_naming))
+                           .replace("##UFS_SDA##", getString(R.string.ufs_sda))
+                           .replace("##EMMC_SDC##", getString(R.string.emmc_sdc))
+                           .replace("##EMMC_MMCBLK0##", getString(R.string.emmc_mmcblk0));
+
+                statusText.append(line).append("\n");
+            }
+
+            CardView statusCardView = findViewById(R.id.status);
+            statusCardView.setSummaryText(statusText.toString().trim());
+        } catch (IOException e) {
+            Log.e("MainActivity", "Error reading status.txt", e);
+        }
+    }
+
+    private void updateSlotCardView(int cardViewId, String filePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File(filePath)))) {
+            StringBuilder slotText = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                slotText.append(line).append("\n");
+            }
+
+            CardView slotCardView = findViewById(cardViewId);
+            slotCardView.setSummaryText(slotText.toString().trim());
+        } catch (IOException e) {
+            Log.e("MainActivity", "Error reading " + filePath, e);
+        }
+    }
+
+    private void setupButtonWithConfirmation(int buttonId, String scriptFile) {
+        Button button = findViewById(buttonId);
+        button.setOnClickListener(v -> {
+            int promptResId = button.getText().toString();
+            showConfirmationDialog(promptResId, scriptFile);
+        });
+    }
+
+    private void showConfirmationDialog(int promptResId, String scriptFile) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        String title = getString(promptResId) + "?";
+        String message = getString(R.string.dialog_confirm);
+        String positiveButton = getString(R.string.dialog_yes);
+        String negativeButton = getString(R.string.dialog_no);
+
+        builder.setTitle(title)
+            .setMessage(message)
+            .setPositiveButton(positiveButton, (dialog, which) -> {
+                showLoadingDialog();
+                executeShellCommand(scriptFile);
+            })
+            .setNegativeButton(negativeButton, null);
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void showLoadingDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View dialogView = inflater.inflate(R.layout.loading_dialog, null);
+        builder.setView(dialogView);
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
+
+    private void executeShellCommand(String scriptFile) {
+        Shell.cmd("/data/data/com.david42069.dualboothelper/files/" + scriptFile)
+            .exec(result -> {
+                if (result.isSuccess()) {
+                    Toast.makeText(this, R.string.execution_success, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, R.string.execution_failed, Toast.LENGTH_SHORT).show();
+                }
+            });
     }
 
     @Override

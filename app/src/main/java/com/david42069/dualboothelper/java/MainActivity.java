@@ -19,6 +19,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.FileReader;
 import android.view.View;
 import android.content.Context;
 import java.io.File;
@@ -44,19 +45,6 @@ import android.view.LayoutInflater;
 import androidx.annotation.StringRes;
 import dev.oneuiproject.oneui.widget.ui.widget.CardView;
 
-public class SplashActivity extends Activity {
-
-    static {
-        // Set settings before the main shell can be created
-        Shell.enableVerboseLogging = BuildConfig.DEBUG;
-        Shell.setDefaultBuilder(Shell.Builder.create()
-            .setFlags(Shell.FLAG_MOUNT_MASTER)
-            .setInitializers(ShellInit.class)
-            .setTimeout(10));
-    }
-
-}
-
 public class MainActivity extends AppCompatActivity {
 
     private static final String STATUS_FILE_PATH = "/data/data/com.david42069.dualboothelper/files/status.txt";
@@ -67,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Shell.getShell(shell -> {});
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
         updateStatusCardView();
         updateSlotCardView(R.id.slota_txt, SLOT_A_FILE_PATH);
@@ -123,14 +111,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setupButtonWithConfirmation(int buttonId, String scriptFile) {
+    private void setupButtonWithConfirmation(int buttonId, int promptResId, String scriptFile) {
         Button button = findViewById(buttonId);
-        button.setOnClickListener(v -> {
-            int promptResId = button.getText().toString();
-            showConfirmationDialog(promptResId, scriptFile);
-        });
+        button.setOnClickListener(v -> showConfirmationDialog(promptResId, scriptFile));
     }
-
     private void showConfirmationDialog(int promptResId, String scriptFile) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         String title = getString(promptResId) + "?";

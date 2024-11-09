@@ -55,6 +55,8 @@ public class SplashActivity extends Activity {
             .setTimeout(10));
     }
 
+}
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String STATUS_FILE_PATH = "/data/data/com.david42069.dualboothelper/files/status.txt";

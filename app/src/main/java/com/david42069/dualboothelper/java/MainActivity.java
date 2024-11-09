@@ -290,9 +290,19 @@ public class MainActivity extends AppCompatActivity {
 			slota.setText(R.string.unavailable);
 		}
         // cardview
-        slotaCardView.setSummaryText(slotastring.isEmpty() ? getString(R.string.unavailable) : slotastring);
-        slotaCardView.setSummaryText(slotbstring.isEmpty() ? getString(R.string.unavailable) : slotbstring);
-        slotaCardView.setSummaryText(statusstring.isEmpty() ? getString(R.string.sudo_access) : statusstring);
+        if (slotastring.isEmpty()) {
+            slotastring = getString(R.string.unavailable);  // Default value if file is empty
+        }
+        if (slotbstring.isEmpty()) {
+            slotbstring = getString(R.string.unavailable);  // Default value if file is empty
+        }
+        if (statusstring.isEmpty()) {
+            statusstring = getString(R.string.sudo_access);  // Default value if file is empty
+        }
+        
+        slotaCardView.setSummaryText(slotastring);
+        slotaCardView.setSummaryText(slotbstring);
+        slotaCardView.setSummaryText(statusstring);
     }
 
 

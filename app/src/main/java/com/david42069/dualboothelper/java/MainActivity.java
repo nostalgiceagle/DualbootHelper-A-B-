@@ -265,6 +265,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.bootloader).setOnClickListener(v -> confirmreboot(R.string.dl_mode));
         findViewById(R.id.poweroff).setOnClickListener(v -> confirmreboot(R.string.poweroff));
         // Cardview stuff
+        String summaryText = summaryTextView.getText().toString();
         CardView slotaCardView = findViewById(R.id.slota_txt);
         CardView slotbCardView = findViewById(R.id.slotb_txt);
         CardView statusCardView = findViewById(R.id.status);
@@ -277,9 +278,12 @@ public class MainActivity extends AppCompatActivity {
 		String statusstring = readFileFromInternalStorage("status.txt");
 		String slotastring = readFileFromInternalStorage("slota.txt");
 		String slotbstring = readFileFromInternalStorage("slotb.txt");
-		status.setText(statusstring);
-		slota.setText(slotastring);
-        slotb.setText(slotbstring);
+        TextView slotaTextView = (TextView) findViewById(R.id.slota_txt);
+        TextView slotbTextView = (TextView) findViewById(R.id.slotb_txt); 
+        TextView statusTextView = (TextView) findViewById(R.id.status);
+        slotaTextView.setText(slotastring);
+        slotbTextView.setText(slotbstring);
+        statusTextView.setText(statusstring);
 		if (statusstring == "") {
 			status.setText(R.string.sudo_access);
 		}

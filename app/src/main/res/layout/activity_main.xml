@@ -35,29 +35,51 @@
                 android:layout_height="wrap_content"
                 android:background="@color/oui_background_color"
                 android:orientation="vertical">
+            
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="12dp">
 
-                <dev.oneuiproject.oneui.widget.ui.widget.CardView
-                    android:id="@+id/status"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:TitleText="@string/slota_os"
-                    app:SummaryText="@{statusstring}" />
-                    
-                <dev.oneuiproject.oneui.widget.ui.widget.CardView
-                    android:id="@+id/slota_txt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:TitleText="@string/slota_os"
-                    app:SummaryText="@{slotastring}"
-                    app:isDividerViewVisible="true" />
+                    <ImageView
+                        android:layout_width="100dp" 
+                        android:layout_height="180dp"
+                        android:src="@drawable/phone"
+                        android:adjustViewBounds="true"/>
 
-                <dev.oneuiproject.oneui.widget.ui.widget.CardView
-                    android:id="@+id/slotb_txt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:TitleText="@string/slotb_os"
-                    app:SummaryText="@{slotbstring}"
-                    app:isDividerViewVisible="true" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+    
+                        <dev.oneuiproject.oneui.widget.ui.widget.CardView
+                            android:id="@+id/status"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:TitleText="@string/slota_os"
+                            app:SummaryText="@{statusstring}" />
+    
+                        <dev.oneuiproject.oneui.widget.ui.widget.CardView
+                            android:id="@+id/slota_txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:TitleText="@string/slota_os"
+                            app:SummaryText="@{slotastring}"
+                            app:isDividerViewVisible="true" />
+    
+                        <dev.oneuiproject.oneui.widget.ui.widget.CardView
+                            android:id="@+id/slotb_txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:TitleText="@string/slotb_os"
+                            app:SummaryText="@{slotbstring}"
+                            app:isDividerViewVisible="true" />
+    
+                    </LinearLayout>
+                
+                </LinearLayout>
                 
             </dev.oneuiproject.oneui.widget.RoundLinearLayout>
         
@@ -95,8 +117,7 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@drawable/ic_oui_restart"
-                            android:tint="@color/slota_color" />
+                            android:src="@drawable/ic_oui_restart"/>
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/reboot_a"

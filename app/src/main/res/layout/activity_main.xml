@@ -54,8 +54,6 @@
                 
             </dev.oneuiproject.oneui.widget.RoundLinearLayout>
         
-        </LinearLayout>
-        
             <dev.oneuiproject.oneui.widget.Separator
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -34,11 +34,11 @@ android {
 
     signingConfigs {
         release {
-            storeFile file(../release_key.jks)
+            storeFile file("../release_key.jks")
             storePassword System.getenv("KEYSTORE_PASSWORD")
             keyAlias System.getenv("KEY_ALIAS")
             keyPassword System.getenv("KEYSTORE_PASSWORD")
-            
+
             enableV1Signing = true
             enableV2Signing = true
             enableV3Signing = true

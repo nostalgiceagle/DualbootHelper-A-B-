@@ -34,9 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/oui_background_color"
-                android:orientation="vertical"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="12dp">
+                android:orientation="vertical">
 
                 <dev.oneuiproject.oneui.widget.ui.widget.CardView
                     android:id="@+id/status"

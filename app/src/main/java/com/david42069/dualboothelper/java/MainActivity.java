@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
         return script.toString();
     }
-    
+
     // Read script logic
     private String readScriptFromRaw(int resourceId) {
         InputStream inputStream = getResources().openRawResource(resourceId);
@@ -179,25 +179,25 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     
         String scriptContent;
-    
+        // because of translation, scripttostring requries manu arg. do this for now.
         switch (promptResId) {
             case R.string.reboot_a:
-                scriptContent = ScriptToString(R.raw.switcha);
+                scriptContent = ScriptToString(R.raw.switcha, "", "", "", "", "", "", "", "", "", "");
                 break;
             case R.string.reboot_b:
-                scriptContent = ScriptToString(R.raw.switchb);
+                scriptContent = ScriptToString(R.raw.switchb, "", "", "", "", "", "", "", "", "", "");
                 break;
             case R.string.recovery_a:
-                scriptContent = ScriptToString(R.raw.switchar);
+                scriptContent = ScriptToString(R.raw.switchar, "", "", "", "", "", "", "", "", "", "");
                 break;
             case R.string.recovery_b:
-                scriptContent = ScriptToString(R.raw.switchbr);
+                scriptContent = ScriptToString(R.raw.switchbr, "", "", "", "", "", "", "", "", "", "");
                 break;
             case R.string.dl_mode:
-                scriptContent = ScriptToString(R.raw.download);
+                scriptContent = ScriptToString(R.raw.download, "", "", "", "", "", "", "", "", "", "");
                 break;
             case R.string.poweroff:
-                scriptContent = ScriptToString(R.raw.shutdown);
+                scriptContent = ScriptToString(R.raw.shutdown, "", "", "", "", "", "", "", "", "", "");
                 break;
             default:
                 scriptContent = ""; // or handle any unexpected case
@@ -280,10 +280,10 @@ public class MainActivity extends AppCompatActivity {
 			status.setText(R.string.sudo_access);
 		}
 		if (slotbstring == "") {
-			slotb.setText(R.string.unknown_text);
+			slotb.setText(R.string.unavailable);
 		}
 		if (slotastring == "") {
-			slota.setText(R.string.unknown_text);
+			slota.setText(R.string.unavailable);
 		}
     }
 

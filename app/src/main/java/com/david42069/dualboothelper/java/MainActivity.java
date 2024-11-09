@@ -268,6 +268,7 @@ public class MainActivity extends AppCompatActivity {
         status = findViewById(R.id.status);
         slota = findViewById(R.id.slota_txt);
         slotb = findViewById(R.id.slotb_txt);
+        updateStatus();
         scriptContent = ScriptToString(R.raw.updatedata, "", "", "", "", "", "", "", "", "", "");
 		executeScript(scriptContent);
 		CharSequence statusstring = readFileFromInternalStorage("status.txt");

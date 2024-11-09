@@ -121,8 +121,7 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@drawable/ic_oui_restart"
-                            android:tint="@color/slotb_color" />
+                            android:src="@drawable/ic_oui_restart"/>
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/reboot_b"
@@ -147,8 +146,7 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@drawable/ic_oui_lightning"
-                            android:tint="@color/slota_color" />
+                            android:src="@drawable/ic_oui_lightning"/>
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/rec_a"
@@ -173,8 +171,7 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@drawable/ic_oui_lightning"
-                            android:tint="@color/slotb_color" />
+                            android:src="@drawable/ic_oui_lightning"/>
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/rec_b"
@@ -199,8 +196,7 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@drawable/ic_oui_save"
-                            android:tint="@color/download_color" />
+                            android:src="@drawable/ic_oui_save"/>
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/bootloader"
@@ -225,8 +221,7 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@drawable/ic_oui_power"
-                            android:tint="@color/poweroff_color"/>
+                            android:src="@drawable/ic_oui_power"/>
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/poweroff"

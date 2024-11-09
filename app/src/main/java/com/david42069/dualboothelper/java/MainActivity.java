@@ -61,14 +61,14 @@ public class MainActivity extends AppCompatActivity {
         updateSlotCardView(R.id.slota_txt, SLOT_A_FILE_PATH);
         updateSlotCardView(R.id.slotb_txt, SLOT_B_FILE_PATH);
 
-        setupButtonWithConfirmation(R.id.reboot_a, R.string.reboot_a, "switcha.sh");
-        setupButtonWithConfirmation(R.id.reboot_b, R.string.reboot_b, "switchb.sh");
-        setupButtonWithConfirmation(R.id.rec_a, R.string.recovery_a, "switchar.sh");
-        setupButtonWithConfirmation(R.id.rec_b, R.string.recovery_b, "switchbr.sh");
-        setupButtonWithConfirmation(R.id.bootloader, R.string.dl_mode, "download.sh");
-        setupButtonWithConfirmation(R.id.poweroff, R.string.poweroff, "shutdown.sh");
+        setupButtonWithConfirmation(R.id.reboot_a, R.string.reboot_a, "R.raw.switcha");
+        setupButtonWithConfirmation(R.id.reboot_b, R.string.reboot_b, "R.raw.switchb");
+        setupButtonWithConfirmation(R.id.rec_a, R.string.recovery_a, "R.raw.switchar");
+        setupButtonWithConfirmation(R.id.rec_b, R.string.recovery_b, "R.raw.switchbr");
+        setupButtonWithConfirmation(R.id.bootloader, R.string.dl_mode, "R.raw.download");
+        setupButtonWithConfirmation(R.id.poweroff, R.string.poweroff, "R.raw.shutdown");
     }
-
+    
     private void updateStatusCardView() {
         try (BufferedReader reader = new BufferedReader(new FileReader(new File(STATUS_FILE_PATH)))) {
             StringBuilder statusText = new StringBuilder();
@@ -146,14 +146,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void executeShellCommand(String scriptFile) {
-        Shell.cmd("/data/data/com.david42069.dualboothelper/files/" + scriptFile)
-            .submit(result -> {
-                if (result.isSuccess()) {
-                    Log.i("MainActivity", "Execution successful for script: " + scriptFile);
-                } else {
-                    Log.e("MainActivity", "Execution failed for script: " + scriptFile);
-                }
-            });
+        Shell.cmd(getResources().openRawResource(scriptFile)).exec();
     }
 
     @Override

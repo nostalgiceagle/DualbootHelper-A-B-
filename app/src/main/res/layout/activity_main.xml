@@ -45,13 +45,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="10dp">
+                        android:paddingTop="12dp"
+                        android:paddingStart="10dp">
 
                         <ImageView
-                            android:layout_width="100dp" 
-                            android:layout_height="180dp"
-                            android:src="@drawable/phone"
+                            android:layout_width="115dp" 
+                            android:layout_height="251dp"
+                            android:src="@drawable/device"
                             android:adjustViewBounds="true"/>
                     
                     </LinearLayout>

@@ -39,7 +39,7 @@ if ls -l /dev/block/by-name/ | grep -q 'BOOT';
 then 
 use_caps=2 
 fi
-if [ "$use_caps" -eq 0 ]  
+if [[ "$use_caps" -eq 0 ]]  
 then 
 #attempt a second, not so efficient way of detecting device type in case of symlimk by-name fail 
 failsafe=1 
@@ -68,30 +68,30 @@ fi
 output=$($PARTED_PATH $DISK -s -j unit B print 2>/dev/null) 
 capitalboot=$(echo "$output" | $JQ_PATH -r '.disk.partitions[] | select(.name == "BOOT") | .number') 
 noncapitalboot=$(echo "$output" | $JQ_PATH -r '.disk.partitions[] | select(.name == "boot") | .number') 
-if [ "$capitalboot" -ne 0 ] 
+if [[ "$capitalboot" -ne 0 ]] 
 then 
 use_caps=2 
 fi 
-if [ "$noncapitalboot" -ne 0 ] 
+if [[ "$noncapitalboot" -ne 0 ]] 
 then 
 use_caps=1 
 fi 
 fi 
-if [ "$use_caps" -eq 1 ]
+if [[ "$use_caps" -eq 1 ]]
 then
 efs_a_name="efs"
 efs_b_name="efs_b"
 userdata_b_name="userdata_b"
 userdata_a_name="userdata"
 fi
-if [ "$use_caps" -eq 2 ]
+if [[ "$use_caps" -eq 2 ]]
 then
 efs_a_name="EFS"
 efs_b_name="EFS_B"
 userdata_b_name="USERDATA_B"
 userdata_a_name="USERDATA"
 fi
-if [ "$failsafe" -eq 0 ] 
+if [[ "$failsafe" -eq 0 ]] 
 then
 DISK=$(echo "$(ls -l /dev/block/by-name/${userdata_a_name})" | sed -r 's|.*-> (.*)|\1|') 
 DISK=$(echo "$DISK" | sed -r 's|p?[0-9]+$||') 
@@ -102,7 +102,7 @@ userdata_b_num=$(echo "$output" | $JQ_PATH -r '.disk.partitions[] | select(.name
 userdata_a_num=$(echo "$output" | $JQ_PATH -r '.disk.partitions[] | select(.name == "'"$userdata_a_name"'") | .number')
 efs_b_num=$(echo "$output" | $JQ_PATH -r '.disk.partitions[] | select(.name == "'"$efs_b_name"'") | .number')
 BUILD_NUMBER=$(getprop ro.build.display.id)
-if [ "$userdata_b_num" -eq 0 ] 
+if [[ "$userdata_b_num" -eq 0 ]] 
 then
 echo -e "##NOT_INSTALLED##" > /data/data/com.david42069.dualboothelper/files/status.txt
 echo "$BUILD_NUMBER" > /cache/dualboot/database/slota.txt
@@ -110,7 +110,7 @@ echo "$BUILD_NUMBER" > /data/data/com.david42069.dualboothelper/files/slota.txt
 echo "##UNAVAILABLE##" > /cache/dualboot/database/slotb.txt
 echo "##UNAVAILABLE##" > /data/data/com.david42069.dualboothelper/files/slotb.txt
 else
-if [ "$efs_b_num" -ne 0 ] 
+if [[ "$efs_b_num" -ne 0 ]] 
 then
 echo -e "##INSTALLED_V5##" > /data/data/com.david42069.dualboothelper/files/status.txt
 else
@@ -120,34 +120,34 @@ fi
 
 #determine partition type
 use_super=$(echo "$output" | $JQ_PATH -r '.disk.partitions[] | select(.name == "super") | .number')
-if [ "$use_super" -ne 0 ] 
+if [[ "$use_super" -ne 0 ]] 
 then
 echo -e "##SUPER_PARTITION##" >> /data/data/com.david42069.dualboothelper/files/status.txt
 else
-if [ "$use_caps" -eq 1 ] 
+if [[ "$use_caps" -eq 1 ]] 
 then
 echo -e "##NORMAL_NAMING##" >> /data/data/com.david42069.dualboothelper/files/status.txt
 fi
-if [ "$use_caps" -eq 2 ] 
+if [[ "$use_caps" -eq 2 ]] 
 then
 echo -e "##CAPS_NAMING##" >> /data/data/com.david42069.dualboothelper/files/status.txt
 fi
 fi
 #End for device type start for storage type
-if [ "$DISK" = "/dev/block/sda" ]
+if [[ "$DISK" = "/dev/block/sda" ]]
 then
 echo "##UFS_SDA##" >> /data/data/com.david42069.dualboothelper/files/status.txt
 fi
-if [ "$DISK" = "/dev/block/sdc" ]
+if [[ "$DISK" = "/dev/block/sdc" ]]
 then
 echo "##EMMC_SDC##" >> /data/data/com.david42069.dualboothelper/files/status.txt
 fi
-if [ "$DISK" = "/dev/block/mmcblk0" ]
+if [[ "$DISK" = "/dev/block/mmcblk0" ]]
 then
 echo "##EMMC_MMCBLK0##" >> /data/data/com.david42069.dualboothelper/files/status.txt
 fi
 
-if [ "$userdata_a_num" -lt "$userdata_b_num" ]
+if [[ "$userdata_a_num" -lt "$userdata_b_num" ]]
 then
 echo "$BUILD_NUMBER" > /cache/dualboot/database/slota.txt
 echo "$BUILD_NUMBER" > /data/data/com.david42069.dualboothelper/files/slota.txt

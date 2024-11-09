@@ -290,19 +290,9 @@ public class MainActivity extends AppCompatActivity {
 			slota.setText(R.string.unavailable);
 		}
         // cardview
-        if (slotastring == "" || slotastring.isEmpty()) {
-        slotaCardView.setSummaryText(getString(R.string.unavailable));
-        } else {
-        slotaCardView.setSummaryText(slotastring);}
-        if (slotbstring == "" || slotastring.isEmpty()) {
-        slotaCardView.setSummaryText(getString(R.string.unavailable));
-        } else {
-        slotaCardView.setSummaryText(slotbstring);}
-        if (statusstring == "" || slotastring.isEmpty()) {
-        slotaCardView.setSummaryText(getString(R.string.sudo_access));
-        } else {
-        slotaCardView.setSummaryText(statusstring);}
-
+        slotaCardView.setSummaryText(slotastring.isEmpty() ? getString(R.string.unavailable) : slotastring);
+        slotaCardView.setSummaryText(slotbstring.isEmpty() ? getString(R.string.unavailable) : slotbstring);
+        slotaCardView.setSummaryText(statusstring.isEmpty() ? getString(R.string.sudo_access) : statusstring);
     }
 
 

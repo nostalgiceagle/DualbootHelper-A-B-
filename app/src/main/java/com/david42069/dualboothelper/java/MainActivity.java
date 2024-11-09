@@ -45,9 +45,9 @@ import androidx.annotation.StringRes;
 
 public class MainActivity extends AppCompatActivity {
     private String scriptContent;
-            TextView status;
-            TextView slota;
-            TextView slotb;
+            String status;
+            String slota;
+            String slotb;
     // updatedata.sh logic stuff - translation
     private void updateStatus() {
         // Fetch translated strings

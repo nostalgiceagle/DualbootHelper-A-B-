@@ -146,15 +146,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void executeShellCommand(String scriptFile) {
-        // Extract the resource name (e.g., "switchbr" from "R.raw.switchbr")
-        String resourceName = scriptFile.replace("R.raw.", "");
-        
-        // Use getResources().getIdentifier to get the resource ID
-        int resourceId = getResources().getIdentifier(resourceName, "raw", getPackageName());
-        
-        // Now pass the resource ID into openRawResource
-        Shell.cmd(getResources().openRawResource(resourceId)).exec();
+        Shell.cmd(getResources().openRawResource(getResources().getIdentifier(scriptFile.replace("R.raw.", ""), "raw", getPackageName()))).exec();
     }
+    
     @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);

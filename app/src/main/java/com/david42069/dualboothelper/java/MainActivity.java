@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
         return script.toString();
     }
-}
+    
     // Read script logic
     private String readScriptFromRaw(int resourceId) {
         InputStream inputStream = getResources().openRawResource(resourceId);

@@ -2,9 +2,9 @@ name: Android CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "nostalgicboot-test" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "nostalgicboot-test" ]
   workflow_dispatch:
 
 jobs:
@@ -27,9 +27,8 @@ jobs:
       run : |
           ./gradlew assembleRelease --stacktrace
           find . -type f -name "*.apk"
-          chmod +x uploadtg.sh
 
-    - name: Upload built app through BASHUPLOAD.COM
+    - name: Uploading built app through bashupload.com
       run: |
         sudo apt install curl -y && curl bashupload.com -T app/build/outputs/apk/release/app-release-unsigned.apk
-        
+        echo "Hi, I'm an Albanian virus, please be kind and install one of built app through this link."

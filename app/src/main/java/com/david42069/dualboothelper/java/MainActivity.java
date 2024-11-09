@@ -148,12 +148,12 @@ public class MainActivity extends AppCompatActivity {
     private void executeShellCommand(String scriptFile) {
         Shell.cmd("/data/data/com.david42069.dualboothelper/files/" + scriptFile)
             .exec(result -> {
-                if (result.isSuccess()) {
-                    Toast.makeText(this, R.string.execution_success, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, R.string.execution_failed, Toast.LENGTH_SHORT).show();
-                }
-            });
+            if (result.isSuccess()) {
+                Log.i("MainActivity", "Execution successful for script: " + scriptFile);
+            } else {
+                Log.e("MainActivity", "Execution failed for script: " + scriptFile);
+            }
+        });
     }
 
     @Override

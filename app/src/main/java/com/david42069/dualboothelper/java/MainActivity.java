@@ -48,6 +48,32 @@ public class MainActivity extends AppCompatActivity {
             TextView status;
             TextView slota;
             TextView slotb;
+    // updatedata.sh logic stuff - translation
+    private void updateStatus() {
+        // Fetch translated strings
+        String notInstalledText = getString(R.string.not_installed);
+        String installedTextV5 = getString(R.string.installed_v5);
+        String installedTextV4 = getString(R.string.installed_v4);
+        String unavailableText = getString(R.string.unavailable);
+        String superPartitionText = getString(R.string.super_partition);
+        String normalNamingText = getString(R.string.normal_naming);
+        String capsNamingText = getString(R.string.caps_naming);
+        String ufsSdaText = getString(R.string.ufs_sda);
+        String emmcSdcText = getString(R.string.emmc_sdc);
+        String emmcMmcblk0Text = getString(R.string.emmc_mmcblk0);
+
+        // Load script content with translations injected
+        scriptContent = ScriptToString(
+            R.raw.updatedata,
+            notInstalledText, installedTextV5, installedTextV4, unavailableText,
+            superPartitionText, normalNamingText, capsNamingText,
+            ufsSdaText, emmcSdcText, emmcMmcblk0Text
+        );
+
+        // Execute the script
+        executeScript(scriptContent);
+    }
+
     // COpy logic
     private void cp(int resourceId, String fileName) {
         try (InputStream in = getResources().openRawResource(resourceId);
@@ -92,7 +118,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Script to string logic
-    private String ScriptToString(int resourceId) {
+    private String ScriptToString(
+            int resourceId, String notInstalledText, String installedTextV5, String installedTextV4, String unavailableText,
+            String superPartitionText, String normalNamingText, String capsNamingText,
+            String ufsSdaText, String emmcSdcText, String emmcMmcblk0Text) {
+
         InputStream inputStream = getResources().openRawResource(resourceId);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         StringBuilder script = new StringBuilder();
@@ -100,6 +130,17 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             while ((line = reader.readLine()) != null) {
+                // Replace placeholders with translated strings
+                line = line.replace("##NOT_INSTALLED##", notInstalledText)
+                           .replace("##INSTALLED_V5##", installedTextV5)
+                           .replace("##INSTALLED_V4##", installedTextV4)
+                           .replace("##UNAVAILABLE##", unavailableText)
+                           .replace("##SUPER_PARTITION##", superPartitionText)
+                           .replace("##NORMAL_NAMING##", normalNamingText)
+                           .replace("##CAPS_NAMING##", capsNamingText)
+                           .replace("##UFS_SDA##", ufsSdaText)
+                           .replace("##EMMC_SDC##", emmcSdcText)
+                           .replace("##EMMC_MMCBLK0##", emmcMmcblk0Text);
                 script.append(line).append("\n");
             }
             reader.close();
@@ -109,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
         return script.toString();
     }
-
+}
     // Read script logic
     private String readScriptFromRaw(int resourceId) {
         InputStream inputStream = getResources().openRawResource(resourceId);
@@ -236,13 +277,13 @@ public class MainActivity extends AppCompatActivity {
 		slota.setText(slotastring);
         slotb.setText(slotbstring);
 		if (statusstring == "") {
-			status.setText("Please grant superuser access to gather info about the device");
+			status.setText(R.string.sudo_access);
 		}
 		if (slotbstring == "") {
-			slotb.setText("UNKNOWN");
+			slotb.setText(R.string.unknown_text);
 		}
 		if (slotastring == "") {
-			slota.setText("UNKNOWN");
+			slota.setText(R.string.unknown_text);
 		}
     }
 

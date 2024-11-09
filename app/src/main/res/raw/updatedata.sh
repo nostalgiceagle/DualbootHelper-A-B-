@@ -104,17 +104,17 @@ efs_b_num=$(echo "$output" | $JQ_PATH -r '.disk.partitions[] | select(.name == "
 BUILD_NUMBER=$(getprop ro.build.display.id)
 if [ "$userdata_b_num" -eq 0 ] 
 then
-echo -e "- Not installed" > /data/data/com.david42069.dualboothelper/files/status.txt
+echo -e "##NOT_INSTALLED##" > /data/data/com.david42069.dualboothelper/files/status.txt
 echo "$BUILD_NUMBER" > /cache/dualboot/database/slota.txt
 echo "$BUILD_NUMBER" > /data/data/com.david42069.dualboothelper/files/slota.txt
-echo "Unavailable" > /cache/dualboot/database/slotb.txt
-echo "Unavailable" > /data/data/com.david42069.dualboothelper/files/slotb.txt
+echo "##UNAVAILABLE##" > /cache/dualboot/database/slotb.txt
+echo "##UNAVAILABLE##" > /data/data/com.david42069.dualboothelper/files/slotb.txt
 else
 if [ "$efs_b_num" -ne 0 ] 
 then
-echo -e "- Installed (V5)" > /data/data/com.david42069.dualboothelper/files/status.txt
+echo -e "##INSTALLED_V5##" > /data/data/com.david42069.dualboothelper/files/status.txt
 else
-echo -e "- Installed (V4)" > /data/data/com.david42069.dualboothelper/files/status.txt
+echo -e "##INSTALLED_V4##" > /data/data/com.david42069.dualboothelper/files/status.txt
 fi
 fi
 
@@ -122,29 +122,29 @@ fi
 use_super=$(echo "$output" | $JQ_PATH -r '.disk.partitions[] | select(.name == "super") | .number')
 if [ "$use_super" -ne 0 ] 
 then
-echo -e "- Device uses super partition" >> /data/data/com.david42069.dualboothelper/files/status.txt
+echo -e "##SUPER_PARTITION##" >> /data/data/com.david42069.dualboothelper/files/status.txt
 else
 if [ "$use_caps" -eq 1 ] 
 then
-echo -e "- Device uses normal naming partitions" >> /data/data/com.david42069.dualboothelper/files/status.txt
+echo -e "##NORMAL_NAMING##" >> /data/data/com.david42069.dualboothelper/files/status.txt
 fi
 if [ "$use_caps" -eq 2 ] 
 then
-echo -e "- Device uses caps naming partitions" >> /data/data/com.david42069.dualboothelper/files/status.txt
+echo -e "##CAPS_NAMING##" >> /data/data/com.david42069.dualboothelper/files/status.txt
 fi
 fi
 #End for device type start for storage type
 if [ "$DISK" = "/dev/block/sda" ]
 then
-echo "- Device uses UFS (sda)" >> /data/data/com.david42069.dualboothelper/files/status.txt
+echo "##UFS_SDA##" >> /data/data/com.david42069.dualboothelper/files/status.txt
 fi
 if [ "$DISK" = "/dev/block/sdc" ]
 then
-echo "- Device uses EMMC (sdc)" >> /data/data/com.david42069.dualboothelper/files/status.txt
+echo "##EMMC_SDC##" >> /data/data/com.david42069.dualboothelper/files/status.txt
 fi
 if [ "$DISK" = "/dev/block/mmcblk0" ]
 then
-echo "- Device uses EMMC (mmcblk0)" >> /data/data/com.david42069.dualboothelper/files/status.txt
+echo "##EMMC_MMCBLK0##" >> /data/data/com.david42069.dualboothelper/files/status.txt
 fi
 
 if [ "$userdata_a_num" -lt "$userdata_b_num" ]

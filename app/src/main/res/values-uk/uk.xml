@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Dualboot Helper</string>
+  <string name="description">A helper app for dualbooting solution</string>
+  <string name="info">Information</string>
+  <string name="dbinf">Dualboot info</string>
+  <string name="slota_os">Slot A Operating System:</string>
+  <string name="slotb_os">Slot B Operating System:</string>
+  <string name="qact">Quick action</string>
+  <string name="reboot_a">Reboot to Slot A</string>
+  <string name="reboot_b">Reboot to Slot B</string>
+  <string name="recovery_a">Reboot to Recovery slot A</string>
+  <string name="recovery_b">Reboot to Recovery slot B</string>
+  <string name="dl_mode">Reboot to Download mode</string>
+  <string name="poweroff">Shut Down the system</string>
+  <string name="dialog_confirm">Are you sure?</string>
+  <string name="dialog_yes">Yes</string>
+  <string name="dialog_no">No</string>
+  <string name="db_dev">Dualboot Helper developers</string>
+  <string name="david_desc">The founder of Dualboot for Samsung</string>
+  <string name="bob_desc">Made this app with OneUI Style</string>
+  <string name="ouip_team">OneUI Project Team</string>
+  <string name="os_lic">Open source licenses</string>
+  <string name="gnu_lic">GNU License</string>
+  <string name="apache_lic">Apache License 2.0</string>
+  <string name="mit_lic">MIT License</string>
+  <string name="links">Useful links</string>
+  <string name="donate">Donate me!</string>
+  <string name="xda_post">XDA post</string>
+  <string name="reboot_wait">Rebooting. Please wait...</string>
+  <string name="not_installed">- Not installed</string>
+  <string name="installed_v5">- Installed (V5)</string>
+  <string name="installed_v4">- Installed (V4)</string>
+  <string name="unavailable">Unavailable</string>
+  <string name="super_partition">- Device uses super partition</string>
+  <string name="normal_naming">- Device uses normal naming partitions</string>
+  <string name="caps_naming">- Device uses caps naming partitions</string>
+  <string name="ufs_sda">- Device uses UFS (sda)</string>
+  <string name="emmc_sdc">- Device uses EMMC (sdc)</string>
+  <string name="sudo_access">Please grant superuser access to gather info about the device</string>
+  <string name="emmc_mmcblk0">- Device uses EMMC (mmcblk0)</string>
+</resources>

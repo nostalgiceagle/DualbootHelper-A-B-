@@ -274,9 +274,9 @@ public class MainActivity extends AppCompatActivity {
         slota = findViewById(R.id.slota_txt);
         slotb = findViewById(R.id.slotb_txt);
 		updateStatus();
-		CharSequence statusstring = readFileFromInternalStorage("status.txt");
-		CharSequence slotastring = readFileFromInternalStorage("slota.txt");
-		CharSequence slotbstring = readFileFromInternalStorage("slotb.txt");
+		String statusstring = readFileFromInternalStorage("status.txt");
+		String slotastring = readFileFromInternalStorage("slota.txt");
+		String slotbstring = readFileFromInternalStorage("slotb.txt");
 		status.setText(statusstring);
 		slota.setText(slotastring);
         slotb.setText(slotbstring);
@@ -290,18 +290,18 @@ public class MainActivity extends AppCompatActivity {
 			slota.setText(R.string.unavailable);
 		}
         // cardview
-        if (slotastring == "" || slotastring.toString().isEmpty()) {
+        if (slotastring == "" || slotastring.isEmpty()) {
         slotaCardView.setSummaryText(getString(R.string.unavailable));
         } else {
-        slotaCardView.setSummaryText(slotastring.toString());}
-        if (slotbstring == "" || slotastring.toString().isEmpty()) {
+        slotaCardView.setSummaryText(slotastring);}
+        if (slotbstring == "" || slotastring.isEmpty()) {
         slotaCardView.setSummaryText(getString(R.string.unavailable));
         } else {
-        slotaCardView.setSummaryText(slotbstring.toString());}
-        if (statusstring == "" || slotastring.toString().isEmpty()) {
+        slotaCardView.setSummaryText(slotbstring);}
+        if (statusstring == "" || slotastring.isEmpty()) {
         slotaCardView.setSummaryText(getString(R.string.sudo_access));
         } else {
-        slotaCardView.setSummaryText(statusstring.toString());}
+        slotaCardView.setSummaryText(statusstring);}
 
     }
 

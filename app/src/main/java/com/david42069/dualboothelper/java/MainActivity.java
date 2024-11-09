@@ -61,12 +61,12 @@ public class MainActivity extends AppCompatActivity {
         updateSlotCardView(R.id.slota_txt, SLOT_A_FILE_PATH);
         updateSlotCardView(R.id.slotb_txt, SLOT_B_FILE_PATH);
 
-        setupButtonWithConfirmation(R.id.reboot_a, "switcha.sh");
-        setupButtonWithConfirmation(R.id.reboot_b, "switchb.sh");
-        setupButtonWithConfirmation(R.id.rec_a, "switchar.sh");
-        setupButtonWithConfirmation(R.id.rec_b, "switchbr.sh");
-        setupButtonWithConfirmation(R.id.bootloader, "download.sh");
-        setupButtonWithConfirmation(R.id.poweroff, "shutdown.sh");
+        setupButtonWithConfirmation(R.id.reboot_a, R.string.reboot_a, "switcha.sh");
+        setupButtonWithConfirmation(R.id.reboot_b, R.string.reboot_b, "switchb.sh");
+        setupButtonWithConfirmation(R.id.rec_a, R.string.rec_a, "switchar.sh");
+        setupButtonWithConfirmation(R.id.rec_b, R.string.rec_b, "switchbr.sh");
+        setupButtonWithConfirmation(R.id.bootloader, R.string.bootloader, "download.sh");
+        setupButtonWithConfirmation(R.id.poweroff, R.string.poweroff, "shutdown.sh");
     }
 
     private void updateStatusCardView() {
@@ -147,13 +147,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void executeShellCommand(String scriptFile) {
         Shell.cmd("/data/data/com.david42069.dualboothelper/files/" + scriptFile)
-            .exec(result -> {
-            if (result.isSuccess()) {
-                Log.i("MainActivity", "Execution successful for script: " + scriptFile);
-            } else {
-                Log.e("MainActivity", "Execution failed for script: " + scriptFile);
-            }
-        });
+            .submit(result -> {
+                if (result.isSuccess()) {
+                    Log.i("MainActivity", "Execution successful for script: " + scriptFile);
+                } else {
+                    Log.e("MainActivity", "Execution failed for script: " + scriptFile);
+                }
+            });
     }
 
     @Override

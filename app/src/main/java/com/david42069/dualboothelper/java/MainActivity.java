@@ -41,13 +41,14 @@ import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 import android.view.LayoutInflater;
 import androidx.annotation.StringRes;
+import dev.oneuiproject.oneui.widget.ui.widget.CardView;
 
 
 public class MainActivity extends AppCompatActivity {
     private String scriptContent;
-            String status;
-            String slota;
-            String slotb;
+            TextView status;
+            TextView slota;
+            TextView slotb;
     // updatedata.sh logic stuff - translation
     private void updateStatus() {
         // Fetch translated strings
@@ -256,13 +257,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         cp(R.raw.parted, "parted");
 		cp(R.raw.jq, "jq");
+        // Find view
         findViewById(R.id.reboot_a).setOnClickListener(v -> confirmreboot(R.string.reboot_a));
         findViewById(R.id.reboot_b).setOnClickListener(v -> confirmreboot(R.string.reboot_b));
         findViewById(R.id.rec_a).setOnClickListener(v -> confirmreboot(R.string.recovery_a));
         findViewById(R.id.rec_b).setOnClickListener(v -> confirmreboot(R.string.recovery_b));
         findViewById(R.id.bootloader).setOnClickListener(v -> confirmreboot(R.string.dl_mode));
         findViewById(R.id.poweroff).setOnClickListener(v -> confirmreboot(R.string.poweroff));
-
+        // Cardview stuff
+        CardView slotaCardView = findViewById(R.id.slota_txt);
+        CardView slotbCardView = findViewById(R.id.slotb_txt);
+        CardView statusCardView = findViewById(R.id.status);
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
         toolbarLayout.setNavigationButtonAsBack();
         status = findViewById(R.id.status);
@@ -284,6 +289,20 @@ public class MainActivity extends AppCompatActivity {
 		if (slotastring == "") {
 			slota.setText(R.string.unavailable);
 		}
+        // cardview
+        if (slotastring == "" || slotastring.toString().isEmpty()) {
+        slotaCardView.setSummaryText(getString(R.string.unavailable));
+        } else {
+        slotaCardView.setSummaryText(slotastring.toString());}
+        if (slotbstring == "" || slotastring.toString().isEmpty()) {
+        slotaCardView.setSummaryText(getString(R.string.unavailable));
+        } else {
+        slotaCardView.setSummaryText(slotbstring.toString());}
+        if (statusstring == "" || slotastring.toString().isEmpty()) {
+        slotaCardView.setSummaryText(getString(R.string.sudo_access));
+        } else {
+        slotaCardView.setSummaryText(statusstring.toString());}
+
     }
 
 

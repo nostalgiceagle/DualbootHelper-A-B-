@@ -49,8 +49,8 @@
                         android:paddingStart="10dp">
 
                         <ImageView
-                            android:layout_width="115dp" 
-                            android:layout_height="251dp"
+                            android:layout_width="wrap_content" 
+                            android:layout_height="wrap_content"
                             android:src="@drawable/device"
                             android:adjustViewBounds="true"/>
                     

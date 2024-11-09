@@ -20,9 +20,17 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
+    - name: Create signing key
+      run: echo ${{ secrets.SIGNING_KEY }} | base64 --decode > release_key.jks
+  
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
+      env:
+        KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+        KEY_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+
       run : |
           ./gradlew assembleRelease --stacktrace
           find . -type f -name "*.apk"

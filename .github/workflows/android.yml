@@ -5,7 +5,7 @@ on:
     branches: 
       - main
       - simple-design
-      
+
   pull_request:
     branches: [ "main" ]
 
@@ -35,7 +35,7 @@ jobs:
         KEY_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
 
       run : |
-          ./gradlew assembleRelease --stacktrace
+          ./gradlew assembleRelease
           find . -type f -name "*.apk"
           chmod +x uploadtg.sh
 

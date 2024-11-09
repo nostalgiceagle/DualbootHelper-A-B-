@@ -5,6 +5,7 @@ on:
     branches: 
       - main
       - simple-design
+      - libsu-simple-design
 
   pull_request:
     branches: [ "main" ]

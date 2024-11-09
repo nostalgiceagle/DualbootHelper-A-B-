@@ -91,5 +91,18 @@ dependencies {
 }
 
 dependencies {
+    def libsuVersion = '6.0.0'
+
+    // The core module that provides APIs to a shell
+    implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"
+
+    // Optional: APIs for creating root services. Depends on ":core"
+    implementation "com.github.topjohnwu.libsu:service:${libsuVersion}"
+
+    // Optional: Provides remote file system support
+    implementation "com.github.topjohnwu.libsu:nio:${libsuVersion}"
+}
+
+dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }

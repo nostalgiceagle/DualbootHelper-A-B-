@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                                .replace("##EMMC_SDC##", getString(R.string.emmc_sdc))
                                .replace("##EMMC_MMCBLK0##", getString(R.string.emmc_mmcblk0));
     
-                    statusText.append(line).append("\n");
+                    statusText.append(line).append(" ");
                 }
     
                 textToDisplay = statusText.toString().trim().isEmpty() ? getString(R.string.sudo_access) : statusText.toString();

@@ -63,12 +63,12 @@ public class MainActivity extends AppCompatActivity {
         updateSlotCardView(R.id.slota_txt, SLOT_A_FILE_PATH);
         updateSlotCardView(R.id.slotb_txt, SLOT_B_FILE_PATH);
 
-        setupButtonWithConfirmation(R.id.reboot_a, R.string.reboot_a, "R.raw.switcha");
-        setupButtonWithConfirmation(R.id.reboot_b, R.string.reboot_b, "R.raw.switchb");
-        setupButtonWithConfirmation(R.id.rec_a, R.string.recovery_a, "R.raw.switchar");
-        setupButtonWithConfirmation(R.id.rec_b, R.string.recovery_b, "R.raw.switchbr");
-        setupButtonWithConfirmation(R.id.bootloader, R.string.dl_mode, "R.raw.download");
-        setupButtonWithConfirmation(R.id.poweroff, R.string.poweroff, "R.raw.shutdown");
+        setupCardViewWithConfirmation(R.id.reboot_a, R.string.reboot_a, "R.raw.switcha");
+        setupCardViewWithConfirmation(R.id.reboot_b, R.string.reboot_b, "R.raw.switchb");
+        setupCardViewWithConfirmation(R.id.rec_a, R.string.recovery_a, "R.raw.switchar");
+        setupCardViewWithConfirmation(R.id.rec_b, R.string.recovery_b, "R.raw.switchbr");
+        setupCardViewWithConfirmation(R.id.bootloader, R.string.dl_mode, "R.raw.download");
+        setupCardViewWithConfirmation(R.id.poweroff, R.string.poweroff, "R.raw.shutdown");
     }
     
     private void cp(int resourceId, String fileName) {
@@ -148,10 +148,11 @@ public class MainActivity extends AppCompatActivity {
         slotCardView.setSummaryText(textToDisplay);
     }
 
-    private void setupButtonWithConfirmation(int buttonId, int promptResId, String scriptFile) {
-        Button button = findViewById(buttonId);
-        button.setOnClickListener(v -> showConfirmationDialog(promptResId, scriptFile));
+    private void setupCardViewWithConfirmation(int cardViewId, int promptResId, String scriptFile) {
+        CardView cardView = findViewById(cardViewId);
+        cardView.setOnClickListener(v -> showConfirmationDialog(promptResId, scriptFile));
     }
+
     private void showConfirmationDialog(int promptResId, String scriptFile) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         String title = getString(promptResId) + "?";

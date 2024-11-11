@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Shell.getShell(shell -> {});
+        cp(R.raw.parted, "parted");
+		cp(R.raw.jq, "jq");
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
         updateStatusCardView();
         updateSlotCardView(R.id.slota_txt, SLOT_A_FILE_PATH);
@@ -69,46 +71,81 @@ public class MainActivity extends AppCompatActivity {
         setupButtonWithConfirmation(R.id.poweroff, R.string.poweroff, "R.raw.shutdown");
     }
     
-    private void updateStatusCardView() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(new File(STATUS_FILE_PATH)))) {
-            StringBuilder statusText = new StringBuilder();
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                line = line.replace("##NOT_INSTALLED##", getString(R.string.not_installed))
-                           .replace("##INSTALLED_V5##", getString(R.string.installed_v5))
-                           .replace("##INSTALLED_V4##", getString(R.string.installed_v4))
-                           .replace("##UNAVAILABLE##", getString(R.string.unavailable))
-                           .replace("##SUPER_PARTITION##", getString(R.string.super_partition))
-                           .replace("##NORMAL_NAMING##", getString(R.string.normal_naming))
-                           .replace("##CAPS_NAMING##", getString(R.string.caps_naming))
-                           .replace("##UFS_SDA##", getString(R.string.ufs_sda))
-                           .replace("##EMMC_SDC##", getString(R.string.emmc_sdc))
-                           .replace("##EMMC_MMCBLK0##", getString(R.string.emmc_mmcblk0));
-
-                statusText.append(line).append("\n");
+    private void cp(int resourceId, String fileName) {
+        try (InputStream in = getResources().openRawResource(resourceId);
+             OutputStream out = new FileOutputStream(new File(getFilesDir(), fileName))) {
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = in.read(buffer)) > 0) {
+                out.write(buffer, 0, length);
             }
-
-            CardView statusCardView = findViewById(R.id.status);
-            statusCardView.setSummaryText(statusText.toString().trim());
         } catch (IOException e) {
-            Log.e("MainActivity", "Error reading status.txt", e);
+            Log.e("FileCopyError", "Error copying file " + fileName, e);
         }
     }
 
-    private void updateSlotCardView(int cardViewId, String filePath) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(new File(filePath)))) {
-            StringBuilder slotText = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                slotText.append(line).append("\n");
+    private void updateStatusCardView() {
+        executeShellCommand("R.raw.updatedata");
+        File statusFile = new File(STATUS_FILE_PATH);
+        String textToDisplay;
+    
+        if (statusFile.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(statusFile))) {
+                StringBuilder statusText = new StringBuilder();
+                String line;
+    
+                while ((line = reader.readLine()) != null) {
+                    line = line.replace("##NOT_INSTALLED##", getString(R.string.not_installed))
+                               .replace("##INSTALLED_V5##", getString(R.string.installed_v5))
+                               .replace("##INSTALLED_V4##", getString(R.string.installed_v4))
+                               .replace("##UNAVAILABLE##", getString(R.string.unavailable))
+                               .replace("##SUPER_PARTITION##", getString(R.string.super_partition))
+                               .replace("##NORMAL_NAMING##", getString(R.string.normal_naming))
+                               .replace("##CAPS_NAMING##", getString(R.string.caps_naming))
+                               .replace("##UFS_SDA##", getString(R.string.ufs_sda))
+                               .replace("##EMMC_SDC##", getString(R.string.emmc_sdc))
+                               .replace("##EMMC_MMCBLK0##", getString(R.string.emmc_mmcblk0));
+    
+                    statusText.append(line).append("\n");
+                }
+    
+                textToDisplay = statusText.toString().trim().isEmpty() ? getString(R.string.sudo_access) : statusText.toString();
+            } catch (IOException e) {
+                Log.e("MainActivity", "Error reading status.txt", e);
+                textToDisplay = getString(R.string.sudo_access);  // Placeholder if reading fails
             }
-
-            CardView slotCardView = findViewById(cardViewId);
-            slotCardView.setSummaryText(slotText.toString().trim());
-        } catch (IOException e) {
-            Log.e("MainActivity", "Error reading " + filePath, e);
+        } else {
+            textToDisplay = getString(R.string.sudo_access);  // Placeholder if file does not exist
         }
+    
+        CardView statusCardView = findViewById(R.id.status);
+        statusCardView.setSummaryText(textToDisplay);
+    }
+
+    private void updateSlotCardView(int cardViewId, String filePath) {
+        File slotFile = new File(filePath);
+        String textToDisplay;
+    
+        if (slotFile.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(slotFile))) {
+                StringBuilder slotText = new StringBuilder();
+                String line;
+    
+                while ((line = reader.readLine()) != null) {
+                    slotText.append(line).append(" ");
+                }
+    
+                textToDisplay = slotText.toString().trim().isEmpty() ? getString(R.string.unavailable) : slotText.toString();
+            } catch (IOException e) {
+                Log.e("MainActivity", "Error reading " + filePath, e);
+                textToDisplay = getString(R.string.unavailable);  // Placeholder if reading fails
+            }
+        } else {
+            textToDisplay = getString(R.string.unavailable);  // Placeholder if file does not exist
+        }
+    
+        CardView slotCardView = findViewById(cardViewId);
+        slotCardView.setSummaryText(textToDisplay);
     }
 
     private void setupButtonWithConfirmation(int buttonId, int promptResId, String scriptFile) {

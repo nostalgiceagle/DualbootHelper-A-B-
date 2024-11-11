@@ -6,7 +6,7 @@
     <!-- Information layout strings -->
     <string name="info">Information</string>
     <!-- Placeholder info strings -->
-    <string name="dbinf">Dualboot info</string>
+    <string name="dbinf">Status</string>
     <string name="slota_os">OS on Slot A</string>
     <string name="slotb_os">OS on Slot B</string>
     <!-- Collected info strings -->
@@ -24,6 +24,15 @@
 
     <!-- Quick action layout strings -->
     <string name="qact">Quick action</string>
+    <string name="slota_qact">Slot A actions</string>
+    <string name="slota_description">Actions available on slot A</string>
+    <string name="slotb_qact">Slot B actions</string>
+    <string name="slotb_description">Actions available on slot B</string>
+    <string name="slota_placeholder">Reboot to slot A, Recovery A</string>
+    <string name="slotb_placeholder">Reboot to slot B, Recovery B</string>
+    <string name="misc_qact">Misc actions</string>
+    <string name="misc_description">Misc actions available</string>
+    <string name="misc_placeholder">Reboot to Download Mode, Power off system</string>
     <!-- Buttons strings -->
     <string name="reboot_a">Reboot to Slot A</string>
     <string name="reboot_b">Reboot to Slot B</string>
@@ -33,6 +42,7 @@
     <string name="poweroff">Shut Down the system</string>
 
     <!-- Dialog strings -->
+    <string name="dialog_confirm_title">Confirmation</string>
     <string name="dialog_confirm">Are you sure?</string>
     <string name="dialog_yes">Yes</string>
     <string name="dialog_no">No</string>

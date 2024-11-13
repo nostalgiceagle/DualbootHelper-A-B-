@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Shell.getShell(shell -> {});
+        deleteFilesIfExist();
         cp(R.raw.parted, "parted");
 		cp(R.raw.jq, "jq");
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
@@ -70,7 +71,24 @@ public class MainActivity extends AppCompatActivity {
         setupCardViewWithConfirmation(R.id.bootloader, R.string.dl_mode, "R.raw.download");
         setupCardViewWithConfirmation(R.id.poweroff, R.string.poweroff, "R.raw.shutdown");
     }
-    
+
+    private void deleteFilesIfExist() {
+        // Define an array with the paths of the files to be deleted
+        String[] filePaths = {STATUS_FILE_PATH, SLOT_A_FILE_PATH, SLOT_B_FILE_PATH};
+
+        for (String path : filePaths) {
+            File file = new File(path);
+            if (file.exists()) {
+                boolean deleted = file.delete();
+                if (deleted) {
+                    Log.d("MainActivity", "Deleted file: " + path);
+                } else {
+                    Log.e("MainActivity", "Failed to delete file: " + path);
+                }
+            }
+        }
+    }
+
     private void cp(int resourceId, String fileName) {
         try (InputStream in = getResources().openRawResource(resourceId);
              OutputStream out = new FileOutputStream(new File(getFilesDir(), fileName))) {

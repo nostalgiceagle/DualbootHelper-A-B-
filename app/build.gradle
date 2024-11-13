@@ -17,7 +17,7 @@ android {
 
     defaultConfig {
         applicationId "com.david42069.dualboothelper" /*TODO: change packageName*/
-        minSdk 24
+        minSdk 26
         targetSdk 33
         versionCode 3
         versionName "3.0.0"

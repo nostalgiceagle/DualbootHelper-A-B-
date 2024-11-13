@@ -20,20 +20,21 @@
 # "--And ExtremeXT"
 # "*******************************"
 
-PARTED_PATH="/data/data/com.david42069.dualboothelper/files/parted"
-JQ_PATH="/data/data/com.david42069.dualboothelper/files/jq"
-chmod 755 /data/data/com.david42069.dualboothelper/files/*
-none=0
-mkdir -p /cache/dualboot/database/
-cp -a /cache/dualboot/database/. ~/data/data/com.david42069.dualboothelper/files/
-#use path according if device uses EMMC/EMMC5/UFS
-use_caps=0 
-failsafe=0 
-
-# Add check for su
+# Check SU
 if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
+
+DATA_PATH=$(dumpsys package com.david42069.dualboothelper | grep -i dataDir | cut -d'=' -f2-)
+PARTED_PATH="$DATA_PATH/files/parted"
+JQ_PATH="$DATA_PATH/files/jq"
+chmod 755 "$DATA_PATH/files/*"
+none=0
+mkdir -p /cache/dualboot/database/
+cp -a /cache/dualboot/database/slot*.txt "$DATA_PATH/files"
+#use path according if device uses EMMC/EMMC5/UFS
+use_caps=0 
+failsafe=0 
 
 #test if device uses caps or not based on boot naming 
 if ls -l /dev/block/by-name/ | grep -q 'boot'; 
@@ -109,17 +110,17 @@ efs_b_num=$(echo "$output" | $JQ_PATH -r '.disk.partitions[] | select(.name == "
 BUILD_NUMBER=$(getprop ro.build.display.id)
 if [[ "$userdata_b_num" -eq 0 ]] 
 then
-echo -e "##NOT_INSTALLED##" > /data/data/com.david42069.dualboothelper/files/status.txt
+echo -e "##NOT_INSTALLED##" > "$DATA_PATH/files/status.txt"
 echo "$BUILD_NUMBER" > /cache/dualboot/database/slota.txt
-echo "$BUILD_NUMBER" > /data/data/com.david42069.dualboothelper/files/slota.txt
+echo "$BUILD_NUMBER" > "$DATA_PATH/files/slota.txt"
 echo "##UNAVAILABLE##" > /cache/dualboot/database/slotb.txt
-echo "##UNAVAILABLE##" > /data/data/com.david42069.dualboothelper/files/slotb.txt
+echo "##UNAVAILABLE##" > $DATA_PATH/files/slotb.txt
 else
 if [[ "$efs_b_num" -ne 0 ]] 
 then
-echo -e "##INSTALLED_V5##" > /data/data/com.david42069.dualboothelper/files/status.txt
+echo -e "##INSTALLED_V5##" > "$DATA_PATH/files/status.txt"
 else
-echo -e "##INSTALLED_V4##" > /data/data/com.david42069.dualboothelper/files/status.txt
+echo -e "##INSTALLED_V4##" > "$DATA_PATH/files/status.txt"
 fi
 fi
 
@@ -127,36 +128,36 @@ fi
 use_super=$(echo "$output" | $JQ_PATH -r '.disk.partitions[] | select(.name == "super") | .number')
 if [[ "$use_super" -ne 0 ]] 
 then
-echo -e "##SUPER_PARTITION##" >> /data/data/com.david42069.dualboothelper/files/status.txt
+echo -e "##SUPER_PARTITION##" >> "$DATA_PATH/files/status.txt"
 else
 if [[ "$use_caps" -eq 1 ]] 
 then
-echo -e "##NORMAL_NAMING##" >> /data/data/com.david42069.dualboothelper/files/status.txt
+echo -e "##NORMAL_NAMING##" >> "$DATA_PATH/files/status.txt"
 fi
 if [[ "$use_caps" -eq 2 ]] 
 then
-echo -e "##CAPS_NAMING##" >> /data/data/com.david42069.dualboothelper/files/status.txt
+echo -e "##CAPS_NAMING##" >> "$DATA_PATH/files/status.txt"
 fi
 fi
 #End for device type start for storage type
 if [[ "$DISK" = "/dev/block/sda" ]]
 then
-echo "##UFS_SDA##" >> /data/data/com.david42069.dualboothelper/files/status.txt
+echo "##UFS_SDA##" >> "$DATA_PATH/files/status.txt"
 fi
 if [[ "$DISK" = "/dev/block/sdc" ]]
 then
-echo "##EMMC_SDC##" >> /data/data/com.david42069.dualboothelper/files/status.txt
+echo "##EMMC_SDC##" >> "$DATA_PATH/files/status.txt"
 fi
 if [[ "$DISK" = "/dev/block/mmcblk0" ]]
 then
-echo "##EMMC_MMCBLK0##" >> /data/data/com.david42069.dualboothelper/files/status.txt
+echo "##EMMC_MMCBLK0##" >> "$DATA_PATH/files/status.txt"
 fi
 
 if [[ "$userdata_a_num" -lt "$userdata_b_num" ]]
 then
 echo "$BUILD_NUMBER" > /cache/dualboot/database/slota.txt
-echo "$BUILD_NUMBER" > /data/data/com.david42069.dualboothelper/files/slota.txt
+echo "$BUILD_NUMBER" > "$DATA_PATH/files/slota.txt"
 else
 echo "$BUILD_NUMBER" > /cache/dualboot/database/slotb.txt
-echo "$BUILD_NUMBER" > /data/data/com.david42069.dualboothelper/files/slotb.txt
+echo "$BUILD_NUMBER" > "$DATA_PATH/files/slotb.txt"
 fi

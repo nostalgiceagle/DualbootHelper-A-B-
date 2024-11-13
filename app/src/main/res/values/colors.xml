@@ -60,10 +60,10 @@
     <color name="poweroff_color">#EB0E0E</color>
     <!-- Device color -->
     <color name="device_bg">#C5C5C5</color>
-    <color name="slota_device_text">#FF7B38</color>
+    <color name="slota_device_text">#C5A100</color>
     <color name="slotb_device_text">#911ED8</color>
-    <color name="outline_a_device">#FF7B38</color>
+    <color name="outline_a_device">#C5A100</color>
     <color name="outline_b_device">#911ED8</color>
-    <color name="fill_a_device">#FFA578</color>
+    <color name="fill_a_device">#FFD000</color>
     <color name="fill_b_device">#D182FF</color>
 </resources>

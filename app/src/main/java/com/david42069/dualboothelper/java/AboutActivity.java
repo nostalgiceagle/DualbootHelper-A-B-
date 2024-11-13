@@ -142,7 +142,7 @@ public class AboutActivity extends AppCompatActivity
                 ViewUtils.SEM_ROUNDED_CORNER_TOP_LEFT | ViewUtils.SEM_ROUNDED_CORNER_TOP_RIGHT,
                 getColor(R.color.oui_round_and_bgcolor));
 
-        Drawable appIcon = getDrawable(R.mipmap.ic_launcher);
+        Drawable appIcon = getDrawable(R.drawable.ic_launcher);
         mBinding.aboutHeaderAppIcon.setImageDrawable(appIcon);
         mBinding.aboutBottomAppIcon.setImageDrawable(appIcon);
 

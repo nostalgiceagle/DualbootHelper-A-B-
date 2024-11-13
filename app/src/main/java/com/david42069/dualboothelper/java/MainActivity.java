@@ -47,9 +47,17 @@ import dev.oneuiproject.oneui.widget.ui.widget.CardView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String STATUS_FILE_PATH = "/data/data/com.david42069.dualboothelper/files/status.txt";
-    private static final String SLOT_A_FILE_PATH = "/data/data/com.david42069.dualboothelper/files/slota.txt";
-    private static final String SLOT_B_FILE_PATH = "/data/data/com.david42069.dualboothelper/files/slotb.txt";
+    private static String getStatusFilePath(Context context) {
+        return new File(context.getFilesDir(), "status.txt").getPath();
+    }
+
+    private static String getSlotAFilePath(Context context) {
+        return new File(context.getFilesDir(), "slota.txt").getPath();
+    }
+
+    private static String getSlotBFilePath(Context context) {
+        return new File(context.getFilesDir(), "slotb.txt").getPath();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
 		cp(R.raw.jq, "jq");
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
         updateStatusCardView();
-        updateSlotCardView(R.id.slota_txt, SLOT_A_FILE_PATH);
-        updateSlotCardView(R.id.slotb_txt, SLOT_B_FILE_PATH);
+        updateSlotCardView(R.id.slota_txt, getSlotAFilePath(this));
+        updateSlotCardView(R.id.slotb_txt, getSlotBFilePath(this));
 
         setupCardViewWithConfirmation(R.id.reboot_a, R.string.reboot_a, "R.raw.switcha");
         setupCardViewWithConfirmation(R.id.reboot_b, R.string.reboot_b, "R.raw.switchb");
@@ -73,8 +81,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void deleteFilesIfExist() {
-        // Define an array with the paths of the files to be deleted
-        String[] filePaths = {STATUS_FILE_PATH, SLOT_A_FILE_PATH, SLOT_B_FILE_PATH};
+        // Define the file paths using the current context
+        String[] filePaths = {
+                getStatusFilePath(this),
+                getSlotAFilePath(this),
+                getSlotBFilePath(this)
+        };
 
         for (String path : filePaths) {
             File file = new File(path);
@@ -104,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateStatusCardView() {
         executeShellCommand("R.raw.updatedata");
-        File statusFile = new File(STATUS_FILE_PATH);
+        File statusFile = new File(getStatusFilePath(this));
         String textToDisplay;
     
         if (statusFile.exists()) {

@@ -30,6 +30,11 @@ cp -a /cache/dualboot/database/. ~/data/data/com.david42069.dualboothelper/files
 use_caps=0 
 failsafe=0 
 
+# Add check for su
+if [ "$(id -u)" -ne 0 ]; then
+    exit 1
+fi
+
 #test if device uses caps or not based on boot naming 
 if ls -l /dev/block/by-name/ | grep -q 'boot'; 
 then 

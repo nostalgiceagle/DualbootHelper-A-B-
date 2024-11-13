@@ -50,7 +50,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content" 
-                            android:layout_height="225dp"
+                            android:layout_height="195dp"
                             android:src="@drawable/device"
                             android:adjustViewBounds="true"/>
                     

@@ -1,5 +1,4 @@
-
-#!/sbin/sh
+#!/system/bin/sh
 #
 # Copyright 2024 david42069
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,8 +19,9 @@
 # "--And ExtremeXT"
 # "*******************************"
 
-PARTED_PATH="/data/data/com.david42069.dualboothelper/files/parted"
-JQ_PATH="/data/data/com.david42069.dualboothelper/files/jq"
+DATA_PATH=$(dumpsys package com.david42069.dualboothelper | grep -i dataDir | cut -d'=' -f2-)
+PARTED_PATH="$DATA_PATH/files/parted"
+JQ_PATH="$DATA_PATH/files/jq"
 
 #function to get a property from a partition
 get_partition_property() {
@@ -236,27 +236,27 @@ fi
 #dd boot/recovery/dtb/dtbo
 if [ "$boot_b_num" -ne 0 ]
 then
-dd if=$DISK$boot_b_num of=/data/data/com.david42069.dualboothelper/files/boot.img
+dd if=$DISK$boot_b_num of=$DATA_PATH/files/boot.img
 dd if=$DISK$boot_a_num of=$DISK$boot_b_num
-dd if=/data/data/com.david42069.dualboothelper/files/boot.img of=$DISK$boot_a_num
+dd if=$DATA_PATH/files/boot.img of=$DISK$boot_a_num
 fi
 if [ "$recovery_b_num" -ne 0 ]
 then
-dd if=$DISK$recovery_b_num of=/data/data/com.david42069.dualboothelper/files/recovery.img
+dd if=$DISK$recovery_b_num of=$DATA_PATH/files/recovery.img
 dd if=$DISK$recovery_a_num of=$DISK$recovery_b_num
-dd if=/data/data/com.david42069.dualboothelper/files/recovery.img of=$DISK$recovery_a_num
+dd if=$DATA_PATH/files/recovery.img of=$DISK$recovery_a_num
 fi
 if [ "$dtb_b_num" -ne 0 ]
 then
-dd if=$DISK$dtb_b_num of=/data/data/com.david42069.dualboothelper/files/dtb.img
+dd if=$DISK$dtb_b_num of=$DATA_PATH/files/dtb.img
 dd if=$DISK$dtb_a_num of=$DISK$dtb_b_num
-dd if=/data/data/com.david42069.dualboothelper/files/dtb.img of=$DISK$dtb_a_num
+dd if=$DATA_PATH/files/dtb.img of=$DISK$dtb_a_num
 fi
 if [ "$dtbo_b_num" -ne 0 ]
 then
-dd if=$DISK$dtbo_b_num of=/data/data/com.david42069.dualboothelper/files/dtbo.img
+dd if=$DISK$dtbo_b_num of=$DATA_PATH/files/dtbo.img
 dd if=$DISK$dtbo_a_num of=$DISK$dtbo_b_num
-dd if=/data/data/com.david42069.dualboothelper/files/dtbo.img of=$DISK$dtbo_a_num
+dd if=$DATA_PATH/files/dtbo.img of=$DISK$dtbo_a_num
 fi
 fi
 reboot

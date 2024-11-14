@@ -11,7 +11,7 @@
     tools:context=".MainActivity"
     android:id="@+id/home">
 
-    <androidx.core.widget.NestedScrollView 
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?roundedCornerColor"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/oui_background_color"
                 android:orientation="vertical">
-            
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -49,25 +49,25 @@
                         android:paddingStart="24dp">
 
                         <ImageView
-                            android:layout_width="wrap_content" 
+                            android:layout_width="wrap_content"
                             android:layout_height="195dp"
                             android:src="@drawable/device"
                             android:adjustViewBounds="true"/>
-                    
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-    
+
                         <dev.oneuiproject.oneui.widget.ui.widget.CardView
                             android:id="@+id/status"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:TitleText="@string/slota_os"
+                            app:TitleText="@string/dbinf"
                             app:SummaryText="@{statusstring}" />
-    
+
                         <dev.oneuiproject.oneui.widget.ui.widget.CardView
                             android:id="@+id/slota_txt"
                             android:layout_width="match_parent"
@@ -75,7 +75,7 @@
                             app:TitleText="@string/slota_os"
                             app:SummaryText="@{slotastring}"
                             app:isDividerViewVisible="true" />
-    
+
                         <dev.oneuiproject.oneui.widget.ui.widget.CardView
                             android:id="@+id/slotb_txt"
                             android:layout_width="match_parent"
@@ -83,25 +83,25 @@
                             app:TitleText="@string/slotb_os"
                             app:SummaryText="@{slotbstring}"
                             app:isDividerViewVisible="true" />
-    
+
                     </LinearLayout>
-                
+
                 </LinearLayout>
-                
+
             </dev.oneuiproject.oneui.widget.RoundLinearLayout>
-        
+
             <dev.oneuiproject.oneui.widget.Separator
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/slota_qact" />
-            
+
             <dev.oneuiproject.oneui.widget.RoundLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/oui_background_color"
                 android:orientation="vertical">
 
-                <dev.oneuiproject.oneui.widget.ui.widget.CardView                
+                <dev.oneuiproject.oneui.widget.ui.widget.CardView
                     android:id="@+id/reboot_a"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                     app:TitleText="@string/reboot_a"
                     app:IconDrawable="@drawable/ic_oui_restart"/>
 
-                <dev.oneuiproject.oneui.widget.ui.widget.CardView                
+                <dev.oneuiproject.oneui.widget.ui.widget.CardView
                     android:id="@+id/rec_a"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -126,14 +126,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/slotb_qact" />
-            
+
             <dev.oneuiproject.oneui.widget.RoundLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/oui_background_color"
                 android:orientation="vertical">
 
-                <dev.oneuiproject.oneui.widget.ui.widget.CardView                
+                <dev.oneuiproject.oneui.widget.ui.widget.CardView
                     android:id="@+id/reboot_b"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
                     app:TitleText="@string/reboot_b"
                     app:IconDrawable="@drawable/ic_oui_restart"/>
 
-                <dev.oneuiproject.oneui.widget.ui.widget.CardView                
+                <dev.oneuiproject.oneui.widget.ui.widget.CardView
                     android:id="@+id/rec_b"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -158,14 +158,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/misc_qact" />
-            
+
             <dev.oneuiproject.oneui.widget.RoundLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/oui_background_color"
                 android:orientation="vertical">
 
-                <dev.oneuiproject.oneui.widget.ui.widget.CardView                
+                <dev.oneuiproject.oneui.widget.ui.widget.CardView
                     android:id="@+id/bootloader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
                     app:TitleText="@string/dl_mode"
                     app:IconDrawable="@drawable/ic_oui_save"/>
 
-                <dev.oneuiproject.oneui.widget.ui.widget.CardView                
+                <dev.oneuiproject.oneui.widget.ui.widget.CardView
                     android:id="@+id/poweroff"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

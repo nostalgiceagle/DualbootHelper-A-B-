@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         Shell.getShell(shell -> {});
         deleteFilesIfExist();
         cp(R.raw.parted, "parted");
-		cp(R.raw.jq, "jq");
+        cp(R.raw.jq, "jq");
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
         updateStatusCardView();
         updateSlotCardView(R.id.slota_txt, getSlotAFilePath(this));
@@ -118,35 +118,35 @@ public class MainActivity extends AppCompatActivity {
         executeShellCommand("R.raw.updatedata");
         File statusFile = new File(getStatusFilePath(this));
         String textToDisplay;
-    
+
         if (statusFile.exists()) {
             try (BufferedReader reader = new BufferedReader(new FileReader(statusFile))) {
                 StringBuilder statusText = new StringBuilder();
                 String line;
-    
+
                 while ((line = reader.readLine()) != null) {
                     line = line.replace("##NOT_INSTALLED##", getString(R.string.not_installed))
-                               .replace("##INSTALLED_V5##", getString(R.string.installed_v5))
-                               .replace("##INSTALLED_V4##", getString(R.string.installed_v4))
-                               .replace("##UNAVAILABLE##", getString(R.string.unavailable))
-                               .replace("##SUPER_PARTITION##", getString(R.string.super_partition))
-                               .replace("##NORMAL_NAMING##", getString(R.string.normal_naming))
-                               .replace("##CAPS_NAMING##", getString(R.string.caps_naming))
-                               .replace("##UFS_SDA##", getString(R.string.ufs_sda))
-                               .replace("##EMMC_SDC##", getString(R.string.emmc_sdc))
-                               .replace("##EMMC_MMCBLK0##", getString(R.string.emmc_mmcblk0));
-    
+                            .replace("##INSTALLED_V5##", getString(R.string.installed_v5))
+                            .replace("##INSTALLED_V4##", getString(R.string.installed_v4))
+                            .replace("##UNAVAILABLE##", getString(R.string.unavailable))
+                            .replace("##SUPER_PARTITION##", getString(R.string.super_partition))
+                            .replace("##NORMAL_NAMING##", getString(R.string.normal_naming))
+                            .replace("##CAPS_NAMING##", getString(R.string.caps_naming))
+                            .replace("##UFS_SDA##", getString(R.string.ufs_sda))
+                            .replace("##EMMC_SDC##", getString(R.string.emmc_sdc))
+                            .replace("##EMMC_MMCBLK0##", getString(R.string.emmc_mmcblk0));
+
                     // Format each line as a list item with a bullet point
                     if (!line.trim().isEmpty()) {
                         statusText.append("- ").append(line.trim()).append("\n");
                     }
                 }
-    
+
                 // Remove any trailing newline, if present
                 if (statusText.length() > 0 && statusText.charAt(statusText.length() - 1) == '\n') {
                     statusText.setLength(statusText.length() - 1);
                 }
-    
+
                 textToDisplay = statusText.toString().trim().isEmpty() ? getString(R.string.sudo_access) : statusText.toString();
             } catch (IOException e) {
                 Log.e("MainActivity", "Error reading status.txt", e);
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             textToDisplay = getString(R.string.sudo_access);  // Placeholder if file does not exist
         }
-    
+
         CardView statusCardView = findViewById(R.id.status);
         statusCardView.setSummaryText(textToDisplay);
     }
@@ -163,16 +163,16 @@ public class MainActivity extends AppCompatActivity {
     private void updateSlotCardView(int cardViewId, String filePath) {
         File slotFile = new File(filePath);
         String textToDisplay;
-    
+
         if (slotFile.exists()) {
             try (BufferedReader reader = new BufferedReader(new FileReader(slotFile))) {
                 StringBuilder slotText = new StringBuilder();
                 String line;
-    
+
                 while ((line = reader.readLine()) != null) {
                     slotText.append(line).append(" ");
                 }
-    
+
                 textToDisplay = slotText.toString().trim().isEmpty() ? getString(R.string.unavailable) : slotText.toString();
             } catch (IOException e) {
                 Log.e("MainActivity", "Error reading " + filePath, e);
@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             textToDisplay = getString(R.string.unavailable);  // Placeholder if file does not exist
         }
-    
+
         CardView slotCardView = findViewById(cardViewId);
         slotCardView.setSummaryText(textToDisplay);
     }
@@ -191,6 +191,19 @@ public class MainActivity extends AppCompatActivity {
         cardView.setOnClickListener(v -> showConfirmationDialog(promptResId, scriptFile));
     }
 
+    public void executescriptstr(String scriptFile){
+        new CountDownTimer(100,100){
+            @Override
+            public void onTick(long p1){
+
+            }
+            @Override
+            public void onFinish(){
+                executeShellCommand(scriptFile);
+            }
+        }.start();
+    }
+    
     private void showConfirmationDialog(int promptResId, String scriptFile) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         String title = getString(promptResId) + "?";
@@ -199,12 +212,12 @@ public class MainActivity extends AppCompatActivity {
         String negativeButton = getString(R.string.dialog_no);
 
         builder.setTitle(title)
-            .setMessage(message)
-            .setPositiveButton(positiveButton, (dialog, which) -> {
-                showLoadingDialog();
-                executeShellCommand(scriptFile);
-            })
-            .setNegativeButton(negativeButton, null);
+                .setMessage(message)
+                .setPositiveButton(positiveButton, (dialog, which) -> {
+                    showLoadingDialog();
+                    executescriptstr(scriptFile);
+                })
+                .setNegativeButton(negativeButton, null);
 
         AlertDialog alert = builder.create();
         alert.show();
@@ -224,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
     private void executeShellCommand(String scriptFile) {
         Shell.cmd(getResources().openRawResource(getResources().getIdentifier(scriptFile.replace("R.raw.", ""), "raw", getPackageName()))).exec();
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);

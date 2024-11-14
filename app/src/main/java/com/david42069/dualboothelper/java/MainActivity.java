@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateStatusCardView() {
-        executeShellCommand("R.raw.updatedata");
+        Shell.cmd(getResources().openRawResource(R.raw.updatedata)).exec();
         File statusFile = new File(getStatusFilePath(this));
         String textToDisplay;
 

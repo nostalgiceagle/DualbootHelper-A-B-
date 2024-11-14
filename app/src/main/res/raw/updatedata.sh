@@ -30,7 +30,6 @@ JQ_PATH="$DATA_PATH/files/jq"
 chmod 755 "$DATA_PATH/files/*"
 none=0
 mkdir -p /cache/dualboot/database/
-cp -a /cache/dualboot/database/slot*.txt "$DATA_PATH/files"
 #use path according if device uses EMMC/EMMC5/UFS
 use_caps=0 
 failsafe=0 
@@ -110,9 +109,7 @@ BUILD_NUMBER=$(getprop ro.build.display.id)
 if [[ "$userdata_b_num" -eq 0 ]] 
 then
 echo -e "##NOT_INSTALLED##" > "$DATA_PATH/files/status.txt"
-echo "$BUILD_NUMBER" > /cache/dualboot/database/slota.txt
 echo "$BUILD_NUMBER" > "$DATA_PATH/files/slota.txt"
-echo "##UNAVAILABLE##" > /cache/dualboot/database/slotb.txt
 echo "##UNAVAILABLE##" > $DATA_PATH/files/slotb.txt
 else
 if [[ "$efs_b_num" -ne 0 ]] 
@@ -154,9 +151,9 @@ fi
 
 if [[ "$userdata_a_num" -lt "$userdata_b_num" ]]
 then
-echo "$BUILD_NUMBER" > /cache/dualboot/database/slota.txt
 echo "$BUILD_NUMBER" > "$DATA_PATH/files/slota.txt"
 else
-echo "$BUILD_NUMBER" > /cache/dualboot/database/slotb.txt
 echo "$BUILD_NUMBER" > "$DATA_PATH/files/slotb.txt"
 fi
+
+cp -a /cache/dualboot/database/slot*.txt "$DATA_PATH/files"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:expandable="true"
     app:expanded="false"
-    app:subtitle="@string/description"
+    app:subtitle=" "
     app:title="@string/app_name"
     tools:context=".MainActivity"
     android:id="@+id/home">

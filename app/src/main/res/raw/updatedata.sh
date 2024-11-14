@@ -27,7 +27,7 @@ fi
 DATA_PATH=$(dumpsys package com.david42069.dualboothelper | grep -i dataDir | cut -d'=' -f2-)
 PARTED_PATH="$DATA_PATH/files/parted"
 JQ_PATH="$DATA_PATH/files/jq"
-chmod 755 "$DATA_PATH/files/*"
+chmod 755 $DATA_PATH/files/*
 none=0
 mkdir -p /cache/dualboot/database/
 #use path according if device uses EMMC/EMMC5/UFS
@@ -153,7 +153,12 @@ if [[ "$userdata_a_num" -lt "$userdata_b_num" ]]
 then
 echo "$BUILD_NUMBER" > "$DATA_PATH/files/slota.txt"
 else
+if [[ "$userdata_b_num" -eq 0 ]]
+then
+echo "##UNAVAILABLE##" > $DATA_PATH/files/slotb.txt
+else
 echo "$BUILD_NUMBER" > "$DATA_PATH/files/slotb.txt"
+fi
 fi
 
 cp -a /cache/dualboot/database/slot*.txt "$DATA_PATH/files"

@@ -10,7 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import dev.oneuiproject.oneui.layout.ToolbarLayout;
 import dev.oneuiproject.oneui.utils.ActivityUtils;
-
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import android.app.Activity;
 import com.topjohnwu.superuser.Shell;
 import android.os.Bundle;
@@ -234,8 +235,17 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+
     private void executeShellCommand(String scriptFile) {
-        Shell.cmd(getResources().openRawResource(getResources().getIdentifier(scriptFile.replace("R.raw.", ""), "raw", getPackageName()))).exec();
+        executorService.execute(() -> {
+            try {
+                // Run the shell command in a background thread
+                Shell.cmd(getResources().openRawResource(getResources().getIdentifier(scriptFile.replace("R.raw.", ""), "raw", getPackageName()))).exec();
+            } catch (Exception e) {
+                Log.e("MainActivity", "Error executing shell command", e);
+            }
+        });
     }
 
     @Override

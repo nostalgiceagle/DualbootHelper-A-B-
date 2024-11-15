@@ -1,6 +1,7 @@
 <resources>
     <!-- Basic title and desc -->
     <string name="app_name">Dualboot Helper</string>
+    <string name="description">A helper app for dualbooting solution</string>
 
     <!-- Information layout strings -->
     <string name="info">Information</string>
@@ -49,7 +50,7 @@
 
     <!-- About strings -->
     <!-- Team DB -->
-    <string name="db_dev">Main developers</string>
+    <string name="db_dev">Main cdevelopers</string>
     <!-- Our descriptions -->
     <string name="david_desc">The founder of Dualboot for Samsung</string>
     <string name="bob_desc">Made this app with OneUI Style</string>

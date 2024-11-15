@@ -12,39 +12,26 @@ import dev.oneuiproject.oneui.layout.ToolbarLayout;
 import dev.oneuiproject.oneui.utils.ActivityUtils;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import android.app.Activity;
+
 import com.topjohnwu.superuser.Shell;
-import android.os.Bundle;
+
 import android.util.Log;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.FileReader;
 import android.view.View;
 import android.content.Context;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileInputStream;
 import java.io.OutputStream;
-import android.graphics.Color;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.ScaleAnimation;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatDialog;
+
 import android.os.CountDownTimer;
-import android.net.Uri;
-import android.service.quicksettings.Tile;
-import android.service.quicksettings.TileService;
 import android.view.LayoutInflater;
-import androidx.annotation.StringRes;
-import dev.oneuiproject.oneui.widget.ui.widget.CardView;
+
+import dev.oneuiproject.oneui.widget.CardView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -258,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_app_info) {
             ActivityUtils.startPopOverActivity(this,
-                    new Intent(this, AboutActivity.class),
+                    new Intent(this, com.david42069.dualboothelper.AboutActivity.class),
                     null,
                     ActivityUtils.POP_OVER_POSITION_RIGHT | ActivityUtils.POP_OVER_POSITION_TOP);
             return true;

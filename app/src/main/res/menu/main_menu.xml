@@ -8,4 +8,11 @@
         android:title="About"
         app:showAsAction="ifRoom"
         tools:ignore="AppCompatResource" />
+
+        <item
+            android:id="@+id/menu_settings"
+            android:title="Settings"
+            android:icon="@drawable/ic_oui_settings_outline"
+            android:showAsAction="always" />
+
 </menu>

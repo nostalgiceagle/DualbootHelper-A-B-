@@ -247,9 +247,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_app_info) {
             ActivityUtils.startPopOverActivity(this,
-                    new Intent(this, com.david42069.dualboothelper.AboutActivity.class),
+                    new Intent(this, AboutActivity.class),
                     null,
                     ActivityUtils.POP_OVER_POSITION_RIGHT | ActivityUtils.POP_OVER_POSITION_TOP);
+            return true;
+        } else if (item.getItemId() == R.id.menu_settings) { // Add this case for settings
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
         return false;

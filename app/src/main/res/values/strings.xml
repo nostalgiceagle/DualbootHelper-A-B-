@@ -21,6 +21,7 @@
     <string name="emmc_sdc">Device uses EMMC (sdc)</string>
     <string name="emmc_mmcblk0">Device uses EMMC (mmcblk0)</string>
     <string name="sudo_access">"Please grant superuser access to gather info about the device"</string>
+    <string name="sudo_access_title">"Please grant superuser access to gather info about the device"</string>
 
     <!-- Quick action layout strings -->
     <string name="qact">Quick action</string>
@@ -46,6 +47,7 @@
     <string name="dialog_confirm">Are you sure?</string>
     <string name="dialog_yes">Yes</string>
     <string name="dialog_no">No</string>
+    <string name="dialog_ok">OK</string>
     <string name="reboot_wait">Rebooting. Please wait...</string>
 
     <!-- About strings -->

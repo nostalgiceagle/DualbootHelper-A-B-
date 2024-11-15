@@ -39,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
         return new File(context.getFilesDir(), "status.txt").getPath();
     }
 
-    private static String getSlotAFilePath(Context context) {
+    public static String getSlotAFilePath(Context context) {
         return new File(context.getFilesDir(), "slota.txt").getPath();
     }
 
-    private static String getSlotBFilePath(Context context) {
+    public static String getSlotBFilePath(Context context) {
         return new File(context.getFilesDir(), "slotb.txt").getPath();
     }
 
@@ -193,8 +193,23 @@ public class MainActivity extends AppCompatActivity {
             }
         }.start();
     }
-    
+
     private void showConfirmationDialog(int promptResId, String scriptFile) {
+        // Check for SU access using 'id -u'
+        boolean hasSuAccess = Shell.cmd("id -u").exec().getOut().contains("0");
+
+        if (!hasSuAccess) {
+            // Show a dialog informing the user about missing SU access
+            new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.sudo_access_title)) // Use a title like "Permission Denied"
+                    .setMessage(getString(R.string.sudo_access)) // Message about needing superuser access
+                    .setPositiveButton(getString(R.string.dialog_ok), null) // OK button that does nothing
+                    .create()
+                    .show();
+            return; // Exit the method since SU access is required
+        }
+
+        // If SU access is granted, proceed with the normal confirmation dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         String title = getString(promptResId) + "?";
         String message = getString(R.string.dialog_confirm);

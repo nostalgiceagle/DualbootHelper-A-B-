@@ -158,7 +158,9 @@ public class MainActivity extends AppCompatActivity {
                 String line;
 
                 while ((line = reader.readLine()) != null) {
-                    slotText.append(line).append(" ");
+                    line = line.replace("##UNAVAILABLE##", getString(R.string.unavailable));
+
+                    slotText.append(line);
                 }
 
                 textToDisplay = slotText.toString().trim().isEmpty() ? getString(R.string.unavailable) : slotText.toString();

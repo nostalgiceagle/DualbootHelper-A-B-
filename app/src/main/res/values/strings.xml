@@ -1,7 +1,6 @@
 <resources>
     <!-- Basic title and desc -->
     <string name="app_name">Dualboot Helper</string>
-    <string name="description">A helper app for dualbooting solution</string>
 
     <!-- Information layout strings -->
     <string name="info">Information</string>
@@ -50,7 +49,7 @@
 
     <!-- About strings -->
     <!-- Team DB -->
-    <string name="db_dev">Dualboot Helper developers</string>
+    <string name="db_dev">Main developers</string>
     <!-- Our descriptions -->
     <string name="david_desc">The founder of Dualboot for Samsung</string>
     <string name="bob_desc">Made this app with OneUI Style</string>
@@ -66,4 +65,8 @@
     <string name="links">Useful links</string>
     <string name="donate">Donate me!</string>
     <string name="xda_post">XDA post</string>
+
+    <!-- Preferences strings-->
+    <string name="slota_settings">Slot A name</string>
+    <string name="slotb_settings">Slot B name</string>
 </resources>

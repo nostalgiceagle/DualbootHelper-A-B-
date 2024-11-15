@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory>
+
+        <EditTextPreference
+            android:key="slotakey"
+            android:title="@string/slota_settings"
+            android:defaultValue="@{slotastring}"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:key="slotbkey"
+            android:title="@string/slotb_settings"
+            android:defaultValue="@{slotbstring}"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

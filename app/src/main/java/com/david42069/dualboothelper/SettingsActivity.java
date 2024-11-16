@@ -38,7 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public static class SettingsFragment extends PreferenceFragmentCompat {
+    public class SettingsFragment extends PreferenceFragmentCompat {
 
         private static final String TAG = "SettingsFragment";
 
@@ -46,12 +46,12 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.preferences_activity, rootKey);
 
-            // Load values from files
-            setDefaultFromFile("slotakey", "/cache/dualboot/database/slota.txt");
-            setDefaultFromFile("slotbkey", "/cache/dualboot/database/slotb.txt");
+            // Load values from files or create the files if missing
+            initializePreferenceFromFile("slotakey", "/cache/dualboot/database/slotA.txt", "slotakey");
+            initializePreferenceFromFile("slotbkey", "/cache/dualboot/database/slotB.txt", "slotbkey");
         }
 
-        private void setDefaultFromFile(String preferenceKey, String filePath) {
+        private void initializePreferenceFromFile(String preferenceKey, String filePath, String defaultContent) {
             EditTextPreference preference = findPreference(preferenceKey);
             if (preference == null) {
                 Log.w(TAG, "Preference with key " + preferenceKey + " not found.");
@@ -61,17 +61,16 @@ public class SettingsActivity extends AppCompatActivity {
             // Check if the value is already set in SharedPreferences
             SharedPreferences sharedPreferences = getPreferenceManager().getSharedPreferences();
             if (!sharedPreferences.contains(preferenceKey)) {
-                // Load value from the file
-                String fileValue = readFileContent(filePath);
-                if (fileValue != null) {
-                    // Save the value to SharedPreferences
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(preferenceKey, fileValue);
-                    editor.apply();
+                // Load value from the file or create the file if it doesn't exist
+                String fileValue = ensureFileExistsAndRead(filePath, defaultContent);
 
-                    // Update the preference's value
-                    preference.setText(fileValue);
-                }
+                // Save the value to SharedPreferences
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(preferenceKey, fileValue);
+                editor.apply();
+
+                // Update the preference's value
+                preference.setText(fileValue);
             }
 
             // Set the summary provider for real-time updates
@@ -79,6 +78,30 @@ public class SettingsActivity extends AppCompatActivity {
                 String value = preference.getText();
                 return value != null ? value : getString(R.string.unavailable); // Fallback value
             });
+        }
+
+        private String ensureFileExistsAndRead(String filePath, String defaultContent) {
+            File file = new File(filePath);
+            if (!file.exists()) {
+                // Create the file and write default content
+                try {
+                    if (file.getParentFile() != null && !file.getParentFile().exists()) {
+                        file.getParentFile().mkdirs(); // Create parent directories if needed
+                    }
+                    if (file.createNewFile()) {
+                        try (FileOutputStream fos = new FileOutputStream(file)) {
+                            fos.write(defaultContent.getBytes());
+                        }
+                    }
+                    Log.d(TAG, "Created file at " + filePath + " with default content: " + defaultContent);
+                } catch (IOException e) {
+                    Log.e(TAG, "Error creating file at " + filePath, e);
+                    return defaultContent; // Return default content as a fallback
+                }
+            }
+
+            // Read and return the file content
+            return readFileContent(filePath);
         }
 
         private String readFileContent(String filePath) {
@@ -92,7 +115,7 @@ public class SettingsActivity extends AppCompatActivity {
                 StringBuilder content = new StringBuilder();
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    content.append(line);
+                    content.append(line).append("\n");
                 }
                 return content.toString().trim(); // Remove trailing newlines
             } catch (IOException e) {

@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import dev.oneuiproject.oneui.layout.ToolbarLayout;
 import dev.oneuiproject.oneui.utils.ActivityUtils;
+
+import java.io.FileWriter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -148,33 +150,95 @@ public class MainActivity extends AppCompatActivity {
         statusCardView.setSummaryText(textToDisplay);
     }
 
-    private void updateSlotCardView(int cardViewId, String filePath) {
-        File slotFile = new File(filePath);
+    private void updateSlotCardView(int cardViewId, String slotKey) {
+        String configPath = new File(getFilesDir(), "config.prop").getPath();
         String textToDisplay;
 
-        if (slotFile.exists()) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(slotFile))) {
-                StringBuilder slotText = new StringBuilder();
-                String line;
+        // Try to read slot data from config.prop
+        String slotData = readConfigFile(configPath, slotKey);
 
-                while ((line = reader.readLine()) != null) {
-                    line = line.replace("##UNAVAILABLE##", getString(R.string.unavailable));
-
-                    slotText.append(line);
-                }
-
-                textToDisplay = slotText.toString().trim().isEmpty() ? getString(R.string.unavailable) : slotText.toString();
-            } catch (IOException e) {
-                Log.e("MainActivity", "Error reading " + filePath, e);
-                textToDisplay = getString(R.string.unavailable);  // Placeholder if reading fails
-            }
+        if (slotData != null) {
+            // Use data from config.prop
+            textToDisplay = slotData;
         } else {
-            textToDisplay = getString(R.string.unavailable);  // Placeholder if file does not exist
+            // Fallback: Read from the default slotN.txt file path
+            String filePath = getDefaultSlotFilePath(slotKey);
+            File slotFile = new File(filePath);
+
+            if (slotFile.exists()) {
+                try (BufferedReader reader = new BufferedReader(new FileReader(slotFile))) {
+                    StringBuilder slotText = new StringBuilder();
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+                        slotText.append(line);
+                    }
+
+                    textToDisplay = slotText.toString().trim().isEmpty()
+                            ? getString(R.string.unavailable)
+                            : slotText.toString();
+                } catch (IOException e) {
+                    Log.e("MainActivity", "Error reading " + filePath, e);
+                    textToDisplay = getString(R.string.unavailable); // Placeholder if reading fails
+                }
+            } else {
+                textToDisplay = getString(R.string.unavailable); // Placeholder if file does not exist
+            }
         }
 
+        // Update the CardView
         CardView slotCardView = findViewById(cardViewId);
         slotCardView.setSummaryText(textToDisplay);
     }
+
+    private String getDefaultSlotFilePath(String slotKey) {
+        String fileName;
+        switch (slotKey) {
+            case "slotakey":
+                fileName = "slota.txt";
+                break;
+            case "slotbkey":
+                fileName = "slotb.txt";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid slot key: " + slotKey);
+        }
+        return new File(getFilesDir(), fileName).getPath();
+    }
+
+    private String readConfigFile(String configPath, String key) {
+        File configFile = new File(configPath);
+        if (!configFile.exists()) {
+            return null; // Config file does not exist
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(configFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Assuming the format is key=value
+                String[] parts = line.split("=", 2);
+                if (parts.length == 2 && parts[0].trim().equals(key)) {
+                    return parts[1].trim(); // Return the value for the key
+                }
+            }
+        } catch (IOException e) {
+            Log.e("MainActivity", "Error reading config.prop", e);
+        }
+        return null; // Key not found
+    }
+
+    private void writeConfigFile(String key, String value) {
+        File configFile = new File(getFilesDir(), "config.prop");
+        try {
+            // Append mode to preserve existing data
+            try (FileWriter writer = new FileWriter(configFile, true)) {
+                writer.write(key + "=" + value + "\n");
+            }
+        } catch (IOException e) {
+            Log.e("MainActivity", "Error writing to config.prop", e);
+        }
+    }
+
 
     private void setupCardViewWithConfirmation(int cardViewId, int promptResId, String scriptFile) {
         CardView cardView = findViewById(cardViewId);

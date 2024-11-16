@@ -11,7 +11,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import androidx.preference.EditTextPreference;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,90 +42,69 @@ public class SettingsActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public static class SettingsFragment extends PreferenceFragmentCompat {
+    public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-        private static final String TAG = "SettingsFragment";
+        private static final String CONFIG_FILE = "config.prop";
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.preferences_activity, rootKey);
-
-            // Load values from files or create the files if missing
-            initializePreferenceFromFile("slotakey", "/cache/dualboot/database/slotA.txt", "slotakey");
-            initializePreferenceFromFile("slotbkey", "/cache/dualboot/database/slotB.txt", "slotbkey");
         }
 
-        private void initializePreferenceFromFile(String preferenceKey, String filePath, String defaultContent) {
-            EditTextPreference preference = findPreference(preferenceKey);
-            if (preference == null) {
-                Log.w(TAG, "Preference with key " + preferenceKey + " not found.");
-                return;
-            }
-
-            // Check if the value is already set in SharedPreferences
-            SharedPreferences sharedPreferences = getPreferenceManager().getSharedPreferences();
-            if (!sharedPreferences.contains(preferenceKey)) {
-                // Load value from the file or create the file if it doesn't exist
-                String fileValue = ensureFileExistsAndRead(filePath, defaultContent);
-
-                // Save the value to SharedPreferences
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(preferenceKey, fileValue);
-                editor.apply();
-
-                // Update the preference's value
-                preference.setText(fileValue);
-            }
-
-            // Set the summary provider for real-time updates
-            preference.setSummaryProvider(p -> {
-                String value = preference.getText();
-                return value != null ? value : getString(R.string.unavailable); // Fallback value
-            });
+        @Override
+        public void onResume() {
+            super.onResume();
+            getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         }
 
-        private String ensureFileExistsAndRead(String filePath, String defaultContent) {
-            File file = new File(filePath);
-            if (!file.exists()) {
-                // Create the file and write default content
-                try {
-                    if (file.getParentFile() != null && !file.getParentFile().exists()) {
-                        file.getParentFile().mkdirs(); // Create parent directories if needed
+        @Override
+        public void onPause() {
+            super.onPause();
+            getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+        }
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            String value = sharedPreferences.getString(key, null);
+            if (value != null) {
+                writeConfigFile(key, value);
+            }
+        }
+
+        private void writeConfigFile(String key, String value) {
+            File configFile = new File(requireContext().getFilesDir(), CONFIG_FILE);
+            try {
+                // Read existing config into memory
+                Map<String, String> config = readConfigFile(configFile);
+
+                // Update the key-value pair
+                config.put(key, value);
+
+                // Write back the updated configuration
+                try (FileWriter writer = new FileWriter(configFile)) {
+                    for (Map.Entry<String, String> entry : config.entrySet()) {
+                        writer.write(entry.getKey() + "=" + entry.getValue() + "\n");
                     }
-                    if (file.createNewFile()) {
-                        try (FileOutputStream fos = new FileOutputStream(file)) {
-                            fos.write(defaultContent.getBytes());
+                }
+            } catch (IOException e) {
+                Log.e("SettingsFragment", "Error writing to config.prop", e);
+            }
+        }
+
+        private Map<String, String> readConfigFile(File configFile) throws IOException {
+            Map<String, String> config = new HashMap<>();
+            if (configFile.exists()) {
+                try (BufferedReader reader = new BufferedReader(new FileReader(configFile))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        String[] parts = line.split("=", 2);
+                        if (parts.length == 2) {
+                            config.put(parts[0].trim(), parts[1].trim());
                         }
                     }
-                    Log.d(TAG, "Created file at " + filePath + " with default content: " + defaultContent);
-                } catch (IOException e) {
-                    Log.e(TAG, "Error creating file at " + filePath, e);
-                    return defaultContent; // Return default content as a fallback
                 }
             }
-
-            // Read and return the file content
-            return readFileContent(filePath);
-        }
-
-        private String readFileContent(String filePath) {
-            File file = new File(filePath);
-            if (!file.exists()) {
-                Log.w(TAG, "File " + filePath + " does not exist.");
-                return null;
-            }
-
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                StringBuilder content = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    content.append(line).append("\n");
-                }
-                return content.toString().trim(); // Remove trailing newlines
-            } catch (IOException e) {
-                Log.e(TAG, "Error reading file " + filePath, e);
-                return null;
-            }
+            return config;
         }
     }
 }

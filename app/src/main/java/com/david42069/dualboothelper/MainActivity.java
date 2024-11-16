@@ -1,6 +1,7 @@
 package com.david42069.dualboothelper;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +30,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.preference.PreferenceManager;
 
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -61,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
         updateStatusCardView();
         updateSlotCardView(R.id.slota_txt, getSlotAFilePath(this));
         updateSlotCardView(R.id.slotb_txt, getSlotBFilePath(this));
+        // Listen for preference changes
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener((prefs, key) -> {
+            if ("slotakey".equals(key)) {
+                updateSlotCardView(R.id.slota_txt, "slotakey");
+            } else if ("slotbkey".equals(key)) {
+                updateSlotCardView(R.id.slotb_txt, "slotbkey");
+            }
+        });
 
         setupCardViewWithConfirmation(R.id.reboot_a, R.string.reboot_a, "R.raw.switcha");
         setupCardViewWithConfirmation(R.id.reboot_b, R.string.reboot_b, "R.raw.switchb");

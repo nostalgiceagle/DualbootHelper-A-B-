@@ -1,5 +1,7 @@
 package com.david42069.dualboothelper;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -34,7 +36,6 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings); // A layout that hosts the fragment
         ToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
         toolbarLayout.setNavigationButtonAsBack();
-
         // Load the preferences fragment
         getSupportFragmentManager()
                 .beginTransaction()
@@ -46,9 +47,43 @@ public class SettingsActivity extends AppCompatActivity {
 
         private static final String CONFIG_FILE = "config.prop";
 
+
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.preferences_activity, rootKey);
+            updateDefaultPreferenceValue("slotakey", "slota.txt");
+            updateDefaultPreferenceValue("slotbkey", "slotb.txt");
+
+        }
+
+        private void updateDefaultPreferenceValue(String preferenceKey, String fileName) {
+            // Get the current value from the file
+            String filePath = new File(requireContext().getFilesDir(), fileName).getPath();
+            String defaultValue = readFileContent(filePath, "");
+
+            // Access the EditTextPreference and set the default value
+            EditTextPreference preference = findPreference(preferenceKey);
+            if (preference != null) {
+                preference.setText(defaultValue); // Dynamically set the value
+                preference.setDefaultValue(defaultValue); // Set it as the default value
+            }
+        }
+
+        private String readFileContent(String filePath, String fallbackValue) {
+            File file = new File(filePath);
+            if (file.exists()) {
+                try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                    StringBuilder content = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        content.append(line);
+                    }
+                    return content.toString().trim();
+                } catch (IOException e) {
+                    Log.e("SettingsActivity", "Error reading file: " + filePath, e);
+                }
+            }
+            return fallbackValue; // Fallback if the file doesn't exist or can't be read
         }
 
         @Override

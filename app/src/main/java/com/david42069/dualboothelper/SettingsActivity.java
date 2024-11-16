@@ -38,7 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public class SettingsFragment extends PreferenceFragmentCompat {
+    public static class SettingsFragment extends PreferenceFragmentCompat {
 
         private static final String TAG = "SettingsFragment";
 

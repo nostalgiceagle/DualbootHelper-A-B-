@@ -1,7 +1,6 @@
 package com.david42069.dualboothelper;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,11 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import dev.oneuiproject.oneui.layout.ToolbarLayout;
 import dev.oneuiproject.oneui.utils.ActivityUtils;
-
-import java.io.FileWriter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
+import android.content.SharedPreferences;
+import androidx.preference.PreferenceManager;
 import com.topjohnwu.superuser.Shell;
 
 import android.util.Log;
@@ -30,7 +28,6 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.preference.PreferenceManager;
 
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -61,17 +58,15 @@ public class MainActivity extends AppCompatActivity {
         cp(R.raw.jq, "jq");
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
         updateStatusCardView();
-        updateSlotCardView(R.id.slota_txt, getSlotAFilePath(this));
-        updateSlotCardView(R.id.slotb_txt, getSlotBFilePath(this));
-        // Listen for preference changes
+
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPreferences.registerOnSharedPreferenceChangeListener((prefs, key) -> {
-            if ("slotakey".equals(key)) {
-                updateSlotCardView(R.id.slota_txt, "slotakey");
-            } else if ("slotbkey".equals(key)) {
-                updateSlotCardView(R.id.slotb_txt, "slotbkey");
-            }
-        });
+
+        // Initialize slots with shared preferences or fallback to "unavailable"
+        String slotAValue = sharedPreferences.getString("slotakey", getString(R.string.unavailable));
+        updateSlotCardView(R.id.slota_txt, slotAValue);
+
+        String slotBValue = sharedPreferences.getString("slotbkey", getString(R.string.unavailable));
+        updateSlotCardView(R.id.slotb_txt, slotBValue);
 
         setupCardViewWithConfirmation(R.id.reboot_a, R.string.reboot_a, "R.raw.switcha");
         setupCardViewWithConfirmation(R.id.reboot_b, R.string.reboot_b, "R.raw.switchb");
@@ -161,112 +156,15 @@ public class MainActivity extends AppCompatActivity {
         statusCardView.setSummaryText(textToDisplay);
     }
 
-    private void updateSlotCardView(int cardViewId, String input) {
-        String textToDisplay;
-
-        // Determine if the input is a key or a file path
-        if (input.equals("slotakey") || input.equals("slotbkey")) {
-            // Handle it as a key (read from config.prop or fallback to default slotN.txt)
-            String configPath = new File(getFilesDir(), "config.prop").getPath();
-            textToDisplay = readConfigFile(configPath, input);
-
-            if (textToDisplay == null) {
-                // If config.prop doesn't have the value, read from the corresponding default slot file
-                String filePath = getDefaultSlotFilePath(input);
-                textToDisplay = readAndReplacePlaceholders(filePath, getString(R.string.unavailable));
-            }
-        } else {
-            // Handle it as a file path
-            textToDisplay = readAndReplacePlaceholders(input, getString(R.string.unavailable));
-        }
-
-        // Update the CardView
+    public void updateSlotCardView(int cardViewId, String updatedValue) {
         CardView slotCardView = findViewById(cardViewId);
-        slotCardView.setSummaryText(textToDisplay);
-    }
-
-    private String readAndReplacePlaceholders(String filePath, String defaultText) {
-        File file = new File(filePath);
-
-        if (file.exists()) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                StringBuilder content = new StringBuilder();
-                String line;
-
-                while ((line = reader.readLine()) != null) {
-                    // Replace any placeholder with the appropriate value
-                    line = line.replace("##UNAVAILABLE##", getString(R.string.unavailable));
-                    content.append(line).append("\n");
-                }
-
-                // Trim trailing newlines and check for empty content
-                String finalContent = content.toString().trim();
-                return finalContent.isEmpty() ? defaultText : finalContent;
-            } catch (IOException e) {
-                Log.e("MainActivity", "Error reading file: " + filePath, e);
-            }
+        if (slotCardView != null) {
+            String displayText = (updatedValue == null || updatedValue.trim().isEmpty())
+                    ? getString(R.string.unavailable)
+                    : updatedValue;
+            slotCardView.setSummaryText(displayText);
         }
-
-        return defaultText; // Return default if the file does not exist or reading fails
     }
-
-    private String readFileContent(String filePath, String defaultText) {
-        File file = new File(filePath);
-
-        if (file.exists()) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                StringBuilder content = new StringBuilder();
-                String line;
-
-                while ((line = reader.readLine()) != null) {
-                    content.append(line);
-                }
-
-                return content.toString().trim().isEmpty() ? defaultText : content.toString().trim();
-            } catch (IOException e) {
-                Log.e("MainActivity", "Error reading file: " + filePath, e);
-            }
-        }
-
-        return defaultText; // Return default if the file does not exist or reading fails
-    }
-
-    private String getDefaultSlotFilePath(String slotKey) {
-        String fileName;
-        switch (slotKey) {
-            case "slotakey":
-                fileName = "slota.txt";
-                break;
-            case "slotbkey":
-                fileName = "slotb.txt";
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid slot key: " + slotKey);
-        }
-        return new File(getFilesDir(), fileName).getPath();
-    }
-
-    private String readConfigFile(String configPath, String key) {
-        File configFile = new File(configPath);
-        if (!configFile.exists()) {
-            return null; // Config file does not exist
-        }
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(configFile))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                // Assuming the format is key=value
-                String[] parts = line.split("=", 2);
-                if (parts.length == 2 && parts[0].trim().equals(key)) {
-                    return parts[1].trim(); // Return the value for the key
-                }
-            }
-        } catch (IOException e) {
-            Log.e("MainActivity", "Error reading config.prop", e);
-        }
-        return null; // Key not found
-    }
-
 
     private void setupCardViewWithConfirmation(int cardViewId, int promptResId, String scriptFile) {
         CardView cardView = findViewById(cardViewId);

@@ -43,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
+    public static class SettingsFragment extends PreferenceFragmentCompat {
 
         private static final String CONFIG_FILE = "config.prop";
 
@@ -51,21 +51,36 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.preferences_activity, rootKey);
-            updateDefaultPreferenceValue("slotakey", "slota.txt");
-            updateDefaultPreferenceValue("slotbkey", "slotb.txt");
 
+            // Dynamically set default values for slotA and slotB preferences
+            setupPreference("slotakey", "slota.txt");
+            setupPreference("slotbkey", "slotb.txt");
         }
 
-        private void updateDefaultPreferenceValue(String preferenceKey, String fileName) {
-            // Get the current value from the file
-            String filePath = new File(requireContext().getFilesDir(), fileName).getPath();
-            String defaultValue = readFileContent(filePath, "");
-
-            // Access the EditTextPreference and set the default value
+        private void setupPreference(String preferenceKey, String defaultValueFileName) {
             EditTextPreference preference = findPreference(preferenceKey);
             if (preference != null) {
-                preference.setText(defaultValue); // Dynamically set the value
-                preference.setDefaultValue(defaultValue); // Set it as the default value
+                // Set the initial value from shared preferences or file
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
+                String currentValue = sharedPreferences.getString(preferenceKey, null);
+
+                if (currentValue == null || currentValue.isEmpty()) {
+                    // Read the default value from the file if preference is not set
+                    String filePath = new File(requireContext().getFilesDir(), defaultValueFileName).getPath();
+                    currentValue = readFileContent(filePath, getString(R.string.unavailable));
+                    preference.setText(currentValue);
+                    sharedPreferences.edit().putString(preferenceKey, currentValue).apply();
+                }
+
+                // Update slot text in real-time when the preference changes
+                preference.setOnPreferenceChangeListener((pref, newValue) -> {
+                    // Save the updated value
+                    sharedPreferences.edit().putString(preferenceKey, newValue.toString()).apply();
+
+                    // Notify MainActivity to update the slot
+                    notifySlotUpdate(preferenceKey, newValue.toString());
+                    return true; // Allow the value to update
+                });
             }
         }
 
@@ -80,66 +95,22 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                     return content.toString().trim();
                 } catch (IOException e) {
-                    Log.e("SettingsActivity", "Error reading file: " + filePath, e);
+                    Log.e("SettingsFragment", "Error reading file: " + filePath, e);
                 }
             }
-            return fallbackValue; // Fallback if the file doesn't exist or can't be read
+            return fallbackValue;
         }
 
-        @Override
-        public void onResume() {
-            super.onResume();
-            getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-        }
-
-        @Override
-        public void onPause() {
-            super.onPause();
-            getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-        }
-
-        @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            String value = sharedPreferences.getString(key, null);
-            if (value != null) {
-                writeConfigFile(key, value);
-            }
-        }
-
-        private void writeConfigFile(String key, String value) {
-            File configFile = new File(requireContext().getFilesDir(), CONFIG_FILE);
-            try {
-                // Read existing config into memory
-                Map<String, String> config = readConfigFile(configFile);
-
-                // Update the key-value pair
-                config.put(key, value);
-
-                // Write back the updated configuration
-                try (FileWriter writer = new FileWriter(configFile)) {
-                    for (Map.Entry<String, String> entry : config.entrySet()) {
-                        writer.write(entry.getKey() + "=" + entry.getValue() + "\n");
-                    }
-                }
-            } catch (IOException e) {
-                Log.e("SettingsFragment", "Error writing to config.prop", e);
-            }
-        }
-
-        private Map<String, String> readConfigFile(File configFile) throws IOException {
-            Map<String, String> config = new HashMap<>();
-            if (configFile.exists()) {
-                try (BufferedReader reader = new BufferedReader(new FileReader(configFile))) {
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        String[] parts = line.split("=", 2);
-                        if (parts.length == 2) {
-                            config.put(parts[0].trim(), parts[1].trim());
-                        }
-                    }
+        private void notifySlotUpdate(String preferenceKey, String updatedValue) {
+            // Communicate the change to MainActivity
+            if (getActivity() instanceof MainActivity) {
+                MainActivity mainActivity = (MainActivity) getActivity();
+                if ("slotakey".equals(preferenceKey)) {
+                    mainActivity.updateSlotCardView(R.id.slota_txt, updatedValue);
+                } else if ("slotbkey".equals(preferenceKey)) {
+                    mainActivity.updateSlotCardView(R.id.slotb_txt, updatedValue);
                 }
             }
-            return config;
         }
     }
 }

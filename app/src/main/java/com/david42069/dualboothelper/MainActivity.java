@@ -150,45 +150,49 @@ public class MainActivity extends AppCompatActivity {
         statusCardView.setSummaryText(textToDisplay);
     }
 
-    private void updateSlotCardView(int cardViewId, String slotKey) {
-        String configPath = new File(getFilesDir(), "config.prop").getPath();
+    private void updateSlotCardView(int cardViewId, String input) {
         String textToDisplay;
 
-        // Try to read slot data from config.prop
-        String slotData = readConfigFile(configPath, slotKey);
+        // Determine if the input is a key or a file path
+        if (input.equals("slotakey") || input.equals("slotbkey")) {
+            // Handle it as a key (read from config.prop or fallback to default slotN.txt)
+            String configPath = new File(getFilesDir(), "config.prop").getPath();
+            textToDisplay = readConfigFile(configPath, input);
 
-        if (slotData != null) {
-            // Use data from config.prop
-            textToDisplay = slotData;
-        } else {
-            // Fallback: Read from the default slotN.txt file path
-            String filePath = getDefaultSlotFilePath(slotKey);
-            File slotFile = new File(filePath);
-
-            if (slotFile.exists()) {
-                try (BufferedReader reader = new BufferedReader(new FileReader(slotFile))) {
-                    StringBuilder slotText = new StringBuilder();
-                    String line;
-
-                    while ((line = reader.readLine()) != null) {
-                        slotText.append(line);
-                    }
-
-                    textToDisplay = slotText.toString().trim().isEmpty()
-                            ? getString(R.string.unavailable)
-                            : slotText.toString();
-                } catch (IOException e) {
-                    Log.e("MainActivity", "Error reading " + filePath, e);
-                    textToDisplay = getString(R.string.unavailable); // Placeholder if reading fails
-                }
-            } else {
-                textToDisplay = getString(R.string.unavailable); // Placeholder if file does not exist
+            if (textToDisplay == null) {
+                // If config.prop doesn't have the value, read from the corresponding default slot file
+                String filePath = getDefaultSlotFilePath(input);
+                textToDisplay = readFileContent(filePath, getString(R.string.unavailable));
             }
+        } else {
+            // Handle it as a file path
+            textToDisplay = readFileContent(input, getString(R.string.unavailable));
         }
 
         // Update the CardView
         CardView slotCardView = findViewById(cardViewId);
         slotCardView.setSummaryText(textToDisplay);
+    }
+
+    private String readFileContent(String filePath, String defaultText) {
+        File file = new File(filePath);
+
+        if (file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                StringBuilder content = new StringBuilder();
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    content.append(line);
+                }
+
+                return content.toString().trim().isEmpty() ? defaultText : content.toString().trim();
+            } catch (IOException e) {
+                Log.e("MainActivity", "Error reading file: " + filePath, e);
+            }
+        }
+
+        return defaultText; // Return default if the file does not exist or reading fails
     }
 
     private String getDefaultSlotFilePath(String slotKey) {
@@ -225,18 +229,6 @@ public class MainActivity extends AppCompatActivity {
             Log.e("MainActivity", "Error reading config.prop", e);
         }
         return null; // Key not found
-    }
-
-    private void writeConfigFile(String key, String value) {
-        File configFile = new File(getFilesDir(), "config.prop");
-        try {
-            // Append mode to preserve existing data
-            try (FileWriter writer = new FileWriter(configFile, true)) {
-                writer.write(key + "=" + value + "\n");
-            }
-        } catch (IOException e) {
-            Log.e("MainActivity", "Error writing to config.prop", e);
-        }
     }
 
 

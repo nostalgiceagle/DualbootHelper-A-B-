@@ -162,16 +162,41 @@ public class MainActivity extends AppCompatActivity {
             if (textToDisplay == null) {
                 // If config.prop doesn't have the value, read from the corresponding default slot file
                 String filePath = getDefaultSlotFilePath(input);
-                textToDisplay = readFileContent(filePath, getString(R.string.unavailable));
+                textToDisplay = readAndReplacePlaceholders(filePath, getString(R.string.unavailable));
             }
         } else {
             // Handle it as a file path
-            textToDisplay = readFileContent(input, getString(R.string.unavailable));
+            textToDisplay = readAndReplacePlaceholders(input, getString(R.string.unavailable));
         }
 
         // Update the CardView
         CardView slotCardView = findViewById(cardViewId);
         slotCardView.setSummaryText(textToDisplay);
+    }
+
+    private String readAndReplacePlaceholders(String filePath, String defaultText) {
+        File file = new File(filePath);
+
+        if (file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                StringBuilder content = new StringBuilder();
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    // Replace any placeholder with the appropriate value
+                    line = line.replace("##UNAVAILABLE##", getString(R.string.unavailable));
+                    content.append(line).append("\n");
+                }
+
+                // Trim trailing newlines and check for empty content
+                String finalContent = content.toString().trim();
+                return finalContent.isEmpty() ? defaultText : finalContent;
+            } catch (IOException e) {
+                Log.e("MainActivity", "Error reading file: " + filePath, e);
+            }
+        }
+
+        return defaultText; // Return default if the file does not exist or reading fails
     }
 
     private String readFileContent(String filePath, String defaultText) {

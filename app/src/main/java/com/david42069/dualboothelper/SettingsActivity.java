@@ -52,65 +52,50 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.preferences_activity, rootKey);
 
-            // Dynamically set default values for slotA and slotB preferences
-            setupPreference("slotakey", "slota.txt");
-            setupPreference("slotbkey", "slotb.txt");
+            // Initialize preferences from files if needed
+            initializePreferenceFromFile("slotakey", "slota.txt", getString(R.string.unavailable));
+            initializePreferenceFromFile("slotbkey", "slotb.txt", getString(R.string.unavailable));
+
+            // Add a listener for preference changes
+            PreferenceManager.getDefaultSharedPreferences(requireContext())
+                    .registerOnSharedPreferenceChangeListener((sharedPreferences, key) -> {
+                        if ("slotakey".equals(key) || "slotbkey".equals(key)) {
+                            // Notify MainActivity to update slot text
+                            String updatedValue = sharedPreferences.getString(key, getString(R.string.unavailable));
+                            MainActivity mainActivity = (MainActivity) requireActivity();
+                            mainActivity.notifySlotUpdate(key, updatedValue);
+                        }
+                    });
         }
 
-        private void setupPreference(String preferenceKey, String defaultValueFileName) {
-            EditTextPreference preference = findPreference(preferenceKey);
-            if (preference != null) {
-                // Set the initial value from shared preferences or file
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
-                String currentValue = sharedPreferences.getString(preferenceKey, null);
+        private void initializePreferenceFromFile(String key, String fileName, String fallbackValue) {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
+            String currentValue = sharedPreferences.getString(key, null);
 
-                if (currentValue == null || currentValue.isEmpty()) {
-                    // Read the default value from the file if preference is not set
-                    String filePath = new File(requireContext().getFilesDir(), defaultValueFileName).getPath();
-                    currentValue = readFileContent(filePath, getString(R.string.unavailable));
-                    preference.setText(currentValue);
-                    sharedPreferences.edit().putString(preferenceKey, currentValue).apply();
+            if (currentValue == null) {
+                // Read from file and initialize
+                String fileValue = readValueFromFile(fileName);
+                String valueToSet = (fileValue == null || fileValue.trim().isEmpty()) ? fallbackValue : fileValue;
+                sharedPreferences.edit().putString(key, valueToSet).apply();
+
+                // Update preference UI
+                EditTextPreference preference = findPreference(key);
+                if (preference != null) {
+                    preference.setText(valueToSet);
                 }
-
-                // Update slot text in real-time when the preference changes
-                preference.setOnPreferenceChangeListener((pref, newValue) -> {
-                    // Save the updated value
-                    sharedPreferences.edit().putString(preferenceKey, newValue.toString()).apply();
-
-                    // Notify MainActivity to update the slot
-                    notifySlotUpdate(preferenceKey, newValue.toString());
-                    return true; // Allow the value to update
-                });
             }
         }
 
-        private String readFileContent(String filePath, String fallbackValue) {
-            File file = new File(filePath);
+        private String readValueFromFile(String fileName) {
+            File file = new File(requireContext().getFilesDir(), fileName);
             if (file.exists()) {
                 try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                    StringBuilder content = new StringBuilder();
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        content.append(line);
-                    }
-                    return content.toString().trim();
+                    return reader.readLine();
                 } catch (IOException e) {
-                    Log.e("SettingsFragment", "Error reading file: " + filePath, e);
+                    Log.e("SettingsActivity", "Error reading file: " + fileName, e);
                 }
             }
-            return fallbackValue;
-        }
-
-        private void notifySlotUpdate(String preferenceKey, String updatedValue) {
-            // Communicate the change to MainActivity
-            if (getActivity() instanceof MainActivity) {
-                MainActivity mainActivity = (MainActivity) getActivity();
-                if ("slotakey".equals(preferenceKey)) {
-                    mainActivity.updateSlotCardView(R.id.slota_txt, updatedValue);
-                } else if ("slotbkey".equals(preferenceKey)) {
-                    mainActivity.updateSlotCardView(R.id.slotb_txt, updatedValue);
-                }
-            }
+            return null;
         }
     }
 }

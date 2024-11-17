@@ -66,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize slots with shared preferences or fallback to "unavailable"
         String slotAValue = sharedPreferences.getString("slotakey", getString(R.string.unavailable));
-        updateSlotCardView(R.id.slota_txt, slotAValue);
+        updateSlotCardView(R.id.slota_txt, "slotakey");
 
         String slotBValue = sharedPreferences.getString("slotbkey", getString(R.string.unavailable));
-        updateSlotCardView(R.id.slotb_txt, slotBValue);
+        updateSlotCardView(R.id.slotb_txt, "slotbkey");
         // Register listener for live updates
         registerPreferenceChangeListener();
 
@@ -175,13 +175,30 @@ public class MainActivity extends AppCompatActivity {
         statusCardView.setSummaryText(textToDisplay);
     }
 
-    public void updateSlotCardView(int cardViewId, String updatedValue) {
+    public void updateSlotCardView(int cardViewId, String preferenceKey) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // Read the value directly from preferences
+        String slotValue = sharedPreferences.getString(preferenceKey, getString(R.string.unavailable));
+
+        // Update the CardView text
         CardView slotCardView = findViewById(cardViewId);
         if (slotCardView != null) {
-            String displayText = (updatedValue == null || updatedValue.trim().isEmpty())
-                    ? getString(R.string.unavailable)
-                    : updatedValue;
-            slotCardView.setSummaryText(displayText);
+            slotCardView.setSummaryText(slotValue);
+        }
+    }
+
+    public void notifySlotUpdate(String preferenceKey, String updatedValue) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // Update the preference value
+        sharedPreferences.edit().putString(preferenceKey, updatedValue).apply();
+
+        // Update the corresponding card view
+        if ("slotakey".equals(preferenceKey)) {
+            updateSlotCardView(R.id.slota_txt, preferenceKey);
+        } else if ("slotbkey".equals(preferenceKey)) {
+            updateSlotCardView(R.id.slotb_txt, preferenceKey);
         }
     }
 

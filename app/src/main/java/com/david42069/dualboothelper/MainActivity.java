@@ -36,12 +36,8 @@ import dev.oneuiproject.oneui.widget.CardView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
-
-    public MainActivity(SharedPreferences sharedPreferences) {
-        this.sharedPreferences = sharedPreferences;
-    }
 
     private static String getStatusFilePath(Context context) {
         return new File(context.getFilesDir(), "status.txt").getPath();
@@ -66,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
         updateStatusCardView();
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         // Initialize slots with shared preferences or fallback to "unavailable"
         String slotAValue = sharedPreferences.getString("slotakey", getString(R.string.unavailable));

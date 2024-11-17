@@ -67,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
     private void updateSlotCardView(int cardViewId, String slotValue) {
         CardView slotCardView = findViewById(cardViewId);
         if (slotCardView != null) {
+            if (slotValue != null) {
+                slotValue = slotValue.replace("##UNAVAILABLE##", getString(R.string.unavailable));
+            }
+
             slotCardView.setSummaryText(slotValue != null && !slotValue.trim().isEmpty() ? slotValue : getString(R.string.unavailable));
         }
     }

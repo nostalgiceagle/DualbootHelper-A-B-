@@ -29,12 +29,11 @@ import dev.oneuiproject.oneui.layout.ToolbarLayout;
 
 public class SettingsActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings); // A layout that hosts the fragment
-        ToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
+        ToolbarLayout toolbarLayout = findViewById(R.id.settings);
         toolbarLayout.setNavigationButtonAsBack();
         // Load the preferences fragment
         getSupportFragmentManager()
@@ -46,7 +45,19 @@ public class SettingsActivity extends AppCompatActivity {
     public static class SettingsFragment extends PreferenceFragmentCompat {
 
         private SharedPreferences sharedPreferences;
+        private Context mContext;
 
+        @Override
+        public void onAttach(Context context) {
+            super.onAttach(context);
+            mContext = getContext();
+        }
+
+        @Override
+        public void onViewCreated(View view, Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+            getView().setBackgroundColor(getResources().getColor(R.color.oui_background_color, mContext.getTheme()));
+        }
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {

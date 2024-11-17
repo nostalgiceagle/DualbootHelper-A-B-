@@ -157,6 +157,7 @@ public class AboutActivity extends AppCompatActivity
         mBottomContent.aboutBottomOssMit.setOnClickListener(this);
         mBottomContent.aboutDonate.setOnClickListener(this);
         mBottomContent.aboutXda.setOnClickListener(this);
+        mBottomContent.aboutTranslate.setOnClickListener(this);
 
         mBottomContent.aboutBottomRelativeOuip.setOnClickListener(this);
     }
@@ -173,6 +174,7 @@ public class AboutActivity extends AppCompatActivity
         mBottomContent.aboutBottomOssMit.setEnabled(enabled);
         mBottomContent.aboutDonate.setEnabled(enabled);
         mBottomContent.aboutXda.setEnabled(enabled);
+        mBottomContent.aboutTranslate.setEnabled(enabled);
         mBottomContent.aboutBottomRelativeOuip.setEnabled(enabled);
     }
 
@@ -203,6 +205,8 @@ public class AboutActivity extends AppCompatActivity
                 url = "https://www.paypal.com/donate/?hosted_button_id=3DTX9DHNH2WYC";
             } else if (v.getId() == mBottomContent.aboutXda.getId()) {
                 url = "https://xdaforums.com/t/mod-dualboot-for-any-samsung.4680492";
+            } else if (v.getId() == mBottomContent.aboutTranslate.getId()) {
+                url = "https://crowdin.com/project/dualboothelper";
             } else if (v.getId() == mBottomContent.aboutBottomRelativeOuip.getId()) {
                 url = "https://github.com/OneUIProject";
             }

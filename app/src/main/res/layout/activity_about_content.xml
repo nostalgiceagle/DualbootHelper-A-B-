@@ -107,6 +107,22 @@
 
     </dev.oneuiproject.oneui.widget.RoundLinearLayout>
 
+        <dev.oneuiproject.oneui.widget.RoundLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/oui_background_color"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <dev.oneuiproject.oneui.widget.CardView
+                android:id="@+id/about_translate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:TitleText="@string/translation"
+                app:SummaryText="Crowdin" />
+
+        </dev.oneuiproject.oneui.widget.RoundLinearLayout>
+
         <dev.oneuiproject.oneui.widget.RelatedCard
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

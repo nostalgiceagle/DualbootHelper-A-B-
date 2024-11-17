@@ -45,38 +45,43 @@ public class SettingsActivity extends AppCompatActivity {
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
 
-        private static final String CONFIG_FILE = "config.prop";
+        private SharedPreferences sharedPreferences;
 
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.preferences_activity, rootKey);
 
-            setupPreferenceWithDefaultValue("slotakey", "slota.txt", getString(R.string.unavailable));
-            setupPreferenceWithDefaultValue("slotbkey", "slotb.txt", getString(R.string.unavailable));
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
+
+            registerPreferenceChangeListener();
         }
 
-        private void setupPreferenceWithDefaultValue(String key, String fileName, String fallbackValue) {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
-            String currentValue = sharedPreferences.getString(key, null);
+        private void registerPreferenceChangeListener() {
+            sharedPreferences.registerOnSharedPreferenceChangeListener((sharedPreferences, key) -> {
+                if ("slotakey".equals(key)) {
+                    handlePreferenceChange("slotakey", "slota.txt");
+                } else if ("slotbkey".equals(key)) {
+                    handlePreferenceChange("slotbkey", "slotb.txt");
+                }
+            });
+        }
 
-            // Read from file if preference is null
-            if (currentValue == null) {
-                String fileValue = readValueFromFile(fileName);
-                String valueToSet = (fileValue == null || fileValue.trim().isEmpty()) ? fallbackValue : fileValue;
+        private void handlePreferenceChange(String key, String fileName) {
+            String value = sharedPreferences.getString(key, "");
+            if (value == null || value.trim().isEmpty()) {
+                // Reset to the default value from the file or fallback
+                String defaultValue = readValueFromFile(fileName);
+                if (defaultValue == null || defaultValue.isEmpty()) {
+                    defaultValue = getString(R.string.unavailable);
+                }
+                sharedPreferences.edit().putString(key, defaultValue).apply();
 
-                // Save to SharedPreferences and update UI
-                sharedPreferences.edit().putString(key, valueToSet).apply();
-            }
-
-            // Update the preference UI with the current value
-            EditTextPreference preference = findPreference(key);
-            if (preference != null) {
-                preference.setText(sharedPreferences.getString(key, fallbackValue));
-                preference.setOnPreferenceChangeListener((pref, newValue) -> {
-                    saveValueToFile(fileName, newValue.toString());
-                    return true;
-                });
+                // Update the displayed preference summary
+                Preference preference = findPreference(key);
+                if (preference != null) {
+                    preference.setSummary(defaultValue);
+                }
             }
         }
 
@@ -86,19 +91,10 @@ public class SettingsActivity extends AppCompatActivity {
                 try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                     return reader.readLine();
                 } catch (IOException e) {
-                    Log.e("SettingsActivity", "Error reading file: " + fileName, e);
+                    Log.e("SettingsFragment", "Error reading file: " + fileName, e);
                 }
             }
             return null;
-        }
-
-        private void saveValueToFile(String fileName, String value) {
-            File file = new File(requireContext().getFilesDir(), fileName);
-            try (FileWriter writer = new FileWriter(file)) {
-                writer.write(value);
-            } catch (IOException e) {
-                Log.e("SettingsActivity", "Error writing to file: " + fileName, e);
-            }
         }
     }
 }

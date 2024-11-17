@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Register a listener to detect preference changes
         PreferenceManager.getDefaultSharedPreferences(this)
                 .registerOnSharedPreferenceChangeListener(preferenceChangeListener);
     }
@@ -49,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        // Unregister the listener to avoid memory leaks
         PreferenceManager.getDefaultSharedPreferences(this)
                 .unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
     }
@@ -57,11 +55,12 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener =
             (sharedPreferences, key) -> {
                 if (key.equals("slotakey")) {
-                    updateSlotCardView(R.id.slota_txt, key);
+                    updateSlotCardView(R.id.slota_txt, sharedPreferences.getString(key, getString(R.string.unavailable)));
                 } else if (key.equals("slotbkey")) {
-                    updateSlotCardView(R.id.slotb_txt, key);
+                    updateSlotCardView(R.id.slotb_txt, sharedPreferences.getString(key, getString(R.string.unavailable)));
                 }
             };
+
     private static String getStatusFilePath(Context context) {
         return new File(context.getFilesDir(), "status.txt").getPath();
     }
@@ -89,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize slots with shared preferences or fallback to "unavailable"
         String slotAValue = sharedPreferences.getString("slotakey", getString(R.string.unavailable));
-        updateSlotCardView(R.id.slota_txt, "slotakey");
+        updateSlotCardView(R.id.slota_txt, PreferenceManager.getDefaultSharedPreferences(this).getString("slotakey", getString(R.string.unavailable)));
 
         String slotBValue = sharedPreferences.getString("slotbkey", getString(R.string.unavailable));
-        updateSlotCardView(R.id.slotb_txt, "slotbkey");
+        updateSlotCardView(R.id.slotb_txt, PreferenceManager.getDefaultSharedPreferences(this).getString("slotbkey", getString(R.string.unavailable)));
         // Register listener for live updates
         registerPreferenceChangeListener();
 
@@ -198,18 +197,15 @@ public class MainActivity extends AppCompatActivity {
         statusCardView.setSummaryText(textToDisplay);
     }
 
-    private void updateSlotCardView(int cardViewId, String preferenceKey) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        // Fetch the current value of the slot from SharedPreferences
-        String slotValue = sharedPreferences.getString(preferenceKey, getString(R.string.unavailable));
-
-        // Update the CardView summary with the slot value
+    private void updateSlotCardView(int cardViewId, String slotValue) {
         CardView slotCardView = findViewById(cardViewId);
         if (slotCardView != null) {
-            slotCardView.setSummaryText(slotValue);
+            slotCardView.setSummaryText(slotValue != null && !slotValue.trim().isEmpty()
+                    ? slotValue
+                    : getString(R.string.unavailable));
         }
     }
+
 //    public void notifySlotUpdate(String preferenceKey, String updatedValue) {
 //        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 //

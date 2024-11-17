@@ -60,16 +60,15 @@ public class SettingsActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
             String currentValue = sharedPreferences.getString(key, null);
 
+            // Check if the preference has a value; if not, initialize it
             if (currentValue == null) {
-                // Read from the file or fallback
                 String fileValue = readValueFromFile(fileName);
                 String valueToSet = (fileValue == null || fileValue.trim().isEmpty()) ? fallbackValue : fileValue;
 
-                // Save the value into SharedPreferences
                 sharedPreferences.edit().putString(key, valueToSet).apply();
             }
 
-            // Update the EditTextPreference UI
+            // Update EditTextPreference UI
             EditTextPreference preference = findPreference(key);
             if (preference != null) {
                 preference.setText(sharedPreferences.getString(key, fallbackValue));

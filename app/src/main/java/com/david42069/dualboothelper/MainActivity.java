@@ -36,8 +36,12 @@ import dev.oneuiproject.oneui.widget.CardView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private SharedPreferences sharedPreferences;
+    private final SharedPreferences sharedPreferences;
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
+
+    public MainActivity(SharedPreferences sharedPreferences) {
+        this.sharedPreferences = sharedPreferences;
+    }
 
     private static String getStatusFilePath(Context context) {
         return new File(context.getFilesDir(), "status.txt").getPath();

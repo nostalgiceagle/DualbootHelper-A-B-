@@ -52,26 +52,31 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.preferences_activity, rootKey);
 
-            initializePreference("slotakey", "slota.txt", getString(R.string.unavailable));
-            initializePreference("slotbkey", "slotb.txt", getString(R.string.unavailable));
+            setupPreferenceWithDefaultValue("slotakey", "slota.txt", getString(R.string.unavailable));
+            setupPreferenceWithDefaultValue("slotbkey", "slotb.txt", getString(R.string.unavailable));
         }
 
-        private void initializePreference(String key, String fileName, String fallbackValue) {
+        private void setupPreferenceWithDefaultValue(String key, String fileName, String fallbackValue) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
             String currentValue = sharedPreferences.getString(key, null);
 
-            // Check if the preference has a value; if not, initialize it
+            // Read from file if preference is null
             if (currentValue == null) {
                 String fileValue = readValueFromFile(fileName);
                 String valueToSet = (fileValue == null || fileValue.trim().isEmpty()) ? fallbackValue : fileValue;
 
+                // Save to SharedPreferences and update UI
                 sharedPreferences.edit().putString(key, valueToSet).apply();
             }
 
-            // Update EditTextPreference UI
+            // Update the preference UI with the current value
             EditTextPreference preference = findPreference(key);
             if (preference != null) {
                 preference.setText(sharedPreferences.getString(key, fallbackValue));
+                preference.setOnPreferenceChangeListener((pref, newValue) -> {
+                    saveValueToFile(fileName, newValue.toString());
+                    return true;
+                });
             }
         }
 
@@ -85,6 +90,15 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
             return null;
+        }
+
+        private void saveValueToFile(String fileName, String value) {
+            File file = new File(requireContext().getFilesDir(), fileName);
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.write(value);
+            } catch (IOException e) {
+                Log.e("SettingsActivity", "Error writing to file: " + fileName, e);
+            }
         }
     }
 }

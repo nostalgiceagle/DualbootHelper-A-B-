@@ -41,15 +41,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        PreferenceManager.getDefaultSharedPreferences(this)
-                .registerOnSharedPreferenceChangeListener(preferenceChangeListener);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
+
+        // Update slot cards to reflect any changes
+        updateSlotCardView(R.id.slota_txt, sharedPreferences.getString("slotakey", getString(R.string.unavailable)));
+        updateSlotCardView(R.id.slotb_txt, sharedPreferences.getString("slotbkey", getString(R.string.unavailable)));
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        PreferenceManager.getDefaultSharedPreferences(this)
-                .unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
     }
 
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener =
@@ -60,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
                     updateSlotCardView(R.id.slotb_txt, sharedPreferences.getString(key, getString(R.string.unavailable)));
                 }
             };
+
+    private void updateSlotCardView(int cardViewId, String slotValue) {
+        CardView slotCardView = findViewById(cardViewId);
+        if (slotCardView != null) {
+            slotCardView.setSummaryText(slotValue != null && !slotValue.trim().isEmpty() ? slotValue : getString(R.string.unavailable));
+        }
+    }
 
     private static String getStatusFilePath(Context context) {
         return new File(context.getFilesDir(), "status.txt").getPath();
@@ -195,15 +205,6 @@ public class MainActivity extends AppCompatActivity {
 
         CardView statusCardView = findViewById(R.id.status);
         statusCardView.setSummaryText(textToDisplay);
-    }
-
-    private void updateSlotCardView(int cardViewId, String slotValue) {
-        CardView slotCardView = findViewById(cardViewId);
-        if (slotCardView != null) {
-            slotCardView.setSummaryText(slotValue != null && !slotValue.trim().isEmpty()
-                    ? slotValue
-                    : getString(R.string.unavailable));
-        }
     }
 
 //    public void notifySlotUpdate(String preferenceKey, String updatedValue) {

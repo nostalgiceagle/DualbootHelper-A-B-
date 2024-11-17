@@ -8,13 +8,11 @@
         <EditTextPreference
             android:key="slotakey"
             android:title="@string/slota_settings"
-            android:defaultValue="@{slotastring}"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
             android:key="slotbkey"
             android:title="@string/slotb_settings"
-            android:defaultValue="@{slotbstring}"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>

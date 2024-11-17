@@ -52,30 +52,27 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.preferences_activity, rootKey);
 
-            // Dynamically initialize preferences
-            initializePreferenceFromFile("slotakey", "slota.txt", getString(R.string.unavailable));
-            initializePreferenceFromFile("slotbkey", "slotb.txt", getString(R.string.unavailable));
+            initializePreference("slotakey", "slota.txt", getString(R.string.unavailable));
+            initializePreference("slotbkey", "slotb.txt", getString(R.string.unavailable));
         }
 
-        private void initializePreferenceFromFile(String key, String fileName, String fallbackValue) {
+        private void initializePreference(String key, String fileName, String fallbackValue) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
             String currentValue = sharedPreferences.getString(key, null);
 
             if (currentValue == null) {
-                // Read from the file
+                // Read from the file or fallback
                 String fileValue = readValueFromFile(fileName);
-
-                // Determine the value to set
                 String valueToSet = (fileValue == null || fileValue.trim().isEmpty()) ? fallbackValue : fileValue;
 
-                // Save to SharedPreferences
+                // Save the value into SharedPreferences
                 sharedPreferences.edit().putString(key, valueToSet).apply();
+            }
 
-                // Update UI
-                EditTextPreference preference = findPreference(key);
-                if (preference != null) {
-                    preference.setText(valueToSet);
-                }
+            // Update the EditTextPreference UI
+            EditTextPreference preference = findPreference(key);
+            if (preference != null) {
+                preference.setText(sharedPreferences.getString(key, fallbackValue));
             }
         }
 

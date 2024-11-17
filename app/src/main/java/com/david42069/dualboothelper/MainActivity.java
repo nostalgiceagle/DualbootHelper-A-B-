@@ -37,8 +37,31 @@ import dev.oneuiproject.oneui.widget.CardView;
 public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
-    private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Register a listener to detect preference changes
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .registerOnSharedPreferenceChangeListener(preferenceChangeListener);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Unregister the listener to avoid memory leaks
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
+    }
+
+    private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener =
+            (sharedPreferences, key) -> {
+                if (key.equals("slotakey")) {
+                    updateSlotCardView(R.id.slota_txt, key);
+                } else if (key.equals("slotbkey")) {
+                    updateSlotCardView(R.id.slotb_txt, key);
+                }
+            };
     private static String getStatusFilePath(Context context) {
         return new File(context.getFilesDir(), "status.txt").getPath();
     }
@@ -178,16 +201,15 @@ public class MainActivity extends AppCompatActivity {
     private void updateSlotCardView(int cardViewId, String preferenceKey) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        // Get the value from SharedPreferences
+        // Fetch the current value of the slot from SharedPreferences
         String slotValue = sharedPreferences.getString(preferenceKey, getString(R.string.unavailable));
 
-        // Update the CardView with the slot value
+        // Update the CardView summary with the slot value
         CardView slotCardView = findViewById(cardViewId);
         if (slotCardView != null) {
             slotCardView.setSummaryText(slotValue);
         }
     }
-
 //    public void notifySlotUpdate(String preferenceKey, String updatedValue) {
 //        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 //
@@ -298,6 +320,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
 
     @Override
     protected void onDestroy() {

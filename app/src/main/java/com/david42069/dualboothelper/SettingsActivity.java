@@ -52,20 +52,9 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.preferences_activity, rootKey);
 
-            // Initialize preferences from files if needed
+            // Dynamically initialize preferences
             initializePreferenceFromFile("slotakey", "slota.txt", getString(R.string.unavailable));
             initializePreferenceFromFile("slotbkey", "slotb.txt", getString(R.string.unavailable));
-
-            // Add a listener for preference changes
-            PreferenceManager.getDefaultSharedPreferences(requireContext())
-                    .registerOnSharedPreferenceChangeListener((sharedPreferences, key) -> {
-                        if ("slotakey".equals(key) || "slotbkey".equals(key)) {
-                            // Notify MainActivity to update slot text
-                            String updatedValue = sharedPreferences.getString(key, getString(R.string.unavailable));
-                            MainActivity mainActivity = (MainActivity) requireActivity();
-                            mainActivity.notifySlotUpdate(key, updatedValue);
-                        }
-                    });
         }
 
         private void initializePreferenceFromFile(String key, String fileName, String fallbackValue) {
@@ -73,12 +62,16 @@ public class SettingsActivity extends AppCompatActivity {
             String currentValue = sharedPreferences.getString(key, null);
 
             if (currentValue == null) {
-                // Read from file and initialize
+                // Read from the file
                 String fileValue = readValueFromFile(fileName);
+
+                // Determine the value to set
                 String valueToSet = (fileValue == null || fileValue.trim().isEmpty()) ? fallbackValue : fileValue;
+
+                // Save to SharedPreferences
                 sharedPreferences.edit().putString(key, valueToSet).apply();
 
-                // Update preference UI
+                // Update UI
                 EditTextPreference preference = findPreference(key);
                 if (preference != null) {
                     preference.setText(valueToSet);

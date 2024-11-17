@@ -175,32 +175,32 @@ public class MainActivity extends AppCompatActivity {
         statusCardView.setSummaryText(textToDisplay);
     }
 
-    public void updateSlotCardView(int cardViewId, String preferenceKey) {
+    private void updateSlotCardView(int cardViewId, String preferenceKey) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        // Read the value directly from preferences
+        // Get the value from SharedPreferences
         String slotValue = sharedPreferences.getString(preferenceKey, getString(R.string.unavailable));
 
-        // Update the CardView text
+        // Update the CardView with the slot value
         CardView slotCardView = findViewById(cardViewId);
         if (slotCardView != null) {
             slotCardView.setSummaryText(slotValue);
         }
     }
 
-    public void notifySlotUpdate(String preferenceKey, String updatedValue) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        // Update the preference value
-        sharedPreferences.edit().putString(preferenceKey, updatedValue).apply();
-
-        // Update the corresponding card view
-        if ("slotakey".equals(preferenceKey)) {
-            updateSlotCardView(R.id.slota_txt, preferenceKey);
-        } else if ("slotbkey".equals(preferenceKey)) {
-            updateSlotCardView(R.id.slotb_txt, preferenceKey);
-        }
-    }
+//    public void notifySlotUpdate(String preferenceKey, String updatedValue) {
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//
+//        // Update the preference value
+//        sharedPreferences.edit().putString(preferenceKey, updatedValue).apply();
+//
+//        // Update the corresponding card view
+//        if ("slotakey".equals(preferenceKey)) {
+//            updateSlotCardView(R.id.slota_txt, preferenceKey);
+//        } else if ("slotbkey".equals(preferenceKey)) {
+//            updateSlotCardView(R.id.slotb_txt, preferenceKey);
+//        }
+//    }
 
     private void setupCardViewWithConfirmation(int cardViewId, int promptResId, String scriptFile) {
         CardView cardView = findViewById(cardViewId);

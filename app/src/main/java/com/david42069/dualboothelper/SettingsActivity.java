@@ -76,12 +76,6 @@ public class SettingsActivity extends AppCompatActivity {
                     defaultValue = getString(R.string.unavailable);
                 }
                 sharedPreferences.edit().putString(key, defaultValue).apply();
-
-                // Update the displayed preference summary
-                Preference preference = findPreference(key);
-                if (preference != null) {
-                    preference.setSummary(defaultValue);
-                }
             }
         }
 

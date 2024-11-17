@@ -17,4 +17,14 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory>
+        <PreferenceScreen
+            android:key="about_app"
+            android:title="@string/about">
+            <intent
+                android:targetClass="com.david42069.dualboothelper.AboutActivity"
+                android:targetPackage="com.david42069.dualboothelper" />
+        </PreferenceScreen>
+    </PreferenceCategory>
+
 </PreferenceScreen>

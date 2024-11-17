@@ -94,16 +94,13 @@ public class MainActivity extends AppCompatActivity {
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
         updateStatusCardView();
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        // Ensure preferences are initialized with file values on first launch
+        initializePreferencesFromFile();
 
-        // Initialize slots with shared preferences or fallback to "unavailable"
-        String slotAValue = sharedPreferences.getString("slotakey", getString(R.string.unavailable));
-        updateSlotCardView(R.id.slota_txt, PreferenceManager.getDefaultSharedPreferences(this).getString("slotakey", getString(R.string.unavailable)));
 
-        String slotBValue = sharedPreferences.getString("slotbkey", getString(R.string.unavailable));
-        updateSlotCardView(R.id.slotb_txt, PreferenceManager.getDefaultSharedPreferences(this).getString("slotbkey", getString(R.string.unavailable)));
-        // Register listener for live updates
-        registerPreferenceChangeListener();
+        // Update UI with the latest values
+        updateSlotCardView(R.id.slota_txt, getPreferenceValue("slotakey", getString(R.string.unavailable)));
+        updateSlotCardView(R.id.slotb_txt, getPreferenceValue("slotbkey", getString(R.string.unavailable)));
 
         setupCardViewWithConfirmation(R.id.reboot_a, R.string.reboot_a, "R.raw.switcha");
         setupCardViewWithConfirmation(R.id.reboot_b, R.string.reboot_b, "R.raw.switchb");
@@ -111,6 +108,40 @@ public class MainActivity extends AppCompatActivity {
         setupCardViewWithConfirmation(R.id.rec_b, R.string.recovery_b, "R.raw.switchbr");
         setupCardViewWithConfirmation(R.id.bootloader, R.string.dl_mode, "R.raw.download");
         setupCardViewWithConfirmation(R.id.poweroff, R.string.poweroff, "R.raw.shutdown");
+    }
+
+    // Helper function to read preference value with fallback
+    private String getPreferenceValue(String key, String fallback) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return sharedPreferences.getString(key, fallback);
+    }
+
+    // Initialize preferences from file on first launch
+    private void initializePreferencesFromFile() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if (!sharedPreferences.contains("slotakey")) {
+            String slotAValue = readValueFromFile("slota.txt");
+            sharedPreferences.edit().putString("slotakey", slotAValue != null ? slotAValue : getString(R.string.unavailable)).apply();
+        }
+
+        if (!sharedPreferences.contains("slotbkey")) {
+            String slotBValue = readValueFromFile("slotb.txt");
+            sharedPreferences.edit().putString("slotbkey", slotBValue != null ? slotBValue : getString(R.string.unavailable)).apply();
+        }
+    }
+
+    // Read a value from a file
+    private String readValueFromFile(String fileName) {
+        File file = new File(getFilesDir(), fileName);
+        if (file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                return reader.readLine();
+            } catch (IOException e) {
+                Log.e("MainActivity", "Error reading file: " + fileName, e);
+            }
+        }
+        return null;
     }
 
     private void registerPreferenceChangeListener() {

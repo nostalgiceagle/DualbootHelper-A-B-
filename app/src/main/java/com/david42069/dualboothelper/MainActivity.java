@@ -36,6 +36,9 @@ import dev.oneuiproject.oneui.widget.CardView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
+
     private static String getStatusFilePath(Context context) {
         return new File(context.getFilesDir(), "status.txt").getPath();
     }
@@ -67,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
         String slotBValue = sharedPreferences.getString("slotbkey", getString(R.string.unavailable));
         updateSlotCardView(R.id.slotb_txt, slotBValue);
+        // Register listener for live updates
+        registerPreferenceChangeListener();
 
         setupCardViewWithConfirmation(R.id.reboot_a, R.string.reboot_a, "R.raw.switcha");
         setupCardViewWithConfirmation(R.id.reboot_b, R.string.reboot_b, "R.raw.switchb");
@@ -74,6 +79,20 @@ public class MainActivity extends AppCompatActivity {
         setupCardViewWithConfirmation(R.id.rec_b, R.string.recovery_b, "R.raw.switchbr");
         setupCardViewWithConfirmation(R.id.bootloader, R.string.dl_mode, "R.raw.download");
         setupCardViewWithConfirmation(R.id.poweroff, R.string.poweroff, "R.raw.shutdown");
+    }
+
+    private void registerPreferenceChangeListener() {
+        preferenceChangeListener = (sharedPreferences, key) -> {
+            if ("slotakey".equals(key)) {
+                String updatedValue = sharedPreferences.getString(key, getString(R.string.unavailable));
+                updateSlotCardView(R.id.slota_txt, updatedValue);
+            } else if ("slotbkey".equals(key)) {
+                String updatedValue = sharedPreferences.getString(key, getString(R.string.unavailable));
+                updateSlotCardView(R.id.slotb_txt, updatedValue);
+            }
+        };
+
+        sharedPreferences.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
     }
 
     private void deleteFilesIfExist() {
@@ -261,5 +280,14 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Unregister listener to prevent memory leaks
+        if (preferenceChangeListener != null) {
+            sharedPreferences.unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
+        }
     }
 }

@@ -340,16 +340,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_settings) {
-            ActivityUtils.startPopOverActivity(this,
-                    new Intent(this, SettingsActivity.class),
-                    null,
-                    ActivityUtils.POP_OVER_POSITION_RIGHT | ActivityUtils.POP_OVER_POSITION_TOP);
-            return true;
+        switch (item.getItemId()) {
+            case R.id.menu_settings:
+                // Navigate to Settings Activity
+                ActivityUtils.startPopOverActivity(this,
+                        new Intent(this, SettingsActivity.class),
+                        null,
+                        ActivityUtils.POP_OVER_POSITION_RIGHT | ActivityUtils.POP_OVER_POSITION_TOP);
+                return true;
+            case R.id.about_app:
+                // Navigate to About Activity
+                ActivityUtils.startPopOverActivity(this,
+                        new Intent(this, AboutActivity.class),
+                        null,
+                        ActivityUtils.POP_OVER_POSITION_RIGHT | ActivityUtils.POP_OVER_POSITION_TOP);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return false;
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -23,7 +23,7 @@
             android:background="@color/oui_background_color"
             android:orientation="vertical">
 
-            <dev.oneuiproject.oneui.widget.ui.widget.CardView
+            <dev.oneuiproject.oneui.widget.CardView
                 android:id="@+id/about_bottom_dev_david"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
                 app:TitleText="David42069"
                 app:SummaryText="@string/david_desc" />
 
-            <dev.oneuiproject.oneui.widget.ui.widget.CardView
+            <dev.oneuiproject.oneui.widget.CardView
                 android:id="@+id/about_bottom_dev_bob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,14 +53,14 @@
             android:background="@color/oui_background_color"
             android:orientation="vertical">
 
-            <dev.oneuiproject.oneui.widget.ui.widget.CardView
+            <dev.oneuiproject.oneui.widget.CardView
                 android:id="@+id/about_bottom_dev_yann"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:IconDrawable="@drawable/about_page_avatar_yann"
                 app:TitleText="Yanndroid" />
 
-            <dev.oneuiproject.oneui.widget.ui.widget.CardView
+            <dev.oneuiproject.oneui.widget.CardView
                 android:id="@+id/about_bottom_dev_salvo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,14 +82,14 @@
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
-        <dev.oneuiproject.oneui.widget.ui.widget.CardView
+        <dev.oneuiproject.oneui.widget.CardView
             android:id="@+id/about_bottom_gnu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:TitleText="@string/gnu_lic"
             app:SummaryText="DualbootHelper" />
 
-        <dev.oneuiproject.oneui.widget.ui.widget.CardView
+        <dev.oneuiproject.oneui.widget.CardView
             android:id="@+id/about_bottom_oss_apache"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
             app:SummaryText="androidx  •  material-components  •  lottie"
             app:isDividerViewVisible="true" />
 
-        <dev.oneuiproject.oneui.widget.ui.widget.CardView
+        <dev.oneuiproject.oneui.widget.CardView
             android:id="@+id/about_bottom_oss_mit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -106,6 +106,22 @@
             app:isDividerViewVisible="true" />
 
     </dev.oneuiproject.oneui.widget.RoundLinearLayout>
+
+        <dev.oneuiproject.oneui.widget.RoundLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/oui_background_color"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <dev.oneuiproject.oneui.widget.CardView
+                android:id="@+id/about_translate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:TitleText="@string/translation"
+                app:SummaryText="Crowdin" />
+
+        </dev.oneuiproject.oneui.widget.RoundLinearLayout>
 
         <dev.oneuiproject.oneui.widget.RelatedCard
             android:layout_width="match_parent"

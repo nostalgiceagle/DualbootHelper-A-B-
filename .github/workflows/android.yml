@@ -7,7 +7,7 @@ on:
       - simple-design
       - libsu-simple-design
       - bomb
-      - fixes
+      - preferences
 
   pull_request:
     branches: [ "main" ]

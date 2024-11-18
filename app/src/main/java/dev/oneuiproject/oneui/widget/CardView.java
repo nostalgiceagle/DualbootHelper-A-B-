@@ -1,10 +1,9 @@
-package dev.oneuiproject.oneui.widget.ui.widget;
+package dev.oneuiproject.oneui.widget;
 
 // from OneUI Sample app. Credits to everyone who contributed in making the app.
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;

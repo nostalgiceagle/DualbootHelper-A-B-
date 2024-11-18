@@ -5,30 +5,22 @@ package com.david42069.dualboothelper;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.TooltipCompat;
 
 import com.google.android.material.appbar.AppBarLayout;
-import com.david42069.dualboothelper.BuildConfig;
-import com.david42069.dualboothelper.R;
 import com.david42069.dualboothelper.databinding.ActivityAboutBinding;
 import com.david42069.dualboothelper.databinding.ActivityAboutContentBinding;
 
@@ -165,6 +157,7 @@ public class AboutActivity extends AppCompatActivity
         mBottomContent.aboutBottomOssMit.setOnClickListener(this);
         mBottomContent.aboutDonate.setOnClickListener(this);
         mBottomContent.aboutXda.setOnClickListener(this);
+        mBottomContent.aboutTranslate.setOnClickListener(this);
 
         mBottomContent.aboutBottomRelativeOuip.setOnClickListener(this);
     }
@@ -181,6 +174,7 @@ public class AboutActivity extends AppCompatActivity
         mBottomContent.aboutBottomOssMit.setEnabled(enabled);
         mBottomContent.aboutDonate.setEnabled(enabled);
         mBottomContent.aboutXda.setEnabled(enabled);
+        mBottomContent.aboutTranslate.setEnabled(enabled);
         mBottomContent.aboutBottomRelativeOuip.setEnabled(enabled);
     }
 
@@ -211,6 +205,8 @@ public class AboutActivity extends AppCompatActivity
                 url = "https://www.paypal.com/donate/?hosted_button_id=3DTX9DHNH2WYC";
             } else if (v.getId() == mBottomContent.aboutXda.getId()) {
                 url = "https://xdaforums.com/t/mod-dualboot-for-any-samsung.4680492";
+            } else if (v.getId() == mBottomContent.aboutTranslate.getId()) {
+                url = "https://crowdin.com/project/dualboothelper";
             } else if (v.getId() == mBottomContent.aboutBottomRelativeOuip.getId()) {
                 url = "https://github.com/OneUIProject";
             }

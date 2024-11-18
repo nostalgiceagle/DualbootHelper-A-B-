@@ -87,7 +87,7 @@ dependencies {
     implementation 'io.github.oneuiproject.sesl:picker-basic:1.2.0'
     implementation 'io.github.oneuiproject.sesl:picker-color:1.1.0'
     implementation 'com.airbnb.android:lottie:5.2.0'
-    /*TODO: add/update/remove libraries*/
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
 }
 
 dependencies {

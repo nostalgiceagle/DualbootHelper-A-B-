@@ -1,42 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <!-- Basic title and desc -->
   <string name="app_name">Dualboot Helper</string>
-  <string name="description">Một ứng dụng hỗ trợ cho giải pháp khởi động kép</string>
-  <string name="info">Thông tin</string>
-  <string name="dbinf">Thông tin Dualboot</string>
-  <string name="slota_os">Hệ điều hành ở khu A:</string>
-  <string name="slotb_os">Hệ điều hành ở khu B:</string>
-  <string name="qact">Hành động nhanh</string>
-  <string name="reboot_a">Khởi động lại sang khu A</string>
-  <string name="reboot_b">Khởi động lại sang khu B</string>
-  <string name="recovery_a">Khởi động lại sang chế độ Phục hồi khu A</string>
-  <string name="recovery_b">Khởi động lại sang chế độ Phục hồi khu B</string>
-  <string name="dl_mode">Khởi động lại vào Download Mode</string>
-  <string name="poweroff">Tắt hệ thống</string>
-  <string name="dialog_confirm">Bạn có chắc không?</string>
-  <string name="dialog_yes">Có</string>
-  <string name="dialog_no">Không</string>
-  <string name="db_dev">Nhà phát triển Dualboot Helper</string>
-  <string name="david_desc">Người sáng lập Dualboot cho Samsung</string>
-  <string name="bob_desc">Đã thiết kế ứng dụng này theo phong cách OneUI</string>
-  <string name="ouip_team">Đội dự án OneUI</string>
-  <string name="os_lic">Giấy phép mã nguồn mở</string>
-  <string name="gnu_lic">Giấy phép GNU</string>
-  <string name="apache_lic">Giấy phép Apache 2.0</string>
-  <string name="mit_lic">Giấy phép MIT</string>
-  <string name="links">Liên kết hữu ích</string>
-  <string name="donate">Ủng hộ tôi!</string>
-  <string name="xda_post">Bài đăng trên XDA</string>
-  <string name="reboot_wait">Đang khởi động lại. Vui lòng đợi...</string>
-  <string name="not_installed">- Not installed</string>
-  <string name="installed_v5">- Installed (V5)</string>
-  <string name="installed_v4">- Installed (V4)</string>
-  <string name="unavailable">Unavailable</string>
-  <string name="super_partition">- Device uses super partition</string>
-  <string name="normal_naming">- Device uses normal naming partitions</string>
-  <string name="caps_naming">- Device uses caps naming partitions</string>
-  <string name="ufs_sda">- Device uses UFS (sda)</string>
-  <string name="emmc_sdc">- Device uses EMMC (sdc)</string>
-  <string name="sudo_access">Please grant superuser access to gather info about the device</string>
-  <string name="emmc_mmcblk0">- Device uses EMMC (mmcblk0)</string>
+  <string name="description">Aplikasi pembantu dualboot</string>
+  <string name="settings">Pengaturan</string>
+  <string name="about">Tentang aplikasi</string>
+  <string name="translation">Bantu kami terjemahkan aplikasi ini!</string>
+
+  <!-- Information layout strings -->
+  <string name="info">Informasi</string>
+  <!-- Placeholder info strings -->
+  <string name="dbinf">Status</string>
+  <string name="slota_os">OS di Slot A</string>
+  <string name="slotb_os">OS di Slot B</string>
+  <!-- Collected info strings -->
+  <string name="not_installed">Tidak terpasang</string>
+  <string name="installed_v5">Terpasang (V5)</string>
+  <string name="installed_v4">Terpasang (V4)</string>
+  <string name="unavailable">Tidak tersedia</string>
+  <string name="super_partition">Perangkat menggunakan partisi super</string>
+  <string name="normal_naming">Perangkat menggunakan partisi dengan penamaan normal</string>
+  <string name="caps_naming">Perangkat menggunakan penamaan partisi dengan huruf kapital</string>
+  <string name="ufs_sda">Perangkat menggunakan UFS (sda)</string>
+  <string name="emmc_sdc">Perangkat menggunakan EMMC (sdc)</string>
+  <string name="emmc_mmcblk0">Perangkat menggunakan EMMC (mmcblk0)</string>
+  <string name="sudo_access">Mohon berikan izin superuser untuk mendapatkan info perangkat</string>
+  <string name="sudo_access_title">Tidak ada akses SU, Apakah anda sudah memiliki akses root?</string>
+
+  <!-- Quick action layout strings -->
+  <string name="qact">Tindakan cepat</string>
+  <string name="slota_qact">Tindakan Slot A</string>
+  <string name="slota_description">Tindakan untuk Slot A</string>
+  <string name="slotb_qact">Tindakan Slot B</string>
+  <string name="slotb_description">Tindakan untuk Slot B</string>
+  <string name="slota_placeholder">Mulai ulang ke Slot A, Recovery A</string>
+  <string name="slotb_placeholder">Mulai ulang ke Slot B, Recovery B</string>
+  <string name="misc_qact">Tindakan lainnya</string>
+  <string name="misc_description">Tindakan lainnya yang tersedia</string>
+  <string name="misc_placeholder">Mulai ulang ke Download Mode, Power off system</string>
+  <!-- Buttons strings -->
+  <string name="reboot_a">Mulai ulang ke Slot A</string>
+  <string name="reboot_b">Mulai ulang ke Slot B</string>
+  <string name="recovery_a">Mulai ulang ke Recovery a A</string>
+  <string name="recovery_b">Mulai ulang ke Recovery Slot B</string>
+  <string name="dl_mode">Mulai ulang ke Download mode</string>
+  <string name="poweroff">Matikan daya sistem</string>
+
+  <!-- Dialog strings -->
+  <string name="dialog_confirm_title">Konfirmasi</string>
+  <string name="dialog_confirm">Apakah anda yakin?</string>
+  <string name="dialog_yes">Ya</string>
+  <string name="dialog_no">Tidak</string>
+  <string name="dialog_ok">Oke</string>
+  <string name="reboot_wait">Memulai ulang, mohon tunggu...</string>
+
+  <!-- About strings -->
+  <!-- Team DB -->
+  <string name="db_dev">Developer utama</string>
+  <!-- Our descriptions -->
+  <string name="david_desc">Pencipta dualboot untuk Samsung</string>
+  <string name="bob_desc">Membuat aplikasi ini dengan gaya OneUI</string>
+  <!-- Team OUIP -->
+  <string name="ouip_team">Tim Proyek OneUI</string>
+  <!-- License strings -->
+  <string name="os_lic">Lisensi sumber terbuka</string>
+  <string name="gnu_lic">Lisensi GNU</string>
+  <string name="apache_lic">Lisensi Apache 2.0</string>
+  <string name="mit_lic">Lisensi MIT</string>
+
+  <!-- Links strings-->
+  <string name="links">Tautan berguna</string>
+  <string name="donate">Donasikan kepadaku!</string>
+  <string name="xda_post">Halaman XEA</string>
+
+  <!-- Preferences strings-->
+  <string name="slota_settings">Nama Slot A</string>
+  <string name="slotb_settings">Nama Slot B</string>
 </resources>

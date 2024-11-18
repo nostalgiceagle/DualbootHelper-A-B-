@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <PreferenceCategory
         android:title="General">
 
@@ -16,15 +15,4 @@
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
-
-    <PreferenceCategory>
-        <PreferenceScreen
-            android:key="about_app"
-            android:title="@string/about">
-            <intent
-                android:targetClass="com.david42069.dualboothelper.AboutActivity"
-                android:targetPackage="com.david42069.dualboothelper" />
-        </PreferenceScreen>
-    </PreferenceCategory>
-
 </PreferenceScreen>

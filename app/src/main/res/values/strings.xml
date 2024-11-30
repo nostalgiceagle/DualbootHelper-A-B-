@@ -75,4 +75,5 @@
     <!-- Preferences strings-->
     <string name="slota_settings">Slot A name</string>
     <string name="slotb_settings">Slot B name</string>
+    <string name="add_db_options_to_twrp">Add Dualboot sections to TWRP</string>
 </resources>

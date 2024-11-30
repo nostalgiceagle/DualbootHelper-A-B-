@@ -15,4 +15,12 @@
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="General">
+            <SwitchPreferenceCompat
+            android:key="twrp_theme"
+            android:title="@string/add_db_options_to_twrp"
+            android:defaultValue="false" />
+    </PreferenceCategory>
 </PreferenceScreen>

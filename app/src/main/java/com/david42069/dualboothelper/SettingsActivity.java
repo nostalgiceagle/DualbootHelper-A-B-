@@ -71,6 +71,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             // Find the SwitchPreferenceCompat by key
             SwitchPreferenceCompat switchPreference = findPreference("twrp_theme");
+
             if (switchPreference != null) {
                 // Check for root access before enabling the switch
                 Shell.getShell(shell -> {
@@ -91,25 +92,39 @@ public class SettingsActivity extends AppCompatActivity {
                 });
 
                 // Set the onPreferenceChangeListener
-                switchPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                    @Override
-                    public boolean onPreferenceChange(Preference preference, Object newValue) {
-                        boolean isEnabled = (boolean) newValue;
+                switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                    boolean isEnabled = (boolean) newValue;
 
-
-                        if (isEnabled) {
-                            executeShellCommand("R.raw.twrpon");
-                        } else {
-                            File folder = new File("/sdcard/TWRP/theme");
-                                 if (folder.exists()) {
-                                       Shell.cmd("rm -rf /sdcard/TWRP/theme").exec();
+                    if (isEnabled) {
+                        Shell.getShell(shell -> {
+                            executorService.execute(() -> {
+                                Shell.Result result = Shell.cmd(getResources().openRawResource(R.raw.twrpon)).exec();
+                                if (!result.isSuccess()) {
+                                    Log.e("ShellCommand", "Failed to execute theme enable script: " + result.getErr());
                                 } else {
-                        Log.e("ShellCommand", "Directory does not exist.");
+                                    Log.i("ShellCommand", "Theme enabled successfully.");
+                                }
+                            });
+                        });
+                    } else {
+                        File folder = new File("/sdcard/TWRP/theme");
+                        if (folder.exists()) {
+                            Shell.getShell(shell -> {
+                                executorService.execute(() -> {
+                                    Shell.Result result = Shell.cmd("rm -rf /sdcard/TWRP/theme").exec();
+                                    if (!result.isSuccess()) {
+                                        Log.e("ShellCommand", "Failed to remove directory: " + result.getErr());
+                                    } else {
+                                        Log.i("ShellCommand", "Directory removed successfully.");
+                                    }
+                                });
+                            });
+                        } else {
+                            Log.e("ShellCommand", "Directory does not exist.");
                         }
-                        }
-
-                        return true;
                     }
+
+                    return true;
                 });
             }
         }

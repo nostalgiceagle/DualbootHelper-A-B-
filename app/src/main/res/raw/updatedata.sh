@@ -25,11 +25,12 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 DATA_PATH=$(dumpsys package com.david42069.dualboothelper | grep -i dataDir | cut -d'=' -f2-)
+DB_PATH="/cache/dualboot/database"
 PARTED_PATH="$DATA_PATH/files/parted"
 JQ_PATH="$DATA_PATH/files/jq"
 chmod 755 $DATA_PATH/files/*
 none=0
-mkdir -p /cache/dualboot/database/
+mkdir -p $DB_PATH
 #use path according if device uses EMMC/EMMC5/UFS
 use_caps=0 
 failsafe=0 
@@ -106,11 +107,11 @@ userdata_b_num=$(echo "$output" | $JQ_PATH -r '.disk.partitions[] | select(.name
 userdata_a_num=$(echo "$output" | $JQ_PATH -r '.disk.partitions[] | select(.name == "'"$userdata_a_name"'") | .number')
 efs_b_num=$(echo "$output" | $JQ_PATH -r '.disk.partitions[] | select(.name == "'"$efs_b_name"'") | .number')
 BUILD_NUMBER=$(getprop ro.build.display.id)
-if [[ "$userdata_b_num" -eq 0 ]] 
+if [[ "$userdata_b_num" -eq 0 ]]
 then
 echo -e "##NOT_INSTALLED##" > "$DATA_PATH/files/status.txt"
-echo "$BUILD_NUMBER" > "$DATA_PATH/files/slota.txt"
-echo "##UNAVAILABLE##" > $DATA_PATH/files/slotb.txt
+echo "$BUILD_NUMBER" > "$DB_PATH/slota.txt"
+echo "##UNAVAILABLE##" > "$DB_PATH/slotb.txt"
 else
 if [[ "$efs_b_num" -ne 0 ]] 
 then
@@ -151,13 +152,13 @@ fi
 
 if [[ "$userdata_a_num" -lt "$userdata_b_num" ]]
 then
-echo "$BUILD_NUMBER" > "$DATA_PATH/files/slota.txt"
+echo "$BUILD_NUMBER" > "$DB_PATH/slota.txt"
 else
 if [[ "$userdata_b_num" -eq 0 ]]
 then
-echo "##UNAVAILABLE##" > $DATA_PATH/files/slotb.txt
+echo "##UNAVAILABLE##" > "$DB_PATH/slotb.txt"
 else
-echo "$BUILD_NUMBER" > "$DATA_PATH/files/slotb.txt"
+echo "$BUILD_NUMBER" > "$DB_PATH/slotb.txt"
 fi
 fi
 

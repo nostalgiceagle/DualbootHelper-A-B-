@@ -92,13 +92,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Shell.getShell(shell -> {});
+        ToolbarLayout toolbarLayout = findViewById(R.id.home);
         deleteFilesIfExist();
+        updateStatusCardView();
         cp(R.raw.parted, "parted");
         cp(R.raw.jq, "jq");
         cp(R.raw.slotatwrp, "slota.zip");
         cp(R.raw.slotbtwrp, "slotb.zip");
-        ToolbarLayout toolbarLayout = findViewById(R.id.home);
-        updateStatusCardView();
 
         // Ensure preferences are initialized with file values on first launch
         initializePreferencesFromFile();

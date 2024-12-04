@@ -72,6 +72,24 @@ public class SettingsActivity extends AppCompatActivity {
             // Find the SwitchPreferenceCompat by key
             SwitchPreferenceCompat switchPreference = findPreference("twrp_theme");
             if (switchPreference != null) {
+                // Check for root access before enabling the switch
+                Shell.getShell(shell -> {
+                    executorService.execute(() -> {
+                        Shell.Result result = Shell.cmd("id -u").exec();
+                        requireActivity().runOnUiThread(() -> {
+                            if (result.getCode() != 0) { // Root access not available
+                                Log.e("SettingsFragment", "Root access not found. Disabling theme switch.");
+                                switchPreference.setEnabled(false); // Grey out the switch
+                                switchPreference.setSummary(getString(R.string.sudo_access)); // Optional: Inform user
+                            } else {
+                                Log.i("SettingsFragment", "Root access available. Enabling theme switch.");
+                                switchPreference.setEnabled(true);
+                                switchPreference.setSummary(""); // Clear any disabled summary if previously set
+                            }
+                        });
+                    });
+                });
+
                 // Set the onPreferenceChangeListener
                 switchPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                     @Override

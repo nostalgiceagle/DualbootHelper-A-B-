@@ -95,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
         deleteFilesIfExist();
         cp(R.raw.parted, "parted");
         cp(R.raw.jq, "jq");
+        cp(R.raw.slotatwrp, "slota.zip");
+        cp(R.raw.slotbtwrp, "slotb.zip");
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
         updateStatusCardView();
 

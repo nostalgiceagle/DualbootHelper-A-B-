@@ -11,12 +11,10 @@ import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import androidx.preference.EditTextPreference;
 import androidx.appcompat.app.AlertDialog;
@@ -24,6 +22,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
+import androidx.preference.SwitchPreferenceCompat;
+import com.topjohnwu.superuser.Shell;
 
 import dev.oneuiproject.oneui.layout.ToolbarLayout;
 
@@ -32,9 +32,12 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings); // A layout that hosts the fragment
+        setContentView(R.layout.activity_settings);
         ToolbarLayout toolbarLayout = findViewById(R.id.settings);
         toolbarLayout.setNavigationButtonAsBack();
+        // I suspect that you forget to add this
+        Shell.getShell(shell -> {});
+
         // Load the preferences fragment
         getSupportFragmentManager()
                 .beginTransaction()
@@ -64,8 +67,33 @@ public class SettingsActivity extends AppCompatActivity {
             setPreferencesFromResource(R.xml.preferences_activity, rootKey);
 
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
-
             registerPreferenceChangeListener();
+
+            // Find the SwitchPreferenceCompat by key
+            SwitchPreferenceCompat switchPreference = findPreference("twrp_theme");
+            if (switchPreference != null) {
+                // Set the onPreferenceChangeListener
+                switchPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object newValue) {
+                        boolean isEnabled = (boolean) newValue;
+
+
+                        if (isEnabled) {
+                            executeShellCommand("R.raw.twrpon");
+                        } else {
+                            File folder = new File("/sdcard/TWRP/theme");
+                                 if (folder.exists()) {
+                                       Shell.cmd("rm -rf /sdcard/TWRP/theme").exec();
+                                } else {
+                        Log.e("ShellCommand", "Directory does not exist.");
+                        }
+                        }
+
+                        return true;
+                    }
+                });
+            }
         }
 
         private void registerPreferenceChangeListener() {
@@ -89,7 +117,7 @@ public class SettingsActivity extends AppCompatActivity {
                 sharedPreferences.edit().putString(key, defaultValue).apply();
             }
         }
-
+        private final ExecutorService executorService = Executors.newSingleThreadExecutor();
         private String readValueFromFile(String fileName) {
             File file = new File(requireContext().getFilesDir(), fileName);
             if (file.exists()) {
@@ -101,5 +129,16 @@ public class SettingsActivity extends AppCompatActivity {
             }
             return null;
         }
+    private void executeShellCommand(String scriptFile) {
+        executorService.execute(() -> {
+            try {
+                // Run the shell command in a background thread
+                Context context = requireContext();
+                Shell.cmd(getResources().openRawResource(getResources().getIdentifier(scriptFile.replace("R.raw.", ""), "raw", context.getPackageName()))).exec();
+            } catch (Exception e) {
+                Log.e("MainActivity", "Error executing shell command", e);
+            }
+        });
+    }
     }
 }

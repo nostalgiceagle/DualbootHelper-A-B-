@@ -17,10 +17,11 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="General">
+        android:title="Recovery options">
             <SwitchPreferenceCompat
             android:key="twrp_theme"
             android:title="@string/add_db_options_to_twrp"
+             android:summary="Requires TWRP 3.5+ and disabled data encryption"
             android:defaultValue="false" />
     </PreferenceCategory>
 </PreferenceScreen>

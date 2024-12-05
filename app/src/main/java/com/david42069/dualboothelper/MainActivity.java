@@ -127,11 +127,11 @@ public class MainActivity extends AppCompatActivity {
         mLoadingDialog.setCancelable(false);
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         Handler mainHandler = new Handler(Looper.getMainLooper());
+        mLoadingDialog.show(); // Show loading dialog
         executorService.execute(() -> {
             try {
-                Shell.getShell(shell -> {});
-                mLoadingDialog.show(); // Show loading dialog
                 RootChecker.checkRoot();
+                Shell.getShell(shell -> {});
                 // Check root
                 if (RootChecker.isRootAvailable()) {
                     Shell.getShell(shell -> {});

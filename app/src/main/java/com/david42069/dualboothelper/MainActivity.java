@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
+        setContentView(R.layout.activity_main);
         mLoadingDialog = new ProgressDialog(this);
         mLoadingDialog.setProgressStyle(ProgressDialog.STYLE_CIRCLE);
         mLoadingDialog.setCancelable(false);
@@ -130,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
             try {
                 Shell.getShell(shell -> {});
                 mLoadingDialog.show(); // Show loading dialog
-                setContentView(R.layout.activity_main);
                 RootChecker.checkRoot();
                 // Check root
                 if (RootChecker.isRootAvailable()) {

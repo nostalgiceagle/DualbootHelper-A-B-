@@ -158,3 +158,5 @@ fi
 fi
 
 cp -a $DB_PATH/* "$DATA_PATH/files"
+
+exit 0

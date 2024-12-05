@@ -125,3 +125,4 @@ mkdir -p /sdcard/TWRP/theme/
 unzip $DATA_PATH/files/slotb.zip -d /sdcard/TWRP/theme
 fi
 
+exit 0

@@ -107,7 +107,12 @@ public class SettingsActivity extends AppCompatActivity {
                         executorService.execute(() -> {
                             try {
                                 // Run the shell command in a background thread
-                                Shell.cmd(getResources().openRawResource(R.raw.twrpon)).exec();
+                                Shell.Result result = Shell.cmd(getResources().openRawResource(R.raw.twrpon)).exec();
+                                if (!result.isSuccess()) {
+                                    Log.e("MainActivity", "Error executing shell command");
+                                } else {
+                                    Log.i("MainActivity", "Shell command executed successfully");
+                                }
                             } catch (Exception e) {
                                 Log.e("MainActivity", "Error executing shell command", e);
                             } finally {

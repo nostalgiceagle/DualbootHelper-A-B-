@@ -2,12 +2,15 @@ package com.david42069.dualboothelper;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import dev.oneuiproject.oneui.dialog.ProgressDialog;
 import dev.oneuiproject.oneui.layout.ToolbarLayout;
 import dev.oneuiproject.oneui.utils.ActivityUtils;
 import java.util.concurrent.ExecutorService;
@@ -112,42 +115,58 @@ public class MainActivity extends AppCompatActivity {
         return new File(context.getFilesDir(), "slotb.txt").getPath();
     }
 
+    private ProgressDialog mLoadingDialog;private static Handler mainHandler = new Handler(Looper.getMainLooper());
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RootChecker.checkRoot();
-        setContentView(R.layout.activity_main);
-        Shell.getShell(shell -> {});
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
-        // Check root
-        if (RootChecker.isRootAvailable()) {
-            Shell.getShell(shell -> {});
-            deleteFilesIfExist();
-            updateStatusCardView();
-            cp(R.raw.parted, "parted");
-            cp(R.raw.jq, "jq");
-            cp(R.raw.slotatwrp, "slota.zip");
-            cp(R.raw.slotbtwrp, "slotb.zip");
+        mLoadingDialog = new ProgressDialog(this);
+        mLoadingDialog.setProgressStyle(ProgressDialog.STYLE_CIRCLE);
+        mLoadingDialog.setCancelable(false);
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+        setContentView(R.layout.activity_main);
+        executorService.execute(() -> {
+            try {
+                Shell.getShell(shell -> {});
+                RootChecker.checkRoot();
+                // Check root
+                if (RootChecker.isRootAvailable()) {
+                    Shell.getShell(shell -> {});
+                    deleteFilesIfExist();
+                    updateStatusCardView();
+                    cp(R.raw.parted, "parted");
+                    cp(R.raw.jq, "jq");
+                    cp(R.raw.slotatwrp, "slota.zip");
+                    cp(R.raw.slotbtwrp, "slotb.zip");
 
-            // Ensure preferences are initialized with file values on first launch
-            initializePreferencesFromFile();
+                    // Ensure preferences are initialized with file values on first launch
+                    initializePreferencesFromFile();
 
 
-            // Update UI with the latest values
-            updateSlotCardView(R.id.slota_txt, getPreferenceValue("slotakey", getString(R.string.unavailable)));
-            updateSlotCardView(R.id.slotb_txt, getPreferenceValue("slotbkey", getString(R.string.unavailable)));
-        } else {
-            CardView statusCV = findViewById(R.id.status);
-            statusCV.setSummaryText(getString(R.string.sudo_access));
-            Log.e("MainActivity", "No root! Proceeding in safe mode" );
-        }
-        // Perform normal tasks
-        setupCardViewWithConfirmation(R.id.reboot_a, R.string.reboot_a, "R.raw.switcha");
-        setupCardViewWithConfirmation(R.id.reboot_b, R.string.reboot_b, "R.raw.switchb");
-        setupCardViewWithConfirmation(R.id.rec_a, R.string.recovery_a, "R.raw.switchar");
-        setupCardViewWithConfirmation(R.id.rec_b, R.string.recovery_b, "R.raw.switchbr");
-        setupCardViewWithConfirmation(R.id.bootloader, R.string.dl_mode, "R.raw.download");
-        setupCardViewWithConfirmation(R.id.poweroff, R.string.poweroff, "R.raw.shutdown");
+                    // Update UI with the latest values
+                    updateSlotCardView(R.id.slota_txt, getPreferenceValue("slotakey", getString(R.string.unavailable)));
+                    updateSlotCardView(R.id.slotb_txt, getPreferenceValue("slotbkey", getString(R.string.unavailable)));
+                } else {
+                    CardView statusCV = findViewById(R.id.status);
+                    statusCV.setSummaryText(getString(R.string.sudo_access));
+                    Log.e("MainActivity", "No root! Proceeding in safe mode" );
+                }
+                // Perform normal tasks
+                setupCardViewWithConfirmation(R.id.reboot_a, R.string.reboot_a, "R.raw.switcha");
+                setupCardViewWithConfirmation(R.id.reboot_b, R.string.reboot_b, "R.raw.switchb");
+                setupCardViewWithConfirmation(R.id.rec_a, R.string.recovery_a, "R.raw.switchar");
+                setupCardViewWithConfirmation(R.id.rec_b, R.string.recovery_b, "R.raw.switchbr");
+                setupCardViewWithConfirmation(R.id.bootloader, R.string.dl_mode, "R.raw.download");
+                setupCardViewWithConfirmation(R.id.poweroff, R.string.poweroff, "R.raw.shutdown");
+            } catch (Exception e) {
+                Log.e("MainActivity", "Error executing shell commands", e);
+            } finally {
+                // Dismiss loading dialog on the main thread
+                mainHandler.post(() -> mLoadingDialog.dismiss());
+            }
+        });
     }
 
     // Helper function to read preference value with fallback

@@ -118,11 +118,11 @@ if [ $userdata_a_num -gt $userdata_b_num ]
 then
 mkdir -p /sdcard/TWRP/theme/
 unzip $DATA_PATH/files/slota.zip -d /sdcard/TWRP/theme
+exit 0
 fi
 if [ $userdata_a_num -lt $userdata_b_num ]
 then
 mkdir -p /sdcard/TWRP/theme/
 unzip $DATA_PATH/files/slotb.zip -d /sdcard/TWRP/theme
-fi
-
 exit 0
+fi

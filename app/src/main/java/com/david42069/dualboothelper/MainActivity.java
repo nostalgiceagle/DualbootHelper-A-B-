@@ -121,16 +121,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
+        setContentView(R.layout.activity_main);
         mLoadingDialog = new ProgressDialog(this);
         mLoadingDialog.setProgressStyle(ProgressDialog.STYLE_CIRCLE);
         mLoadingDialog.setCancelable(false);
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         Handler mainHandler = new Handler(Looper.getMainLooper());
-        setContentView(R.layout.activity_main);
+        Shell.getShell(shell -> {});
         executorService.execute(() -> {
             try {
                 mLoadingDialog.show();
-                Shell.getShell(shell -> {});
                 RootChecker.checkRoot();
                 // Check root
                 if (RootChecker.isRootAvailable()) {

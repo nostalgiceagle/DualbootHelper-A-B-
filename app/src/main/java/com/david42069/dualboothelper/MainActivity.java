@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         executorService.execute(() -> {
             try {
+                mLoadingDialog.show();
                 Shell.getShell(shell -> {});
                 RootChecker.checkRoot();
                 // Check root

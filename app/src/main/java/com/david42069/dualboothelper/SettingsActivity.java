@@ -6,6 +6,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.util.Log;
 
@@ -25,11 +27,15 @@ import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreferenceCompat;
 import com.topjohnwu.superuser.Shell;
 
+import dev.oneuiproject.oneui.dialog.ProgressDialog;
 import dev.oneuiproject.oneui.layout.ToolbarLayout;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private static final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private static Handler mainHandler = new Handler(Looper.getMainLooper());
+
+    private ProgressDialog mLoadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,10 @@ public class SettingsActivity extends AppCompatActivity {
         toolbarLayout.setNavigationButtonAsBack();
         // I suspect that you forget to add this
         Shell.getShell(shell -> {});
+
+        mLoadingDialog = new ProgressDialog(this);
+        mLoadingDialog.setProgressStyle(ProgressDialog.STYLE_CIRCLE);
+        mLoadingDialog.setCancelable(false);
 
         // Load the preferences fragment
         getSupportFragmentManager()
@@ -87,23 +97,46 @@ public class SettingsActivity extends AppCompatActivity {
                 }
 
                 // Set the onPreferenceChangeListener
-                switchPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                    @Override
-                    public boolean onPreferenceChange(Preference preference, Object newValue) {
-                        boolean isEnabled = (boolean) newValue;
+                switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                    boolean isEnabled = (boolean) newValue;
 
-                        if (isEnabled) {
-                            executeShellCommand(R.raw.twrpon);
-                        } else {
-                            File folder = new File("/sdcard/TWRP/theme");
-                            if (folder.exists()) {
-                                Shell.cmd("rm -rf /sdcard/TWRP/theme").exec();
-                            } else {
-                                Log.e("ShellCommand", "Directory does not exist.");
+                    // Show loading dialog
+                    ((SettingsActivity) requireActivity()).mLoadingDialog.show();
+
+                    if (isEnabled) {
+                        executorService.execute(() -> {
+                            try {
+                                // Run the shell command in a background thread
+                                Shell.cmd(getResources().openRawResource(R.raw.twrpon)).exec();
+                            } catch (Exception e) {
+                                Log.e("MainActivity", "Error executing shell command", e);
+                            } finally {
+                                // Dismiss loading dialog on the main thread
+                                mainHandler.post(() -> ((SettingsActivity) requireActivity()).mLoadingDialog.dismiss());
                             }
+                        });
+                    } else {
+                        File folder = new File("/sdcard/TWRP/theme");
+                        if (folder.exists()) {
+                            executorService.execute(() -> {
+                                try {
+                                    // Run the shell command in a background thread
+                                    Shell.cmd("rm -rf /sdcard/TWRP/theme").exec();
+                                } catch (Exception e) {
+                                    Log.e("MainActivity", "Error executing shell command", e);
+                                } finally {
+                                    // Dismiss loading dialog on the main thread
+                                    mainHandler.post(() -> ((SettingsActivity) requireActivity()).mLoadingDialog.dismiss());
+                                }
+                            });
+                        } else {
+                            Log.e("ShellCommand", "Directory does not exist.");
+                            // Dismiss loading dialog on the main thread
+                            mainHandler.post(() -> ((SettingsActivity) requireActivity()).mLoadingDialog.dismiss());
                         }
-                        return true;
                     }
+
+                    return true;
                 });
             }
         }
@@ -128,18 +161,6 @@ public class SettingsActivity extends AppCompatActivity {
                 }
                 sharedPreferences.edit().putString(key, defaultValue).apply();
             }
-        }
-        private final ExecutorService executorService = Executors.newSingleThreadExecutor();
-
-        private void executeShellCommand(int scriptFile) {
-            executorService.execute(() -> {
-                try {
-                    // Run the shell command in a background thread
-                    Shell.cmd(getResources().openRawResource(scriptFile)).exec();
-                } catch (Exception e) {
-                    Log.e("MainActivity", "Error executing shell command", e);
-                }
-            });
         }
 
         private String readValueFromFile(String fileName) {

@@ -93,7 +93,7 @@ public class SettingsActivity extends AppCompatActivity {
                         boolean isEnabled = (boolean) newValue;
 
                         if (isEnabled) {
-                            Shell.cmd(getResources().openRawResource(R.raw.twrpon)).exec();
+                            executeShellCommand(R.raw.twrpon);
                         } else {
                             File folder = new File("/sdcard/TWRP/theme");
                             if (folder.exists()) {
@@ -130,6 +130,18 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
         private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+        private void executeShellCommand(int scriptFile) {
+            executorService.execute(() -> {
+                try {
+                    // Run the shell command in a background thread
+                    Shell.cmd(getResources().openRawResource(scriptFile)).exec();
+                } catch (Exception e) {
+                    Log.e("MainActivity", "Error executing shell command", e);
+                }
+            });
+        }
+
         private String readValueFromFile(String fileName) {
             File file = new File(requireContext().getFilesDir(), fileName);
             if (file.exists()) {

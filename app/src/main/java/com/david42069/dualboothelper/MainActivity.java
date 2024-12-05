@@ -137,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
             updateSlotCardView(R.id.slota_txt, getPreferenceValue("slotakey", getString(R.string.unavailable)));
             updateSlotCardView(R.id.slotb_txt, getPreferenceValue("slotbkey", getString(R.string.unavailable)));
         } else {
+            CardView statusCV = findViewById(R.id.status);
+            statusCV.setSummaryText(getString(R.string.sudo_access));
             Log.e("MainActivity", "No root! Proceeding in safe mode" );
         }
         // Perform normal tasks

@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory
-        android:title="General">
+        android:title="@string/general">
 
         <EditTextPreference
             android:key="slotakey"
@@ -17,7 +17,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Recovery options">
+        android:title="@string/rec_options">
             <SwitchPreferenceCompat
             android:key="twrp_theme"
             android:title="@string/add_db_options_to_twrp"

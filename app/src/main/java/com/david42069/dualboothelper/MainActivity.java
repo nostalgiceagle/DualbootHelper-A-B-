@@ -55,6 +55,31 @@ public class MainActivity extends AppCompatActivity {
         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
     }
 
+    public static class RootChecker {
+        private static boolean isRootAvailable = false;
+
+        public static boolean isRootAvailable() {
+            return isRootAvailable;
+        }
+
+        public static void checkRoot() {
+            // Check for root access
+            isRootAvailable = checkForRoot();
+        }
+
+        private static boolean checkForRoot() {
+            try {
+                // Execute the command to check for root access
+                String output = Shell.cmd("id -u").exec().getOut().get(0);
+                return "0".equals(output);
+            } catch (Exception e) {
+                // Handle exceptions (e.g., security exceptions)
+                e.printStackTrace();
+            }
+            return false;
+        }
+    }
+
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener =
             (sharedPreferences, key) -> {
                 if (key.equals("slotakey")) {
@@ -90,24 +115,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        RootChecker.checkRoot();
         setContentView(R.layout.activity_main);
         Shell.getShell(shell -> {});
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
-        deleteFilesIfExist();
-        updateStatusCardView();
-        cp(R.raw.parted, "parted");
-        cp(R.raw.jq, "jq");
-        cp(R.raw.slotatwrp, "slota.zip");
-        cp(R.raw.slotbtwrp, "slotb.zip");
+        // Check root
+        if (RootChecker.isRootAvailable()) {
+            Shell.getShell(shell -> {});
+            deleteFilesIfExist();
+            updateStatusCardView();
+            cp(R.raw.parted, "parted");
+            cp(R.raw.jq, "jq");
+            cp(R.raw.slotatwrp, "slota.zip");
+            cp(R.raw.slotbtwrp, "slotb.zip");
 
-        // Ensure preferences are initialized with file values on first launch
-        initializePreferencesFromFile();
+            // Ensure preferences are initialized with file values on first launch
+            initializePreferencesFromFile();
 
 
-        // Update UI with the latest values
-        updateSlotCardView(R.id.slota_txt, getPreferenceValue("slotakey", getString(R.string.unavailable)));
-        updateSlotCardView(R.id.slotb_txt, getPreferenceValue("slotbkey", getString(R.string.unavailable)));
-
+            // Update UI with the latest values
+            updateSlotCardView(R.id.slota_txt, getPreferenceValue("slotakey", getString(R.string.unavailable)));
+            updateSlotCardView(R.id.slotb_txt, getPreferenceValue("slotbkey", getString(R.string.unavailable)));
+        } else {
+            Log.e("MainActivity", "No root! Proceeding in safe mode" );
+        }
+        // Perform normal tasks
         setupCardViewWithConfirmation(R.id.reboot_a, R.string.reboot_a, "R.raw.switcha");
         setupCardViewWithConfirmation(R.id.reboot_b, R.string.reboot_b, "R.raw.switchb");
         setupCardViewWithConfirmation(R.id.rec_a, R.string.recovery_a, "R.raw.switchar");
@@ -277,10 +309,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showConfirmationDialog(int promptResId, String scriptFile) {
-        // Check for SU access using 'id -u'
-        boolean hasSuAccess = Shell.cmd("id -u").exec().getOut().contains("0");
 
-        if (!hasSuAccess) {
+        if (!RootChecker.isRootAvailable()) {
             // Show a dialog informing the user about missing SU access
             new AlertDialog.Builder(this)
                     .setTitle(getString(R.string.sudo_access_title)) // Use a title like "Permission Denied"
@@ -289,25 +319,25 @@ public class MainActivity extends AppCompatActivity {
                     .create()
                     .show();
             return; // Exit the method since SU access is required
+        } else {
+            // If SU access is granted, proceed with the normal confirmation dialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            String title = getString(promptResId) + "?";
+            String message = getString(R.string.dialog_confirm);
+            String positiveButton = getString(R.string.dialog_yes);
+            String negativeButton = getString(R.string.dialog_no);
+
+            builder.setTitle(title)
+                    .setMessage(message)
+                    .setPositiveButton(positiveButton, (dialog, which) -> {
+                        showLoadingDialog();
+                        executescriptstr(scriptFile);
+                    })
+                    .setNegativeButton(negativeButton, null);
+
+            AlertDialog alert = builder.create();
+            alert.show();
         }
-
-        // If SU access is granted, proceed with the normal confirmation dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        String title = getString(promptResId) + "?";
-        String message = getString(R.string.dialog_confirm);
-        String positiveButton = getString(R.string.dialog_yes);
-        String negativeButton = getString(R.string.dialog_no);
-
-        builder.setTitle(title)
-                .setMessage(message)
-                .setPositiveButton(positiveButton, (dialog, which) -> {
-                    showLoadingDialog();
-                    executescriptstr(scriptFile);
-                })
-                .setNegativeButton(negativeButton, null);
-
-        AlertDialog alert = builder.create();
-        alert.show();
     }
 
     private void showLoadingDialog() {

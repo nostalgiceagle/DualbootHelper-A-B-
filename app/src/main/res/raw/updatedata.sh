@@ -19,11 +19,6 @@
 # "--And ExtremeXT"
 # "*******************************"
 
-# Check SU
-if [ "$(id -u)" -ne 0 ]; then
-    exit 1
-fi
-
 DATA_PATH=$(dumpsys package com.david42069.dualboothelper | grep -i dataDir | cut -d'=' -f2-)
 DB_PATH="/cache/dualboot/database"
 PARTED_PATH="$DATA_PATH/files/parted"
@@ -162,4 +157,4 @@ echo "$BUILD_NUMBER" > "$DB_PATH/slotb.txt"
 fi
 fi
 
-cp -a /cache/dualboot/database/slot*.txt "$DATA_PATH/files"
+cp -a $DB_PATH/* "$DATA_PATH/files"

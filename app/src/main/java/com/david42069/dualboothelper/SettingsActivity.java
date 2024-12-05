@@ -29,6 +29,8 @@ import dev.oneuiproject.oneui.layout.ToolbarLayout;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,22 +76,15 @@ public class SettingsActivity extends AppCompatActivity {
 
             if (switchPreference != null) {
                 // Check for root access before enabling the switch
-                Shell.getShell(shell -> {
-                    executorService.execute(() -> {
-                        Shell.Result result = Shell.cmd("id -u").exec();
-                        requireActivity().runOnUiThread(() -> {
-                            if (result.getCode() != 0) { // Root access not available
-                                Log.e("SettingsFragment", "Root access not found. Disabling theme switch.");
-                                switchPreference.setEnabled(false); // Grey out the switch
-                                switchPreference.setSummary(getString(R.string.sudo_access)); // Optional: Inform user
-                            } else {
-                                Log.i("SettingsFragment", "Root access available. Enabling theme switch.");
-                                switchPreference.setEnabled(true);
-                                switchPreference.setSummary(""); // Clear any disabled summary if previously set
-                            }
-                        });
-                    });
-                });
+                if (!MainActivity.RootChecker.isRootAvailable()) {
+                    Log.e("SettingsFragment", "Root access not found. Disabling theme switch.");
+                    switchPreference.setEnabled(false); // Grey out the switch
+                    switchPreference.setSummary(getString(R.string.sudo_access)); // Optional: Inform user
+                } else {
+                    Log.i("SettingsFragment", "Root access available. Enabling theme switch.");
+                    switchPreference.setEnabled(true);
+                    switchPreference.setSummary(""); // Clear any disabled summary if previously set
+                }
 
                 // Set the onPreferenceChangeListener
                 switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {

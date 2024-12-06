@@ -127,28 +127,30 @@ public class MainActivity extends AppCompatActivity {
         mLoadingDialog.setCancelable(false);
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         Handler mainHandler = new Handler(Looper.getMainLooper());
-        mLoadingDialog.show(); // Show loading dialog
-        executorService.execute(() -> {
-            try {
-                RootChecker.checkRoot();
-                Shell.getShell(shell -> {});
-                // Check root
+        RootChecker.checkRoot();
+            // Check root
                 if (RootChecker.isRootAvailable()) {
                     Shell.getShell(shell -> {});
                     deleteFilesIfExist();
                     updateStatusCardView();
-                    cp(R.raw.parted, "parted");
-                    cp(R.raw.jq, "jq");
-                    cp(R.raw.slotatwrp, "slota.zip");
-                    cp(R.raw.slotbtwrp, "slotb.zip");
+                    executorService.execute(() -> {
+                        try {
+                            cp(R.raw.parted, "parted");
+                            cp(R.raw.jq, "jq");
+                            cp(R.raw.slotatwrp, "slota.zip");
+                            cp(R.raw.slotbtwrp, "slotb.zip");
 
-                    // Ensure preferences are initialized with file values on first launch
-                    initializePreferencesFromFile();
+                            // Ensure preferences are initialized with file values on first launch
+                            initializePreferencesFromFile();
 
 
-                    // Update UI with the latest values
-                    updateSlotCardView(R.id.slota_txt, getPreferenceValue("slotakey", getString(R.string.unavailable)));
-                    updateSlotCardView(R.id.slotb_txt, getPreferenceValue("slotbkey", getString(R.string.unavailable)));
+                            // Update UI with the latest values
+                            updateSlotCardView(R.id.slota_txt, getPreferenceValue("slotakey", getString(R.string.unavailable)));
+                            updateSlotCardView(R.id.slotb_txt, getPreferenceValue("slotbkey", getString(R.string.unavailable)));
+                        } catch (Exception e) {
+                            Log.e("MainActivity", "Error executing shell commands", e);
+                        }
+                    });
                 } else {
                     CardView statusCV = findViewById(R.id.status);
                     statusCV.setSummaryText(getString(R.string.sudo_access));
@@ -161,13 +163,6 @@ public class MainActivity extends AppCompatActivity {
                 setupCardViewWithConfirmation(R.id.rec_b, R.string.recovery_b, "R.raw.switchbr");
                 setupCardViewWithConfirmation(R.id.bootloader, R.string.dl_mode, "R.raw.download");
                 setupCardViewWithConfirmation(R.id.poweroff, R.string.poweroff, "R.raw.shutdown");
-            } catch (Exception e) {
-                Log.e("MainActivity", "Error executing shell commands", e);
-            } finally {
-                // Dismiss loading dialog on the main thread
-                mainHandler.post(() -> mLoadingDialog.dismiss());
-            }
-        });
     }
 
     // Helper function to read preference value with fallback

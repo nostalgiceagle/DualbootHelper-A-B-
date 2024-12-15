@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
+        SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
         setContentView(R.layout.activity_main);

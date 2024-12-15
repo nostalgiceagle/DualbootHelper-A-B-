@@ -71,6 +71,7 @@ configurations.all {
 }
 
 dependencies {
+    implementation 'androidx.core:core-splashscreen:1.0.1'
     implementation 'io.github.oneuiproject:design:1.2.6'
     implementation 'io.github.oneuiproject:icons:1.1.0'
     implementation 'io.github.oneuiproject.sesl:appcompat:1.4.0'

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.App.Splash" parent="Theme.SplashScreen">
+        <!-- Background color -->
+        <item name="android:windowSplashScreenBackground">@color/oui_background_color</item>
+        <!-- Animated vector drawable icon -->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/launcher_start</item>
+        <!-- Animation duration (optional for Android 12, inferred in Android 13+) -->
+        <item name="android:windowSplashScreenAnimationDuration">1000</item>
+    </style>
+</resources>

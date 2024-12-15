@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Dualboot Helper</string>
   <string name="description">Một ứng dụng hỗ trợ cho giải pháp khởi động kép</string>
   <string name="info">Thông tin</string>
   <string name="dbinf">Trạng thái</string>

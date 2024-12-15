@@ -16,6 +16,8 @@ import dev.oneuiproject.oneui.utils.ActivityUtils;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import android.content.SharedPreferences;
+
+import androidx.core.splashscreen.SplashScreen;
 import androidx.preference.PreferenceManager;
 import com.topjohnwu.superuser.Shell;
 
@@ -119,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
         ToolbarLayout toolbarLayout = findViewById(R.id.home);
         setContentView(R.layout.activity_main);

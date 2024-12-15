@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="description">تطبيق مساعد للحل المزدوج للتمهيد</string>
+  <string name="info" comment="info Information layout strings">معلومات</string>
+  <string name="dbinf" comment="dbinf Placeholder info strings">الحالة</string>
+  <string name="slota_os">نظام التشغيل في الفتحة A</string>
+  <string name="slotb_os">نظام التشغيل في الفتحة B</string>
+  <string name="qact" comment="qact Quick action layout strings">إجراء سريع</string>
+  <string name="reboot_a" comment="reboot_a Buttons strings">إعادة التشغيل إلى الفتحة A</string>
+  <string name="reboot_b">إعادة التشغيل إلى الفتحة B</string>
+  <string name="recovery_a">إعادة التشغيل إلى وضع الاسترداد الفتحة A</string>
+  <string name="recovery_b">إعادة التشغيل إلى وضع الاسترداد الفتحة B</string>
+  <string name="dl_mode">إعادة التشغيل إلى وضع التنزيل</string>
+  <string name="poweroff">إيقاف تشغيل النظام</string>
+  <string name="dialog_confirm">هل أنت متأكد؟</string>
+  <string name="dialog_yes">نعم</string>
+  <string name="dialog_no">لا</string>
+  <string name="db_dev" comment="db_dev About strings Team DB">المطورون الرئيسيون</string>
+  <string name="david_desc" comment="david_desc Our descriptions">مؤسس التمهيد المزدوج لـSamsung</string>
+  <string name="bob_desc">صنع هذا التطبيق بأسلوب OneUI</string>
+  <string name="ouip_team" comment="ouip_team Team OUIP">فريق مشروع OneUI</string>
+  <string name="os_lic" comment="os_lic License strings">تراخيص مفتوحة المصدر</string>
+  <string name="gnu_lic">رخصة GNU</string>
+  <string name="apache_lic">رخصة Apache 2.0</string>
+  <string name="mit_lic">رخصة MIT</string>
+  <string name="links" comment="links Links strings">روابط مفيدة</string>
+  <string name="donate">تبرع لي!</string>
+  <string name="xda_post">منشور XDA</string>
+  <string name="reboot_wait">يتم إعادة التشغيل. الرجاء الانتظار...</string>
+  <string name="not_installed" comment="not_installed Collected info strings">غير مثبت</string>
+  <string name="installed_v5">مثبت (V5)</string>
+  <string name="installed_v4">مثبت (V4)</string>
+  <string name="unavailable">غير متاح</string>
+  <string name="super_partition">الجهاز يستخدم قسم super</string>
+  <string name="normal_naming">يستخدم الجهاز أقسام بتسمية عادية</string>
+  <string name="caps_naming">الجهاز يستخدم تسمية الأقسام بالأحرف الكبيرة</string>
+  <string name="ufs_sda">الجهاز يستخدم UFS (sda)</string>
+  <string name="emmc_sdc">الجهاز يستخدم EMMC (sdc)</string>
+  <string name="sudo_access">يرجى منح المستخدم الخارق حق الوصول لجمع المعلومات حول الجهاز</string>
+  <string name="emmc_mmcblk0">الجهاز يستخدم EMMC (mmcblk0)</string>
+  <string name="settings">الإعدادات</string>
+  <string name="about">حول هذا التطبيق</string>
+  <string name="translation">ساعدنا في ترجمة التطبيق!</string>
+  <string name="sudo_access_title">لا يوجد وصولSU، أو لم تقم بعمل روت حتى الآن؟ :(</string>
+  <string name="slota_qact">إجراءات الفتحة A</string>
+  <string name="slota_description">الإجراءات المتاحة لفتحة A</string>
+  <string name="slotb_qact">إجراءات الفتحة B</string>
+  <string name="slotb_description">الإجراءات المتاحة لفتحة B</string>
+  <string name="slota_placeholder">إعادة التشغيل إلى الفتحة A، الاسترداد A</string>
+  <string name="slotb_placeholder">إعادة التشغيل إلى الفتحة B، الاسترداد B</string>
+  <string name="misc_qact">إجراءات متنوعة</string>
+  <string name="misc_description">الإجراءات المتنوعة المتاحة</string>
+  <string name="misc_placeholder">إعادة التشغيل لوضع التنزيل، إيقاف تشغيل النظام</string>
+  <string name="dialog_confirm_title" comment="dialog_confirm_title Dialog strings">تأكيد</string>
+  <string name="dialog_ok">حسناً</string>
+  <string name="slota_settings" comment="slota_settings Preferences strings">اسم الفتحة A</string>
+  <string name="slotb_settings">اسم الفتحة B</string>
+  <string name="add_db_options_to_twrp">Use custom Dualboot TWRP</string>
+  <string name="twrp_desc">Requires TWRP 3.5+ and disabled data encryption</string>
+  <string name="general">General</string>
+  <string name="rec_options">Recovery options</string>
+</resources>

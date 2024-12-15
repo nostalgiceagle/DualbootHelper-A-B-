@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="description">Допоміжний додаток для дуалбуту системи</string>
+  <string name="info" comment="info Information layout strings">Інформація</string>
+  <string name="dbinf" comment="dbinf Placeholder info strings">Статус</string>
+  <string name="slota_os">ОС в слоті А</string>
+  <string name="slotb_os">ОС в слоті Б</string>
+  <string name="qact" comment="qact Quick action layout strings">Швидка дія</string>
+  <string name="reboot_a" comment="reboot_a Buttons strings">Перезапустити в слот А</string>
+  <string name="reboot_b">Перезапустити в слот Б</string>
+  <string name="recovery_a">Перезапустити в Рекавери в слоті А</string>
+  <string name="recovery_b">Перезапустити в Рекавери в слоті Б</string>
+  <string name="dl_mode">Перезапустити в режим Odin</string>
+  <string name="poweroff">Вимкнути систему</string>
+  <string name="dialog_confirm">Ви впевненні?</string>
+  <string name="dialog_yes">Так</string>
+  <string name="dialog_no">Ні</string>
+  <string name="db_dev" comment="db_dev About strings Team DB">Головні розробники</string>
+  <string name="david_desc" comment="david_desc Our descriptions">Винахідник Дуалбуту для Самсунгу</string>
+  <string name="bob_desc">Зробив додаток в OneUI Стилі</string>
+  <string name="ouip_team" comment="ouip_team Team OUIP">Команда OneUI</string>
+  <string name="os_lic" comment="os_lic License strings">Ліцензії відкритого коду</string>
+  <string name="gnu_lic">Ліцензія GNU GPL</string>
+  <string name="apache_lic">Ліцензія Apache 2.0</string>
+  <string name="mit_lic">Ліцензія MIT</string>
+  <string name="links" comment="links Links strings">Корисні посилання</string>
+  <string name="donate">Донат</string>
+  <string name="xda_post">Пост на форумі XDA</string>
+  <string name="reboot_wait">Перезапускаємо. Зачекайте. будь ласка...</string>
+  <string name="not_installed" comment="not_installed Collected info strings">Не встановлено</string>
+  <string name="installed_v5">Встановлено (V5)</string>
+  <string name="installed_v4">Встановлено (V4)</string>
+  <string name="unavailable">Недоступно</string>
+  <string name="super_partition">Девайс використовує динамічні розділи (super)</string>
+  <string name="normal_naming">Девайс використовує статичні розділи (super)</string>
+  <string name="caps_naming"></string>
+  <string name="ufs_sda">Девайс використовує UFS (sda)</string>
+  <string name="emmc_sdc">Девайс використовує EMMC (sdc)</string>
+  <string name="sudo_access">Будь ласка, дайте права суперкористувача для збирання інформації про телефон</string>
+  <string name="emmc_mmcblk0">Девайс використовує EMMC (mmcblk0)</string>
+  <string name="settings">Налаштування</string>
+  <string name="about">Про додаток</string>
+  <string name="translation">Допоможіть нам перекласти цей додаток</string>
+  <string name="sudo_access_title">Нема доступу до прав суперкортисувача, або ви не рутовані.</string>
+  <string name="slota_qact">Дії до слота А</string>
+  <string name="slota_description">Дії доступні на слоті A</string>
+  <string name="slotb_qact">Дії до слота А</string>
+  <string name="slotb_description">Дії доступні на слоті A</string>
+  <string name="slota_placeholder">Перезапустити в слот А, Рекавери А</string>
+  <string name="slotb_placeholder">Перезапустити в слот Б, Рекавери Б</string>
+  <string name="misc_qact">Інші дії</string>
+  <string name="misc_description">Інші дії доступні</string>
+  <string name="misc_placeholder">Перезапустити в режим Odin, вимкнути систему</string>
+  <string name="dialog_confirm_title" comment="dialog_confirm_title Dialog strings">Підтвердження</string>
+  <string name="dialog_ok">ОК</string>
+  <string name="slota_settings" comment="slota_settings Preferences strings">Назва слоту А</string>
+  <string name="slotb_settings">Назва слоту Б</string>
+  <string name="add_db_options_to_twrp">Use custom Dualboot TWRP</string>
+  <string name="twrp_desc">Requires TWRP 3.5+ and disabled data encryption</string>
+  <string name="general">General</string>
+  <string name="rec_options">Recovery options</string>
+</resources>

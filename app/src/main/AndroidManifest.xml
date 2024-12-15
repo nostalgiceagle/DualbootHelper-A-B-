@@ -26,6 +26,7 @@
 
         <activity
             android:name=".MainActivity"
+            android:theme="@style/Theme.App.Splash"
             android:exported="true">
             <meta-data
                 android:name="com.sec.android.app.launcher.icon_theme"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.App.Splash" parent="Theme.SplashScreen">
+    <style name="OneUITheme" parent="Theme.SplashScreen">
         <!-- Theme attributes -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

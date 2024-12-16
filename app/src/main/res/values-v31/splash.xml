@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="OneUITheme" parent="Theme.SplashScreen">
-        <!-- Theme attributes -->
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="OneUI.Splash" parent="OneUITheme">
         <!-- Background color -->
         <item name="android:windowSplashScreenBackground">@color/oui_background_color</item>
         <!-- Animated vector drawable icon -->

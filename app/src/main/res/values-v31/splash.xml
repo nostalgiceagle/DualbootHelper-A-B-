@@ -2,6 +2,9 @@
 <resources>
 
     <style name="Theme.App.Splash" parent="Theme.SplashScreen">
+        <!-- Theme attributes -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <!-- Background color -->
         <item name="android:windowSplashScreenBackground">@color/oui_background_color</item>
         <!-- Animated vector drawable icon -->

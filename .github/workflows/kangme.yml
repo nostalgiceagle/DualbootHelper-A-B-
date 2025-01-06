@@ -1,4 +1,4 @@
-name: Android CI
+name: KangeMe
 
 on:
   push:
@@ -29,7 +29,6 @@ jobs:
           echo "$KEYSTORE_PASSWORD" > mypass.txt
           echo "$KEY_ALIAS" > myalias.txt
           chmod +x uploadtg.sh
-    - name: Build with Gradle
       env:
         KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         KEY_ALIAS: ${{ secrets.KEY_ALIAS }}

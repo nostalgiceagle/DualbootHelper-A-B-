@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="/img/banner.png" width="3072" height="1080">
+<img src="/img/banner.png" >
 
 # Dualboot Helper
 

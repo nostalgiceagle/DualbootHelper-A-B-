@@ -2,10 +2,10 @@
 <resources>
     <style name="OneUI.Splash" parent="OneUITheme">
         <!-- Background color -->
-        <item name="windowSplashScreenBackground">@color/oui_background_color</item>
+        <item name="android:windowSplashScreenBackground">@color/oui_background_color</item>
         <!-- Animated vector drawable icon -->
-        <item name="windowSplashScreenAnimatedIcon">@drawable/launcher_start</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/launcher_start</item>
         <!-- Animation duration (optional for Android 12, inferred in Android 13+) -->
-        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="android:windowSplashScreenAnimationDuration">1000</item>
     </style>
 </resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Slot desired color -->
+    <color name="slota_color">#FCA14C</color>
+    <color name="slotb_color">#CD62EE</color>
+    <!-- Other buttons desired color -->
+    <color name="download_color">#00FFFF</color>
+    <color name="poweroff_color">#FF5656</color>
+    <!-- Device color -->
+    <color name="device_bg">#757575</color>
+    <color name="slota_device_text">#FFD900</color>
+    <color name="slotb_device_text">#BC4FFF</color>
+    <color name="outline_a_device">#FFD900</color>
+    <color name="outline_b_device">#BC4FFF</color>
+    <color name="fill_a_device">#FFD000</color>
+    <color name="fill_b_device">#A100FF</color>
+</resources>

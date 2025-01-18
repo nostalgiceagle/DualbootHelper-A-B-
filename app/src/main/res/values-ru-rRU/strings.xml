@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="description">Приложение для двойной загрузки на устройствах Samsung</string>
+  <string name="info" comment="info Information layout strings">Информация</string>
+  <string name="dbinf" comment="dbinf Placeholder info strings">Статус</string>
+  <string name="slota_os">ОС в слоте А</string>
+  <string name="slotb_os">ОС в слоте Б</string>
+  <string name="qact" comment="qact Quick action layout strings">Быстрое действие</string>
+  <string name="reboot_a" comment="reboot_a Buttons strings">Перезагрузиться в слот А</string>
+  <string name="reboot_b">Перезагрузиться в слот Б</string>
+  <string name="recovery_a">Перезагрузиться в рекавери слота А</string>
+  <string name="recovery_b">Перезагрузиться в рекавери слота Б</string>
+  <string name="dl_mode">Перезагрузиться в режим загрузки</string>
+  <string name="poweroff">Выключить телефон</string>
+  <string name="dialog_confirm">Вы уверены?</string>
+  <string name="dialog_yes">Да</string>
+  <string name="dialog_no">Нет</string>
+  <string name="db_dev" comment="db_dev About strings Team DB">Главные разработчики</string>
+  <string name="david_desc" comment="david_desc Our descriptions">Основатель проекта \"Dualboot for Samsung\"</string>
+  <string name="bob_desc">Создатель приложения с OneUI стилем</string>
+  <string name="ouip_team" comment="ouip_team Team OUIP">Команда OneUI</string>
+  <string name="os_lic" comment="os_lic License strings">Лицензии открытого кода</string>
+  <string name="gnu_lic">Лицензия GNU</string>
+  <string name="apache_lic">Лицензия Apache 2.0</string>
+  <string name="mit_lic">Лицензия MIT</string>
+  <string name="links" comment="links Links strings">Полезные ссылки</string>
+  <string name="donate">Поблагодарить меня!</string>
+  <string name="xda_post">Пост на XDA</string>
+  <string name="reboot_wait">Перезагрузка. Пожалуйста, подождите...</string>
+  <string name="not_installed" comment="not_installed Collected info strings">Не установлено</string>
+  <string name="installed_v5">Установлено (V5)</string>
+  <string name="installed_v4">Установлено (V4)</string>
+  <string name="unavailable">Недоступно</string>
+  <string name="super_partition">Устройство использует раздел super</string>
+  <string name="normal_naming">Устройство использует обычные названия разделов</string>
+  <string name="caps_naming">Устройство использует названия разделов капсом</string>
+  <string name="ufs_sda">Устройство использует UFS (sda)</string>
+  <string name="emmc_sdc">Устройство использует EMMC (sdc)</string>
+  <string name="sudo_access">Пожалуйста, дайте приложению права суперпользователя для сбора информации</string>
+  <string name="emmc_mmcblk0">Устройство использует EMMC (mmcblk0)</string>
+  <string name="settings">Настройки</string>
+  <string name="about">О приложении</string>
+  <string name="translation">Помогите нам перевести приложение!</string>
+  <string name="sudo_access_title">Нет доступа СП, ваше устройство имеет рут-права?</string>
+  <string name="slota_qact">Действия в слоте А</string>
+  <string name="slota_description">Действия доступные в слоте А</string>
+  <string name="slotb_qact">Действия в слоте Б</string>
+  <string name="slotb_description">Действия доступные в слоте Б</string>
+  <string name="slota_placeholder">Перезагрузиться в слот А, Рекавери А</string>
+  <string name="slotb_placeholder">Перезагрузиться в слот Б, рекавери Б</string>
+  <string name="misc_qact">Другие действия</string>
+  <string name="misc_description">Другие доступные действия</string>
+  <string name="misc_placeholder">Перезапуститься в режим загрузки, выключить телефон</string>
+  <string name="dialog_confirm_title" comment="dialog_confirm_title Dialog strings">Подтверждение</string>
+  <string name="dialog_ok">ОК</string>
+  <string name="slota_settings" comment="slota_settings Preferences strings">Название слота А</string>
+  <string name="slotb_settings">Название слота Б</string>
+  <string name="add_db_options_to_twrp">Использовать кастомное Dualboot TWRP</string>
+  <string name="twrp_desc">Requires TWRP 3.5+ and disabled data encryption</string>
+  <string name="general">Основное</string>
+  <string name="rec_options">Основное</string>
+  <string name="app_name" comment="app_name Basic title and desc">Dualboot Helper</string>
+</resources>

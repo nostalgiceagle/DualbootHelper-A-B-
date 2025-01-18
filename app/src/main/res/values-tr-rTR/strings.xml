@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="description">Çift-önyükleme çözümü için yardımcı uygulama</string>
+  <string name="info" comment="info Information layout strings">Bilgi</string>
+  <string name="dbinf" comment="dbinf Placeholder info strings">Durum</string>
+  <string name="slota_os">A Bölümündeki OS</string>
+  <string name="slotb_os">B Bölümündeki OS</string>
+  <string name="qact" comment="qact Quick action layout strings">Hızlı işlem</string>
+  <string name="reboot_a" comment="reboot_a Buttons strings">A Bölümüne yeniden başlat</string>
+  <string name="reboot_b">B Bölümüne yeniden başlat</string>
+  <string name="recovery_a">A Bölümü kurtarma bölümüne yeniden başlat</string>
+  <string name="recovery_b">B Bölümü kurtarma bölümüne yeniden başlat</string>
+  <string name="dl_mode">İndirme Modu ile yeniden başlat</string>
+  <string name="poweroff">Sistemi kapat</string>
+  <string name="dialog_confirm">Emin misiniz?</string>
+  <string name="dialog_yes">Evet</string>
+  <string name="dialog_no">Hayır</string>
+  <string name="db_dev" comment="db_dev About strings Team DB">Ana geliştiriciler</string>
+  <string name="david_desc" comment="david_desc Our descriptions">Samsung için Çift-önyükleme\'nin kurucusu</string>
+  <string name="bob_desc">Bu uygulama OneUI Style ile yapıldı</string>
+  <string name="ouip_team" comment="ouip_team Team OUIP">OneUI Project Takımı</string>
+  <string name="os_lic" comment="os_lic License strings">Açık kaynak lisansları</string>
+  <string name="gnu_lic">GNU Lisansı</string>
+  <string name="apache_lic">Apache License 2.0</string>
+  <string name="mit_lic">MIT License</string>
+  <string name="links" comment="links Links strings">Kullanışlı bağlantılar</string>
+  <string name="donate">Bana bağış yap!</string>
+  <string name="xda_post">XDA sayfası</string>
+  <string name="reboot_wait">Yeniden Başlatılıyor. Lütfen bekleyin...</string>
+  <string name="not_installed" comment="not_installed Collected info strings">Yüklü değil</string>
+  <string name="installed_v5">Yüklü (V5)</string>
+  <string name="installed_v4">Yüklü (V4)</string>
+  <string name="unavailable">Mevcut değil</string>
+  <string name="super_partition">Cihaz super bölüm dizimi kullanıyor</string>
+  <string name="normal_naming">Cihaz normal adlandırmaya sahip bölüm dizimi kullanıyor</string>
+  <string name="caps_naming">Cihaz büyük harfli adlandırmaya sahip bölüm dizimi kullanıyor</string>
+  <string name="ufs_sda">Cihaz UFS kullanıyor (sda)</string>
+  <string name="emmc_sdc">Cihaz EMMC kullanıyor (sdc)</string>
+  <string name="sudo_access">Lütfen cihaz hakkında bilgi verebilmemiz için süper kullanıcı haklarına izin veriniz</string>
+  <string name="emmc_mmcblk0">Cihaz EMMC kullanıyor (mmcblk0)</string>
+  <string name="settings">Ayarlar</string>
+  <string name="about">Bu uygulama hakkında</string>
+  <string name="translation">Uygulamayı çevirmemize yardım edin!</string>
+  <string name="sudo_access_title">Süper kullanıcı izni yok, veya henüz kök haklarına değil misiniz? :(</string>
+  <string name="slota_qact">A Bölümü işlemleri</string>
+  <string name="slota_description">A Bölümü için mevcut işlemler</string>
+  <string name="slotb_qact">B Bölümü işlemleri</string>
+  <string name="slotb_description">B Bölümü için mevcut işlemler</string>
+  <string name="slota_placeholder">A Bölümü, A Kurtarma yeniden başlat</string>
+  <string name="slotb_placeholder">B Bölümü, B Kurtarma yeniden başlat</string>
+  <string name="misc_qact">Diğer işlemler</string>
+  <string name="misc_description">Mevcut olan diğer işlemler</string>
+  <string name="misc_placeholder">İndirme Modu\'nda yeniden başlat, sistemi kapat</string>
+  <string name="dialog_confirm_title" comment="dialog_confirm_title Dialog strings">Onaylama</string>
+  <string name="dialog_ok">Tamam</string>
+  <string name="slota_settings" comment="slota_settings Preferences strings">A Bölümü ismi</string>
+  <string name="slotb_settings">B Bölümü ismi</string>
+  <string name="add_db_options_to_twrp">Use custom Dualboot TWRP</string>
+  <string name="twrp_desc">Requires TWRP 3.5+ and disabled data encryption</string>
+  <string name="general">General</string>
+  <string name="rec_options">Recovery options</string>
+  <string name="app_name" comment="app_name Basic title and desc">Dualboot Helper</string>
+</resources>

@@ -59,4 +59,5 @@
   <string name="twrp_desc">Requires TWRP 3.5+ and disabled data encryption</string>
   <string name="general">General</string>
   <string name="rec_options">Recovery options</string>
+  <string name="app_name" comment="app_name Basic title and desc">Dualboot Helper</string>
 </resources>

@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="description">雙啟動解決方案的助手應用</string>
-  <string name="info" comment="info Information layout strings">信息</string>
-  <string name="dbinf" comment="dbinf Placeholder info strings">雙啟動信息</string>
-  <string name="slota_os">插槽 A 的操作系統：</string>
-  <string name="slotb_os">插槽 B 的操作系統：</string>
-  <string name="qact" comment="qact Quick action layout strings">快速操作</string>
-  <string name="reboot_a" comment="reboot_a Buttons strings">重啟到插槽 A</string>
-  <string name="reboot_b">重啟到插槽 B</string>
-  <string name="recovery_a">重啟到恢復模式插槽 A</string>
-  <string name="recovery_b">重啟到恢復模式插槽 B</string>
-  <string name="dl_mode">重啟到下載模式</string>
-  <string name="poweroff">關閉系統</string>
-  <string name="dialog_confirm">您確定嗎？</string>
-  <string name="dialog_yes">是</string>
-  <string name="dialog_no">否</string>
-  <string name="db_dev" comment="db_dev About strings Team DB">Dualboot Helper 開發者</string>
-  <string name="david_desc" comment="david_desc Our descriptions">Samsung 雙啟動的創始人</string>
-  <string name="bob_desc">以 OneUI 風格製作了該應用</string>
-  <string name="ouip_team" comment="ouip_team Team OUIP">OneUI 項目團隊</string>
-  <string name="os_lic" comment="os_lic License strings">開源許可證</string>
-  <string name="gnu_lic">GNU 許可證</string>
-  <string name="apache_lic">Apache 許可證 2.0</string>
-  <string name="mit_lic">MIT 許可證</string>
-  <string name="links" comment="links Links strings">有用鏈接</string>
-  <string name="donate">捐助我！</string>
-  <string name="xda_post">XDA 帖子</string>
-  <string name="reboot_wait">正在重啟，請稍候...</string>
+  <string name="description">Un app que ayuda al duaboot</string>
+  <string name="info" comment="info Information layout strings">Información</string>
+  <string name="dbinf" comment="dbinf Placeholder info strings">Estado</string>
+  <string name="slota_os">Sistema Operativo en el Slot A</string>
+  <string name="slotb_os">Sistema Operativo en el Slot B</string>
+  <string name="qact" comment="qact Quick action layout strings">Acción Rapida</string>
+  <string name="reboot_a" comment="reboot_a Buttons strings">Reiniciar al Slot A</string>
+  <string name="reboot_b">Reiniciar al Slot B</string>
+  <string name="recovery_a">Reiniciar al Recovery del Slot A</string>
+  <string name="recovery_b">Reiniciar al Recovery del Slot B</string>
+  <string name="dl_mode">Reboot to Download mode</string>
+  <string name="poweroff">Shut Down the system</string>
+  <string name="dialog_confirm">Are you sure?</string>
+  <string name="dialog_yes">Yes</string>
+  <string name="dialog_no">No</string>
+  <string name="db_dev" comment="db_dev About strings Team DB">Main developers</string>
+  <string name="david_desc" comment="david_desc Our descriptions">The founder of Dualboot for Samsung</string>
+  <string name="bob_desc">Made this app with OneUI Style</string>
+  <string name="ouip_team" comment="ouip_team Team OUIP">OneUI Project Team</string>
+  <string name="os_lic" comment="os_lic License strings">Open source licenses</string>
+  <string name="gnu_lic">GNU License</string>
+  <string name="apache_lic">Apache License 2.0</string>
+  <string name="mit_lic">MIT License</string>
+  <string name="links" comment="links Links strings">Useful links</string>
+  <string name="donate">Donate me!</string>
+  <string name="xda_post">XDA post</string>
+  <string name="reboot_wait">Rebooting. Please wait...</string>
   <string name="not_installed" comment="not_installed Collected info strings">Not installed</string>
   <string name="installed_v5">Installed (V5)</string>
   <string name="installed_v4">Installed (V4)</string>

@@ -2,6 +2,7 @@ package com.david42069.dualboothelper;
 
 // from OneUI Sample app. Credits to everyone who contributed in making the app.
 
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -24,6 +25,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.david42069.dualboothelper.databinding.ActivityAboutBinding;
 import com.david42069.dualboothelper.databinding.ActivityAboutContentBinding;
 
+import dev.oneuiproject.oneui.layout.ToolbarLayout;
 import dev.oneuiproject.oneui.utils.ViewUtils;
 import dev.oneuiproject.oneui.utils.internal.ToolbarLayoutUtils;
 import dev.oneuiproject.oneui.widget.Toast;
@@ -101,6 +103,7 @@ public class AboutActivity extends AppCompatActivity
         return Build.VERSION.SDK_INT >= 24 && super.isInMultiWindowMode();
     }
 
+    @SuppressLint("RestrictedApi")
     private void resetAppBar(Configuration config) {
         ToolbarLayoutUtils.hideStatusBarForLandscape(this, config.orientation);
         ToolbarLayoutUtils.updateListBothSideMargin(this,
@@ -206,7 +209,7 @@ public class AboutActivity extends AppCompatActivity
             } else if (v.getId() == mBottomContent.aboutXda.getId()) {
                 url = "https://xdaforums.com/t/mod-dualboot-for-any-samsung.4680492";
             } else if (v.getId() == mBottomContent.aboutTranslate.getId()) {
-                url = "https://crowdin.com/project/dualboothelper";
+                url = "https://crowdin.com/project/dualboothelpe";
             } else if (v.getId() == mBottomContent.aboutBottomRelativeOuip.getId()) {
                 url = "https://github.com/OneUIProject";
             }

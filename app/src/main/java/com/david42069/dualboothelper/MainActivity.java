@@ -143,10 +143,6 @@ public class MainActivity extends AppCompatActivity {
                             cp(R.raw.slotatwrp, "slota.zip");
                             cp(R.raw.slotbtwrp, "slotb.zip");
 
-                            // Ensure preferences are initialized with file values on first launch
-                            initializePreferencesFromFile();
-
-
                             // Update UI with the latest values
                             updateSlotCardView(R.id.slota_txt, getPreferenceValue("slotakey", getString(R.string.unavailable)));
                             updateSlotCardView(R.id.slotb_txt, getPreferenceValue("slotbkey", getString(R.string.unavailable)));
@@ -200,20 +196,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return null;
-    }
-
-    private void registerPreferenceChangeListener() {
-        preferenceChangeListener = (sharedPreferences, key) -> {
-            if ("slotakey".equals(key)) {
-                String updatedValue = sharedPreferences.getString(key, getString(R.string.unavailable));
-                updateSlotCardView(R.id.slota_txt, updatedValue);
-            } else if ("slotbkey".equals(key)) {
-                String updatedValue = sharedPreferences.getString(key, getString(R.string.unavailable));
-                updateSlotCardView(R.id.slotb_txt, updatedValue);
-            }
-        };
-
-        sharedPreferences.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
     }
 
     private void deleteFilesIfExist() {

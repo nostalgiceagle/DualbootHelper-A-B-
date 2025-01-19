@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
 
         // Update slot cards to reflect any changes
-        updateSlotCardView(R.id.slota_txt, sharedPreferences.getString("slotakey", getString(R.string.unavailable)));
-        updateSlotCardView(R.id.slotb_txt, sharedPreferences.getString("slotbkey", getString(R.string.unavailable)));
+        updateSlotCardView(R.id.slota_txt, "slotakey", getSlotAFilePath(this));
+        updateSlotCardView(R.id.slotb_txt, "slotbkey", getSlotBFilePath(this));
     }
 
     @Override
@@ -88,23 +88,41 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener =
             (sharedPreferences, key) -> {
                 if (key.equals("slotakey")) {
-                    updateSlotCardView(R.id.slota_txt, sharedPreferences.getString(key, getString(R.string.unavailable)));
+                    updateSlotCardView(R.id.slota_txt, "slotakey", getSlotAFilePath(this));
                 } else if (key.equals("slotbkey")) {
-                    updateSlotCardView(R.id.slotb_txt, sharedPreferences.getString(key, getString(R.string.unavailable)));
+                    updateSlotCardView(R.id.slotb_txt, "slotbkey", getSlotBFilePath(this));
                 }
             };
 
-    private void updateSlotCardView(int cardViewId, String slotValue) {
+    private void updateSlotCardView(int cardViewId, String preferenceKey, String filePath) {
         CardView slotCardView = findViewById(cardViewId);
         if (slotCardView != null) {
-            if (slotValue != null) {
-                slotValue = slotValue.replace("##UNAVAILABLE##", getString(R.string.unavailable));
+            String slotValue;
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            boolean isCustomizeSlotNameOn = sharedPreferences.getBoolean("customizeslotname", false);
+
+            if (isCustomizeSlotNameOn) {
+                slotValue = getPreferenceValue(preferenceKey, getString(R.string.unavailable));
+            } else {
+                File file = new File(filePath);
+                if (file.exists()) {
+                    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                        slotValue = reader.readLine();
+                        if (slotValue == null || slotValue.contains("##UNAVAILABLE##")) {
+                            slotValue = getString(R.string.unavailable);
+                        }
+                    } catch (IOException e) {
+                        Log.e("MainActivity", "Error reading file: " + filePath, e);
+                        slotValue = getString(R.string.unavailable);
+                    }
+                } else {
+                    slotValue = getString(R.string.unavailable);
+                }
             }
 
             slotCardView.setSummaryText(slotValue != null && !slotValue.trim().isEmpty() ? slotValue : getString(R.string.unavailable));
         }
     }
-
     private static String getStatusFilePath(Context context) {
         return new File(context.getFilesDir(), "status.txt").getPath();
     }
@@ -144,8 +162,8 @@ public class MainActivity extends AppCompatActivity {
                             cp(R.raw.slotbtwrp, "slotb.zip");
 
                             // Update UI with the latest values
-                            updateSlotCardView(R.id.slota_txt, getPreferenceValue("slotakey", getString(R.string.unavailable)));
-                            updateSlotCardView(R.id.slotb_txt, getPreferenceValue("slotbkey", getString(R.string.unavailable)));
+                            updateSlotCardView(R.id.slota_txt, "slotakey", getSlotAFilePath(this));
+                            updateSlotCardView(R.id.slotb_txt, "slotbkey", getSlotBFilePath(this));
                         } catch (Exception e) {
                             Log.e("MainActivity", "Error executing shell commands", e);
                         }

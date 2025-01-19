@@ -170,34 +170,6 @@ public class MainActivity extends AppCompatActivity {
         return sharedPreferences.getString(key, fallback);
     }
 
-    // Initialize preferences from file on first launch
-    private void initializePreferencesFromFile() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        if (!sharedPreferences.contains("slotakey")) {
-            String slotAValue = readValueFromFile("slota.txt");
-            sharedPreferences.edit().putString("slotakey", slotAValue != null ? slotAValue : getString(R.string.unavailable)).apply();
-        }
-
-        if (!sharedPreferences.contains("slotbkey")) {
-            String slotBValue = readValueFromFile("slotb.txt");
-            sharedPreferences.edit().putString("slotbkey", slotBValue != null ? slotBValue : getString(R.string.unavailable)).apply();
-        }
-    }
-
-    // Read a value from a file
-    private String readValueFromFile(String fileName) {
-        File file = new File(getFilesDir(), fileName);
-        if (file.exists()) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                return reader.readLine();
-            } catch (IOException e) {
-                Log.e("MainActivity", "Error reading file: " + fileName, e);
-            }
-        }
-        return null;
-    }
-
     private void deleteFilesIfExist() {
         // Define the file paths using the current context
         String[] filePaths = {
@@ -277,20 +249,6 @@ public class MainActivity extends AppCompatActivity {
         CardView statusCardView = findViewById(R.id.status);
         statusCardView.setSummaryText(textToDisplay);
     }
-
-//    public void notifySlotUpdate(String preferenceKey, String updatedValue) {
-//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-//
-//        // Update the preference value
-//        sharedPreferences.edit().putString(preferenceKey, updatedValue).apply();
-//
-//        // Update the corresponding card view
-//        if ("slotakey".equals(preferenceKey)) {
-//            updateSlotCardView(R.id.slota_txt, preferenceKey);
-//        } else if ("slotbkey".equals(preferenceKey)) {
-//            updateSlotCardView(R.id.slotb_txt, preferenceKey);
-//        }
-//    }
 
     private void setupCardViewWithConfirmation(int cardViewId, int promptResId, String scriptFile) {
         CardView cardView = findViewById(cardViewId);

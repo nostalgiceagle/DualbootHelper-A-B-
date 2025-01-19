@@ -1,20 +1,14 @@
 package com.david42069.dualboothelper;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.View;
 import android.util.Log;
+import android.view.View;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -22,9 +16,11 @@ import androidx.preference.EditTextPreference;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.Preference;
+import androidx.preference.EditTextPreference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreferenceCompat;
+
 import com.topjohnwu.superuser.Shell;
 
 import dev.oneuiproject.oneui.dialog.ProgressDialog;
@@ -156,6 +152,9 @@ public class SettingsActivity extends AppCompatActivity {
                 editTextSwitchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
                     boolean isEditTextEnabled = (boolean) newValue;
                     updateEditTextPreferences(isEditTextEnabled, slotAPreference, slotBPreference);
+                    if (!isEditTextEnabled) {
+                        clearEditTextPreferences(slotAPreference, slotBPreference);
+                    }
                     return true;
                 });
             }
@@ -167,6 +166,15 @@ public class SettingsActivity extends AppCompatActivity {
             }
             if (slotBPreference != null) {
                 slotBPreference.setEnabled(isEditTextEnabled);
+            }
+        }
+
+        private void clearEditTextPreferences(EditTextPreference slotAPreference, EditTextPreference slotBPreference) {
+            if (slotAPreference != null) {
+                sharedPreferences.edit().remove(slotAPreference.getKey()).apply();
+            }
+            if (slotBPreference != null) {
+                sharedPreferences.edit().remove(slotBPreference.getKey()).apply();
             }
         }
 
@@ -183,12 +191,7 @@ public class SettingsActivity extends AppCompatActivity {
         private void handlePreferenceChange(String key) {
             String value = sharedPreferences.getString(key, "");
             if (value == null || value.trim().isEmpty()) {
-                // Reset to the default value specified in the preferences XML file
-                Preference preference = findPreference(key);
-                if (preference instanceof EditTextPreference) {
-                    String defaultValue = ((EditTextPreference) preference).getText();
-                    sharedPreferences.edit().putString(key, defaultValue).apply();
-                }
+                sharedPreferences.edit().remove(key).apply();
             }
         }
     }

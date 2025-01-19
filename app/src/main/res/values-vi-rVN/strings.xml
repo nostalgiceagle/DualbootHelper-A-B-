@@ -1,63 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="description">Một ứng dụng hỗ trợ cho giải pháp khởi động kép</string>
-  <string name="info" comment="info Information layout strings">Thông tin</string>
-  <string name="dbinf" comment="dbinf Placeholder info strings">Trạng thái</string>
-  <string name="slota_os">Hệ điều hành ở khu A</string>
-  <string name="slotb_os">Hệ điều hành ở khu B</string>
-  <string name="qact" comment="qact Quick action layout strings">Hành động nhanh</string>
-  <string name="reboot_a" comment="reboot_a Buttons strings">Khởi động lại sang khu A</string>
-  <string name="reboot_b">Khởi động lại sang khu B</string>
-  <string name="recovery_a">Khởi động lại sang chế độ Phục hồi khu A</string>
-  <string name="recovery_b">Khởi động lại sang chế độ Phục hồi khu B</string>
-  <string name="dl_mode">Khởi động lại vào Download Mode</string>
-  <string name="poweroff">Tắt hệ thống</string>
-  <string name="dialog_confirm">Bạn có chắc không?</string>
-  <string name="dialog_yes">Có</string>
-  <string name="dialog_no">Không</string>
-  <string name="db_dev" comment="db_dev About strings Team DB">Nhà phát triển chính</string>
-  <string name="david_desc" comment="david_desc Our descriptions">Người sáng lập Dualboot cho Samsung</string>
-  <string name="bob_desc">Đã thiết kế ứng dụng này theo phong cách OneUI</string>
-  <string name="ouip_team" comment="ouip_team Team OUIP">Đội ngũ OneUI Project</string>
-  <string name="os_lic" comment="os_lic License strings">Giấy phép mã nguồn mở</string>
-  <string name="gnu_lic">Giấy phép GNU</string>
-  <string name="apache_lic">Giấy phép Apache 2,0</string>
-  <string name="mit_lic">Giấy phép MIT</string>
-  <string name="links" comment="links Links strings">Liên kết hữu ích</string>
-  <string name="donate">Ủng hộ tôi!</string>
-  <string name="xda_post">Bài đăng trên XDA</string>
-  <string name="reboot_wait">Đang khởi động lại. Vui lòng đợi...</string>
-  <string name="not_installed" comment="not_installed Collected info strings">Chưa cài đặt</string>
-  <string name="installed_v5">Đã cài đặt (V5)</string>
-  <string name="installed_v4">Đã cài đặt (V4)</string>
-  <string name="unavailable">Không khả dụng</string>
-  <string name="super_partition">Thiết bị sử dụng phân vùng động</string>
-  <string name="normal_naming">Thiết bị sử dụng tên phân vùng thường</string>
-  <string name="caps_naming">Thiết bị sử dụng tên phân vùng in hoa</string>
-  <string name="ufs_sda">Thiết bị sử dụng UFS (sda)</string>
-  <string name="emmc_sdc">Thiết bị sử dụng eMMC (sdc)</string>
-  <string name="sudo_access">Hãy trao quyền quản trị (superuser) để lấy thông tin về thiết bị</string>
-  <string name="emmc_mmcblk0">Thiết bị sử dụng eMMC (mmcblk0)</string>
-  <string name="settings">Cài đặt</string>
-  <string name="about">Về ứng dụng này</string>
-  <string name="translation">Giúp chúng tôi dịch ứng dụng!</string>
-  <string name="sudo_access_title">Không có quyền truy cập SU, hay bạn chưa root? :(</string>
-  <string name="slota_qact">Hành động khu A</string>
-  <string name="slota_description">Hành động có ở khu A</string>
-  <string name="slotb_qact">Hành động khu B</string>
-  <string name="slotb_description">Hành động có ở khu B</string>
-  <string name="slota_placeholder">Khởi động lại vào khu A, chế độ phục hồi A</string>
-  <string name="slotb_placeholder">Khởi động lại vào khu B, chế độ phục hồi B</string>
-  <string name="misc_qact">Hành động khác</string>
-  <string name="misc_description">Hành động khác có tại đây</string>
-  <string name="misc_placeholder">Khởi động lại vào Download Mode, tắt hệ thống</string>
-  <string name="dialog_confirm_title" comment="dialog_confirm_title Dialog strings">Xác nhận</string>
-  <string name="dialog_ok">OK</string>
-  <string name="slota_settings" comment="slota_settings Preferences strings">Tên khu A</string>
-  <string name="slotb_settings">Tên khu B</string>
-  <string name="add_db_options_to_twrp">Sử dụng TWRP bản Dualboot</string>
-  <string name="twrp_desc">Bắt buộc TWRP 3.5 trở lên và phân vùng data đã được tắt mã hóa</string>
-  <string name="general">Chung</string>
-  <string name="rec_options">Cài đặt cho chế độ khôi phục</string>
-  <string name="app_name" comment="app_name Basic title and desc">Dualboot Helper</string>
+    <!-- Basic title and desc -->
+    <string name="customizename">Tùy chỉnh tên từng khu</string>
+    <string name="description">Một ứng dụng hỗ trợ cho giải pháp khởi động kép</string>
+    <string name="settings">Cài đặt</string>
+    <string name="about">Về ứng dụng này</string>
+    <string name="translation">Giúp chúng tôi dịch ứng dụng!</string>
+    <!-- Information layout strings -->
+    <string name="info">Thông tin</string>
+    <!-- Placeholder info strings -->
+    <string name="dbinf">Trạng thái</string>
+    <string name="slota_os">Hệ điều hành ở khu A</string>
+    <string name="slotb_os">Hệ điều hành ở khu B</string>
+    <!-- Collected info strings -->
+    <string name="not_installed">Chưa cài đặt</string>
+    <string name="installed_v5">Đã cài đặt (V5)</string>
+    <string name="installed_v4">Đã cài đặt (V4)</string>
+    <string name="unavailable">Không khả dụng</string>
+    <string name="super_partition">Thiết bị sử dụng phân vùng động</string>
+    <string name="normal_naming">Thiết bị sử dụng tên phân vùng thường</string>
+    <string name="caps_naming">Thiết bị sử dụng tên phân vùng in hoa</string>
+    <string name="ufs_sda">Thiết bị sử dụng UFS (sda)</string>
+    <string name="emmc_sdc">Thiết bị sử dụng eMMC (sdc)</string>
+    <string name="emmc_mmcblk0">Thiết bị sử dụng eMMC (mmcblk0)</string>
+    <string name="sudo_access">Hãy trao quyền quản trị (superuser) để lấy thông tin về thiết bị</string>
+    <string name="sudo_access_title">Không có quyền truy cập SU, hay bạn chưa root? :(</string>
+    <!-- Quick action layout strings -->
+    <string name="qact">Hành động nhanh</string>
+    <string name="slota_qact">Hành động khu A</string>
+    <string name="slota_description">Hành động có ở khu A</string>
+    <string name="slotb_qact">Hành động khu B</string>
+    <string name="slotb_description">Hành động có ở khu B</string>
+    <string name="slota_placeholder">Khởi động lại vào khu A, chế độ phục hồi A</string>
+    <string name="slotb_placeholder">Khởi động lại vào khu B, chế độ phục hồi B</string>
+    <string name="misc_qact">Hành động khác</string>
+    <string name="misc_description">Hành động khác có tại đây</string>
+    <string name="misc_placeholder">Khởi động lại vào Download Mode, tắt hệ thống</string>
+    <!-- Buttons strings -->
+    <string name="reboot_a">Khởi động lại sang khu A</string>
+    <string name="reboot_b">Khởi động lại sang khu B</string>
+    <string name="recovery_a">Khởi động lại sang chế độ Phục hồi khu A</string>
+    <string name="recovery_b">Khởi động lại sang chế độ Phục hồi khu B</string>
+    <string name="dl_mode">Khởi động lại vào Download Mode</string>
+    <string name="poweroff">Tắt hệ thống</string>
+    <!-- Dialog strings -->
+    <string name="dialog_confirm_title">Xác nhận</string>
+    <string name="dialog_confirm">Bạn có chắc không?</string>
+    <string name="dialog_yes">Có</string>
+    <string name="dialog_no">Không</string>
+    <string name="dialog_ok">OK</string>
+    <string name="reboot_wait">Đang khởi động lại. Vui lòng đợi...</string>
+    <!-- About strings -->
+    <!-- Team DB -->
+    <string name="db_dev">Nhà phát triển chính</string>
+    <!-- Our descriptions -->
+    <string name="david_desc">Người sáng lập Dualboot cho Samsung</string>
+    <string name="bob_desc">Đã thiết kế ứng dụng này theo phong cách OneUI</string>
+    <!-- Team OUIP -->
+    <string name="ouip_team">Đội ngũ OneUI Project</string>
+    <!-- License strings -->
+    <string name="os_lic">Giấy phép mã nguồn mở</string>
+    <string name="gnu_lic">Giấy phép GNU</string>
+    <string name="apache_lic">Giấy phép Apache 2,0</string>
+    <string name="mit_lic">Giấy phép MIT</string>
+    <!-- Links strings-->
+    <string name="links">Liên kết hữu ích</string>
+    <string name="donate">Ủng hộ tôi!</string>
+    <string name="xda_post">Bài đăng trên XDA</string>
+    <!-- Preferences strings-->
+    <string name="slota_settings">Tên khu A</string>
+    <string name="slotb_settings">Tên khu B</string>
+    <string name="add_db_options_to_twrp">Sử dụng TWRP bản Dualboot</string>
+    <string name="twrp_desc">Bắt buộc TWRP 3.5 trở lên và phân vùng data đã được tắt mã hóa</string>
+    <string name="general">Chung</string>
+    <string name="rec_options">Cài đặt cho chế độ khôi phục</string>
 </resources>

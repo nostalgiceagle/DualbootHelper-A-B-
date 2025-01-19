@@ -1,63 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="description">2 системийг удирдахад зориулсан APP</string>
-  <string name="info" comment="info Information layout strings">Тухай</string>
-  <string name="dbinf" comment="dbinf Placeholder info strings">Төлөв</string>
-  <string name="slota_os">\"А\" үйлдлийн систем</string>
-  <string name="slotb_os">\"Б\" үйлдлийн систем</string>
-  <string name="qact" comment="qact Quick action layout strings">Сонголтууд</string>
-  <string name="reboot_a" comment="reboot_a Buttons strings">\"А\" систем рүү шилжих</string>
-  <string name="reboot_b">\"Б\" систем рүү шилжих</string>
-  <string name="recovery_a">\"А\" системийг recovery горимд асаах</string>
-  <string name="recovery_b">\"Б\" системийг recovery горимд асаах</string>
-  <string name="dl_mode">Download горимд асах</string>
-  <string name="poweroff">Унтраах</string>
-  <string name="dialog_confirm">Та итгэлтэй байна уу?</string>
-  <string name="dialog_yes">Тийм</string>
-  <string name="dialog_no">Үгүй</string>
-  <string name="db_dev" comment="db_dev About strings Team DB">Энэ төслийг хөгжүүлсэн</string>
-  <string name="david_desc" comment="david_desc Our descriptions">Үүсгэн байгуулагч</string>
-  <string name="bob_desc">Энэхүү APP-ийн OneUI загварыг</string>
-  <string name="ouip_team" comment="ouip_team Team OUIP">OneUI төсөл</string>
-  <string name="os_lic" comment="os_lic License strings">Нээлттэй эхийн лиценз</string>
-  <string name="gnu_lic">GNU лиценз</string>
-  <string name="apache_lic">Apache лиценз 2.0</string>
-  <string name="mit_lic">MIT лиценз</string>
-  <string name="links" comment="links Links strings">Хэрэгтэй холбоосууд</string>
-  <string name="donate">Бидэнд хандивлах!</string>
-  <string name="xda_post">XDA пост</string>
-  <string name="reboot_wait">Та түр хүлээнэ үү.</string>
-  <string name="not_installed" comment="not_installed Collected info strings">Суугаагүй байна.</string>
-  <string name="installed_v5">Хувилбар 5 суусан байна</string>
-  <string name="installed_v4">Хувилбар 4 суусан байна</string>
-  <string name="unavailable">Боломжгүй</string>
-  <string name="super_partition">Таны утас SUPER ашигладаг</string>
-  <string name="normal_naming">Таны утас жирийн нэрс ашигладаг</string>
-  <string name="caps_naming">Таны утас том үсэгтэй нэрс ашигладаг</string>
-  <string name="ufs_sda">Таны утас UFS(sda) ашигладаг</string>
-  <string name="emmc_sdc">Таны утас EMMC(sdc) ашигладаг</string>
-  <string name="sudo_access">Та SuperUser зөвшөөрөл олгоно уу.</string>
-  <string name="emmc_mmcblk0">Таны утас EMMC(mmcblk0) ашигладаг</string>
-  <string name="settings">Тохиргоо</string>
-  <string name="about">Энэ APP-ийн тухай</string>
-  <string name="translation">Орчуулсанд тусгана уу.</string>
-  <string name="sudo_access_title">SuperUser олдсонгүй. :(</string>
-  <string name="slota_qact">\"А\" систем</string>
-  <string name="slota_description">\"А\" системийн үйлдлүүд</string>
-  <string name="slotb_qact">\"Б\" систем</string>
-  <string name="slotb_description">\"Б\" системийн үйлдлүүд</string>
-  <string name="slota_placeholder">\"А\" систем рүү болон recovery горимд асах</string>
-  <string name="slotb_placeholder">\"Б\" систем рүү болон recovery горимд асах</string>
-  <string name="misc_qact">Бусад</string>
-  <string name="misc_description">Бусад сонголтууд боломжтой</string>
-  <string name="misc_placeholder">Унтраах, Download горимд асаах</string>
-  <string name="dialog_confirm_title" comment="dialog_confirm_title Dialog strings">Баталгаажуулах</string>
-  <string name="dialog_ok">Тийн</string>
-  <string name="slota_settings" comment="slota_settings Preferences strings">\"А\" системийн нэр</string>
-  <string name="slotb_settings">\"Б\" системийн нэр</string>
-  <string name="add_db_options_to_twrp">2 системд зориулсан TWRP ашиглах.</string>
-  <string name="twrp_desc">Энэ нь TWRP 3.5 болон түүнээс дээш, Data шифр унтраах хэрэгтэй болно</string>
-  <string name="general">Ерөнхий</string>
-  <string name="rec_options">Recovery горимын сонголтууд</string>
-  <string name="app_name" comment="app_name Basic title and desc">Dualboot Helper</string>
+    <!-- Basic title and desc -->
+    <string name="customizename">Customize slot\'s name</string>
+    <string name="description">2 системийг удирдахад зориулсан APP</string>
+    <string name="settings">Тохиргоо</string>
+    <string name="about">Энэ APP-ийн тухай</string>
+    <string name="translation">Орчуулсанд тусгана уу.</string>
+    <!-- Information layout strings -->
+    <string name="info">Тухай</string>
+    <!-- Placeholder info strings -->
+    <string name="dbinf">Төлөв</string>
+    <string name="slota_os">\"А\" үйлдлийн систем</string>
+    <string name="slotb_os">\"Б\" үйлдлийн систем</string>
+    <!-- Collected info strings -->
+    <string name="not_installed">Суугаагүй байна.</string>
+    <string name="installed_v5">Хувилбар 5 суусан байна</string>
+    <string name="installed_v4">Хувилбар 4 суусан байна</string>
+    <string name="unavailable">Боломжгүй</string>
+    <string name="super_partition">Таны утас SUPER ашигладаг</string>
+    <string name="normal_naming">Таны утас жирийн нэрс ашигладаг</string>
+    <string name="caps_naming">Таны утас том үсэгтэй нэрс ашигладаг</string>
+    <string name="ufs_sda">Таны утас UFS(sda) ашигладаг</string>
+    <string name="emmc_sdc">Таны утас EMMC(sdc) ашигладаг</string>
+    <string name="emmc_mmcblk0">Таны утас EMMC(mmcblk0) ашигладаг</string>
+    <string name="sudo_access">Та SuperUser зөвшөөрөл олгоно уу.</string>
+    <string name="sudo_access_title">SuperUser олдсонгүй. :(</string>
+    <!-- Quick action layout strings -->
+    <string name="qact">Сонголтууд</string>
+    <string name="slota_qact">\"А\" систем</string>
+    <string name="slota_description">\"А\" системийн үйлдлүүд</string>
+    <string name="slotb_qact">\"Б\" систем</string>
+    <string name="slotb_description">\"Б\" системийн үйлдлүүд</string>
+    <string name="slota_placeholder">\"А\" систем рүү болон recovery горимд асах</string>
+    <string name="slotb_placeholder">\"Б\" систем рүү болон recovery горимд асах</string>
+    <string name="misc_qact">Бусад</string>
+    <string name="misc_description">Бусад сонголтууд боломжтой</string>
+    <string name="misc_placeholder">Унтраах, Download горимд асаах</string>
+    <!-- Buttons strings -->
+    <string name="reboot_a">\"А\" систем рүү шилжих</string>
+    <string name="reboot_b">\"Б\" систем рүү шилжих</string>
+    <string name="recovery_a">\"А\" системийг recovery горимд асаах</string>
+    <string name="recovery_b">\"Б\" системийг recovery горимд асаах</string>
+    <string name="dl_mode">Download горимд асах</string>
+    <string name="poweroff">Унтраах</string>
+    <!-- Dialog strings -->
+    <string name="dialog_confirm_title">Баталгаажуулах</string>
+    <string name="dialog_confirm">Та итгэлтэй байна уу?</string>
+    <string name="dialog_yes">Тийм</string>
+    <string name="dialog_no">Үгүй</string>
+    <string name="dialog_ok">Тийн</string>
+    <string name="reboot_wait">Та түр хүлээнэ үү.</string>
+    <!-- About strings -->
+    <!-- Team DB -->
+    <string name="db_dev">Энэ төслийг хөгжүүлсэн</string>
+    <!-- Our descriptions -->
+    <string name="david_desc">Үүсгэн байгуулагч</string>
+    <string name="bob_desc">Энэхүү APP-ийн OneUI загварыг</string>
+    <!-- Team OUIP -->
+    <string name="ouip_team">OneUI төсөл</string>
+    <!-- License strings -->
+    <string name="os_lic">Нээлттэй эхийн лиценз</string>
+    <string name="gnu_lic">GNU лиценз</string>
+    <string name="apache_lic">Apache лиценз 2.0</string>
+    <string name="mit_lic">MIT лиценз</string>
+    <!-- Links strings-->
+    <string name="links">Хэрэгтэй холбоосууд</string>
+    <string name="donate">Бидэнд хандивлах!</string>
+    <string name="xda_post">XDA пост</string>
+    <!-- Preferences strings-->
+    <string name="slota_settings">\"А\" системийн нэр</string>
+    <string name="slotb_settings">\"Б\" системийн нэр</string>
+    <string name="add_db_options_to_twrp">2 системд зориулсан TWRP ашиглах.</string>
+    <string name="twrp_desc">Энэ нь TWRP 3.5 болон түүнээс дээш, Data шифр унтраах хэрэгтэй болно</string>
+    <string name="general">Ерөнхий</string>
+    <string name="rec_options">Recovery горимын сонголтууд</string>
 </resources>

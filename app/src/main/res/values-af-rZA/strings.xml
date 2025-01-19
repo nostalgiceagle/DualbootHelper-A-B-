@@ -1,63 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="description">’n Hulp app vir dubbelboot-oplossing</string>
-  <string name="info" comment="info Information layout strings">Inligting</string>
-  <string name="dbinf" comment="dbinf Placeholder info strings">Dubbelboot inligting</string>
-  <string name="slota_os">Kernstelsel in Slot A:</string>
-  <string name="slotb_os">Kernstelsel in Slot B:</string>
-  <string name="qact" comment="qact Quick action layout strings">Vinnige aksie</string>
-  <string name="reboot_a" comment="reboot_a Buttons strings">Herlaai na Slot A</string>
-  <string name="reboot_b">Herlaai na Slot B</string>
-  <string name="recovery_a">Herlaai na Herstel in Slot A</string>
-  <string name="recovery_b">Herlaai na Herstel in Slot B</string>
-  <string name="dl_mode">Herlaai na Afdwingmodus</string>
-  <string name="poweroff">Skakel stelsel af</string>
-  <string name="dialog_confirm">Is jy seker?</string>
-  <string name="dialog_yes">Ja</string>
-  <string name="dialog_no">Nee</string>
-  <string name="db_dev" comment="db_dev About strings Team DB">Dualboot Helper ontwikkelaars</string>
-  <string name="david_desc" comment="david_desc Our descriptions">Die stigter van Dualboot vir Samsung</string>
-  <string name="bob_desc">Het hierdie app met OneUI-styl gemaak</string>
-  <string name="ouip_team" comment="ouip_team Team OUIP">OneUI Projekspan</string>
-  <string name="os_lic" comment="os_lic License strings">Oopbron lisensies</string>
-  <string name="gnu_lic">GNU Lisensie</string>
-  <string name="apache_lic">Apache Lisensie 2.0</string>
-  <string name="mit_lic">MIT Lisensie</string>
-  <string name="links" comment="links Links strings">Nuttige skakels</string>
-  <string name="donate">Skenk aan my!</string>
-  <string name="xda_post">XDA plasing</string>
-  <string name="reboot_wait">Herlaai. Wag asseblief...</string>
-  <string name="not_installed" comment="not_installed Collected info strings">Not installed</string>
-  <string name="installed_v5">Installed (V5)</string>
-  <string name="installed_v4">Installed (V4)</string>
-  <string name="unavailable">Unavailable</string>
-  <string name="super_partition">Device uses super partition</string>
-  <string name="normal_naming">Device uses normal naming partitions</string>
-  <string name="caps_naming">Device uses caps naming partitions</string>
-  <string name="ufs_sda">Device uses UFS (sda)</string>
-  <string name="emmc_sdc">Device uses EMMC (sdc)</string>
-  <string name="sudo_access">Please grant superuser access to gather info about the device</string>
-  <string name="emmc_mmcblk0">Device uses EMMC (mmcblk0)</string>
-  <string name="settings">Settings</string>
-  <string name="about">About this app</string>
-  <string name="translation">Help us translate the app!</string>
-  <string name="sudo_access_title">No SU access, or you haven\'t rooted, yet? :(</string>
-  <string name="slota_qact">Slot A actions</string>
-  <string name="slota_description">Actions available on slot A</string>
-  <string name="slotb_qact">Slot B actions</string>
-  <string name="slotb_description">Actions available on slot B</string>
-  <string name="slota_placeholder">Reboot to slot A, Recovery A</string>
-  <string name="slotb_placeholder">Reboot to slot B, Recovery B</string>
-  <string name="misc_qact">Misc actions</string>
-  <string name="misc_description">Misc actions available</string>
-  <string name="misc_placeholder">Reboot to Download Mode, Power off system</string>
-  <string name="dialog_confirm_title" comment="dialog_confirm_title Dialog strings">Confirmation</string>
-  <string name="dialog_ok">OK</string>
-  <string name="slota_settings" comment="slota_settings Preferences strings">Slot A name</string>
-  <string name="slotb_settings">Slot B name</string>
-  <string name="add_db_options_to_twrp">Use custom Dualboot TWRP</string>
-  <string name="twrp_desc">Requires TWRP 3.5+ and disabled data encryption</string>
-  <string name="general">General</string>
-  <string name="rec_options">Recovery options</string>
-  <string name="app_name" comment="app_name Basic title and desc">Dualboot Helper</string>
+    <!-- Basic title and desc -->
+    <string name="customizename">Customize slot\'s name</string>
+    <string name="description">’n Hulp app vir dubbelboot-oplossing</string>
+    <string name="settings">Settings</string>
+    <string name="about">About this app</string>
+    <string name="translation">Help us translate the app!</string>
+    <!-- Information layout strings -->
+    <string name="info">Inligting</string>
+    <!-- Placeholder info strings -->
+    <string name="dbinf">Dubbelboot inligting</string>
+    <string name="slota_os">Kernstelsel in Slot A:</string>
+    <string name="slotb_os">Kernstelsel in Slot B:</string>
+    <!-- Collected info strings -->
+    <string name="not_installed">Not installed</string>
+    <string name="installed_v5">Installed (V5)</string>
+    <string name="installed_v4">Installed (V4)</string>
+    <string name="unavailable">Unavailable</string>
+    <string name="super_partition">Device uses super partition</string>
+    <string name="normal_naming">Device uses normal naming partitions</string>
+    <string name="caps_naming">Device uses caps naming partitions</string>
+    <string name="ufs_sda">Device uses UFS (sda)</string>
+    <string name="emmc_sdc">Device uses EMMC (sdc)</string>
+    <string name="emmc_mmcblk0">Device uses EMMC (mmcblk0)</string>
+    <string name="sudo_access">Please grant superuser access to gather info about the device</string>
+    <string name="sudo_access_title">No SU access, or you haven\'t rooted, yet? :(</string>
+    <!-- Quick action layout strings -->
+    <string name="qact">Vinnige aksie</string>
+    <string name="slota_qact">Slot A actions</string>
+    <string name="slota_description">Actions available on slot A</string>
+    <string name="slotb_qact">Slot B actions</string>
+    <string name="slotb_description">Actions available on slot B</string>
+    <string name="slota_placeholder">Reboot to slot A, Recovery A</string>
+    <string name="slotb_placeholder">Reboot to slot B, Recovery B</string>
+    <string name="misc_qact">Misc actions</string>
+    <string name="misc_description">Misc actions available</string>
+    <string name="misc_placeholder">Reboot to Download Mode, Power off system</string>
+    <!-- Buttons strings -->
+    <string name="reboot_a">Herlaai na Slot A</string>
+    <string name="reboot_b">Herlaai na Slot B</string>
+    <string name="recovery_a">Herlaai na Herstel in Slot A</string>
+    <string name="recovery_b">Herlaai na Herstel in Slot B</string>
+    <string name="dl_mode">Herlaai na Afdwingmodus</string>
+    <string name="poweroff">Skakel stelsel af</string>
+    <!-- Dialog strings -->
+    <string name="dialog_confirm_title">Confirmation</string>
+    <string name="dialog_confirm">Is jy seker?</string>
+    <string name="dialog_yes">Ja</string>
+    <string name="dialog_no">Nee</string>
+    <string name="dialog_ok">OK</string>
+    <string name="reboot_wait">Herlaai. Wag asseblief...</string>
+    <!-- About strings -->
+    <!-- Team DB -->
+    <string name="db_dev">Dualboot Helper ontwikkelaars</string>
+    <!-- Our descriptions -->
+    <string name="david_desc">Die stigter van Dualboot vir Samsung</string>
+    <string name="bob_desc">Het hierdie app met OneUI-styl gemaak</string>
+    <!-- Team OUIP -->
+    <string name="ouip_team">OneUI Projekspan</string>
+    <!-- License strings -->
+    <string name="os_lic">Oopbron lisensies</string>
+    <string name="gnu_lic">GNU Lisensie</string>
+    <string name="apache_lic">Apache Lisensie 2.0</string>
+    <string name="mit_lic">MIT Lisensie</string>
+    <!-- Links strings-->
+    <string name="links">Nuttige skakels</string>
+    <string name="donate">Skenk aan my!</string>
+    <string name="xda_post">XDA plasing</string>
+    <!-- Preferences strings-->
+    <string name="slota_settings">Slot A name</string>
+    <string name="slotb_settings">Slot B name</string>
+    <string name="add_db_options_to_twrp">Use custom Dualboot TWRP</string>
+    <string name="twrp_desc">Requires TWRP 3.5+ and disabled data encryption</string>
+    <string name="general">General</string>
+    <string name="rec_options">Recovery options</string>
 </resources>

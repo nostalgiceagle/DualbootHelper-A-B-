@@ -4,6 +4,10 @@
     <PreferenceCategory
         android:title="@string/general">
 
+        <SwitchPreferenceCompat
+            android:key="customizeslotname"
+            android:title="@string/customizename" />
+
         <EditTextPreference
             android:key="slotakey"
             android:title="@string/slota_settings"

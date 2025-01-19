@@ -82,22 +82,25 @@ public class SettingsActivity extends AppCompatActivity {
             registerPreferenceChangeListener();
 
             // Find the SwitchPreferenceCompat by key
-            SwitchPreferenceCompat switchPreference = findPreference("twrp_theme");
+            SwitchPreferenceCompat twrpSwitchPreference = findPreference("twrp_theme");
+            SwitchPreferenceCompat editTextSwitchPreference = findPreference("customizeslotname");
+            EditTextPreference slotAPreference = findPreference("slotakey");
+            EditTextPreference slotBPreference = findPreference("slotbkey");
 
-            if (switchPreference != null) {
+            if (twrpSwitchPreference != null) {
                 // Check for root access before enabling the switch
                 if (!MainActivity.RootChecker.isRootAvailable()) {
                     Log.e("SettingsFragment", "Root access not found. Disabling theme switch.");
-                    switchPreference.setEnabled(false); // Grey out the switch
-                    switchPreference.setSummary(getString(R.string.sudo_access)); // Optional: Inform user
+                    twrpSwitchPreference.setEnabled(false); // Grey out the switch
+                    twrpSwitchPreference.setSummary(getString(R.string.sudo_access)); // Optional: Inform user
                 } else {
                     Log.i("SettingsFragment", "Root access available. Enabling theme switch.");
-                    switchPreference.setEnabled(true);
-                    switchPreference.setSummary(getString(R.string.twrp_desc)); // Clear any disabled summary if previously set
+                    twrpSwitchPreference.setEnabled(true);
+                    twrpSwitchPreference.setSummary(getString(R.string.twrp_desc)); // Clear any disabled summary if previously set
                 }
 
                 // Set the onPreferenceChangeListener
-                switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                twrpSwitchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
                     boolean isEnabled = (boolean) newValue;
 
                     // Show loading dialog
@@ -144,40 +147,49 @@ public class SettingsActivity extends AppCompatActivity {
                     return true;
                 });
             }
+
+            // Switch stuff
+            if (editTextSwitchPreference != null) {
+                boolean isEditTextSwitchOn = editTextSwitchPreference.isChecked();
+                updateEditTextPreferences(isEditTextSwitchOn, slotAPreference, slotBPreference);
+
+                editTextSwitchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                    boolean isEditTextEnabled = (boolean) newValue;
+                    updateEditTextPreferences(isEditTextEnabled, slotAPreference, slotBPreference);
+                    return true;
+                });
+            }
+        }
+
+        private void updateEditTextPreferences(boolean isEditTextEnabled, EditTextPreference slotAPreference, EditTextPreference slotBPreference) {
+            if (slotAPreference != null) {
+                slotAPreference.setEnabled(isEditTextEnabled);
+            }
+            if (slotBPreference != null) {
+                slotBPreference.setEnabled(isEditTextEnabled);
+            }
         }
 
         private void registerPreferenceChangeListener() {
             sharedPreferences.registerOnSharedPreferenceChangeListener((sharedPreferences, key) -> {
                 if ("slotakey".equals(key)) {
-                    handlePreferenceChange("slotakey", "slota.txt");
+                    handlePreferenceChange("slotakey");
                 } else if ("slotbkey".equals(key)) {
-                    handlePreferenceChange("slotbkey", "slotb.txt");
+                    handlePreferenceChange("slotbkey");
                 }
             });
         }
 
-        private void handlePreferenceChange(String key, String fileName) {
+        private void handlePreferenceChange(String key) {
             String value = sharedPreferences.getString(key, "");
             if (value == null || value.trim().isEmpty()) {
-                // Reset to the default value from the file or fallback
-                String defaultValue = readValueFromFile(fileName);
-                if (defaultValue == null || defaultValue.isEmpty()) {
-                    defaultValue = getString(R.string.unavailable);
-                }
-                sharedPreferences.edit().putString(key, defaultValue).apply();
-            }
-        }
-
-        private String readValueFromFile(String fileName) {
-            File file = new File(requireContext().getFilesDir(), fileName);
-            if (file.exists()) {
-                try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                    return reader.readLine();
-                } catch (IOException e) {
-                    Log.e("SettingsFragment", "Error reading file: " + fileName, e);
+                // Reset to the default value specified in the preferences XML file
+                Preference preference = findPreference(key);
+                if (preference instanceof EditTextPreference) {
+                    String defaultValue = ((EditTextPreference) preference).getText();
+                    sharedPreferences.edit().putString(key, defaultValue).apply();
                 }
             }
-            return null;
         }
     }
 }

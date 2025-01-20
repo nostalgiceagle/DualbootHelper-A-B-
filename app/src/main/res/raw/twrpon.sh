@@ -96,12 +96,14 @@ if [ "$use_caps" -eq 1 ]
 then
     userdata_b_name="userdata_b"
     userdata_a_name="userdata"
+    boot_a_name="boot"
 fi
 
 if [ "$use_caps" -eq 2 ]
 then
     userdata_b_name="USERDATA_B"
     userdata_a_name="USERDATA"
+    boot_a_name="BOOT"
 fi
 
 #get disk path
@@ -116,13 +118,13 @@ output=$($PARTED_PATH $DISK -s -j unit B print 2>/dev/null)
 #gather partition numbers
 userdata_b_num=$(get_partition_property "$userdata_b_name" ".number")
 userdata_a_num=$(get_partition_property "$userdata_a_name" ".number")
-if [ $userdata_a_num -gt $userdata_b_num ]
+if [ $userdata_a_num -lt $userdata_b_num ]
 then
 mkdir -p /sdcard/TWRP/theme/
 unzip $DATA_PATH/files/slota.zip -d /sdcard/TWRP/theme
 exit 0
 fi
-if [ $userdata_a_num -lt $userdata_b_num ]
+if [ $userdata_a_num -gt $userdata_b_num ]
 then
 mkdir -p /sdcard/TWRP/theme/
 unzip $DATA_PATH/files/slotb.zip -d /sdcard/TWRP/theme

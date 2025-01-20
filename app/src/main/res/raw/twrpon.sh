@@ -96,12 +96,14 @@ if [ "$use_caps" -eq 1 ]
 then
     userdata_b_name="userdata_b"
     userdata_a_name="userdata"
+    boot_a_name="boot"
 fi
 
 if [ "$use_caps" -eq 2 ]
 then
     userdata_b_name="USERDATA_B"
     userdata_a_name="USERDATA"
+    boot_a_name="BOOT"
 fi
 
 #get disk path

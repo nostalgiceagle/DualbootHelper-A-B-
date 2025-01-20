@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="description">A helper app for dualbooting solution</string>
-  <string name="info" comment="info Information layout strings">Information</string>
+  <string name="customizename">Customizează numele sloturilor</string>
+  <string name="info" comment="info Information layout strings">Informații</string>
   <string name="dbinf" comment="dbinf Placeholder info strings">Status</string>
   <string name="slota_os">OS pe Slotul A</string>
   <string name="slotb_os">OS pe Slotul B</string>

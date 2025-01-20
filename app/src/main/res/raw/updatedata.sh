@@ -21,7 +21,6 @@
 
 # Get the current user ID
 USER_ID=$(am get-current-user)
-
 DATA_PATH=$(dumpsys package com.david42069.dualboothelper | grep -i dataDir | grep "/data/user/$USER_ID/" | cut -d'=' -f2-)
 DB_PATH="/cache/dualboot/database"
 PARTED_PATH="$DATA_PATH/files/parted"
